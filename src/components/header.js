@@ -6,7 +6,7 @@ import Nav from "../components/nav"
 
 const Header = ({ siteTitle }) => (
   <header className="py-8 md:py-16">
-    <div className="Header__summary snipcart-summary snipcart-checkout">
+    <div className="fixed Header__summary snipcart-summary snipcart-checkout">
       <div className="Header__summary__title">🛍 MY CART 🛍</div>
       <div className="Header__summary__line">
         Number of items: <span className="snipcart-total-items"></span>

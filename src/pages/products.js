@@ -43,20 +43,22 @@ export default function ProductsPage({ data }) {
         <motion.div className="content" variants={item} transition="easeInOut">
           {/* Change node to be product */}
           {products.edges.map(({ node: product }) => (
-            <div key={product.id} className="max-w-sm">
+            <div key={product.id} className="max-w-sm py-8 my-8 border-t border-gray-500">
               <h2>{product.name}</h2>
-              <p>{product.price}</p>
-              <GatsbyImage fluid={product.image.fluid} />
+              <GatsbyImage fluid={product.image.fluid} className="mb-4" />
+              {product.orderDetails.map(orderDetail => (
               <button
-                className="Product__buy Product snipcart-add-item"
-                data-item-id={product.id}
-                data-item-price={product.price}
+                className="p-4 mr-4 bg-gray-300 Product__buy Product snipcart-add-item"
+                data-item-id={product.name + " | " + orderDetail.volumeSize} 
+                data-item-price={orderDetail.price}
                 data-item-image={product.image.url}
-                data-item-name={product.name}
+                data-item-name={product.name + " | " + orderDetail.volumeSize} 
                 data-item-url={`https://www.zuckermausbakery.com/products/`}
               >
-                Add to cart
+                
+              {orderDetail.volumeSize} - £{orderDetail.price}
               </button>
+              ))}
             </div>
           ))}
         </motion.div>
@@ -72,7 +74,11 @@ export const query = graphql`
         node {
           id
           name
-          price
+          slug
+          orderDetails {
+            price
+            volumeSize
+          }
           image {
             fluid {
               ...GatsbyDatoCmsFluid
