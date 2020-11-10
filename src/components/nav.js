@@ -1,6 +1,5 @@
 import React from "react"
 import { Link } from "gatsby"
-import { GoLinkExternal } from 'react-icons/go';
 
 const Nav = class extends React.Component {
 
@@ -23,10 +22,7 @@ const Nav = class extends React.Component {
             <Link className="navigation-wrapper__link" onClick={this.toggleMenu} activeClassName="is-active" to="/">Home</Link>
           </li>
           <li>
-            <Link className="navigation-wrapper__link" onClick={this.toggleMenu} activeClassName="is-active" to="/about">About</Link>
-          </li>
-          <li>
-            <a target="_blank" rel="noreferrer noopener" onClick={this.toggleMenu} className="navigation-wrapper__link" href="https://github.com/samuelgoddard/gatsby-tailwind-motion/">Github <GoLinkExternal className="inline-block opacity-25 -mt-3px" /></a>
+            <Link className="navigation-wrapper__link" onClick={this.toggleMenu} activeClassName="is-active" to="/products">Products</Link>
           </li>
         </ul>
       </div>

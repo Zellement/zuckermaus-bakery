@@ -1,8 +1,10 @@
+require('dotenv').config()
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby x Tailwind x Framer Motion`,
-    description: `An opinionated starter for Gatsby v2 with TailwindCSS, PostCSS and Framer Motion page transitions.`,
-    author: `@samuelgoddard`,
+    title: `Zuckermaus Bakery`,
+    description: `Bakery`,
+    author: `@Zellement`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -16,6 +18,18 @@ module.exports = {
     `gatsby-plugin-postcss`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: 'gatsby-plugin-snipcart',
+			options: {
+				apiKey: process.env.SNIPCART_API
+			},
+    },
+    {
+    resolve: `gatsby-source-datocms`,
+    options: {
+      apiToken: process.env.DATO_API,
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
