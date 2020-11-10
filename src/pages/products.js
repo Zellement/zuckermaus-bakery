@@ -26,7 +26,7 @@ export default function ProductsPage({ data }) {
   const products = data.allDatoCmsProduct
   return (
     <>
-    {console.log(data)}
+      {console.log(data)}
       <SEO title="Home" />
       <motion.section
         variants={container}
@@ -42,23 +42,24 @@ export default function ProductsPage({ data }) {
 
         <motion.div className="content" variants={item} transition="easeInOut">
           {/* Change node to be product */}
-          {products.edges.map(({ node:product }) => (
+          {products.edges.map(({ node: product }) => (
             <div key={product.id} className="max-w-sm">
               <h2>{product.name}</h2>
               <p>{product.price}</p>
               <GatsbyImage fluid={product.image.fluid} />
               <button
-                  data-item-id={product.id}
-                  data-item-price={product.price}
-                  data-item-image={product.image.url}
-                  data-item-name={product.name}
-                >
-                  Add to cart
-                </button>
+                className="Product__buy Product snipcart-add-item"
+                data-item-id={product.id}
+                data-item-price={product.price}
+                data-item-image={product.image.url}
+                data-item-name={product.name}
+                data-item-url={`https://www.zuckermausbakery.com/products/`}
+              >
+                Add to cart
+              </button>
             </div>
           ))}
         </motion.div>
-
       </motion.section>
     </>
   )
