@@ -9,6 +9,7 @@
 @import 'tailwindcss/components';
 
 /* Custom Partials */
+@import './partials/_embla-carousel.css';
 @import './partials/_container.css';
 @import './partials/_typography.css';
 @import './partials/_navigation.css';

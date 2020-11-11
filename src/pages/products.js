@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import GatsbyImage from "gatsby-image"
 import { graphql } from "gatsby"
 import { MdAddShoppingCart } from 'react-icons/md'
+import GalleryCarousel from "../components/gallery-carousel"
 
 const duration = 0.35
 
@@ -49,22 +50,27 @@ export default function ProductsPage({ data }) {
               className="max-w-sm py-8 my-8 border-t border-gray-500"
             >
               <h2>{product.name}</h2>
-              <GatsbyImage fluid={product.image.fluid} className="mb-4" />
+
+              <p>{product.description}</p>
+              
+              <GalleryCarousel images={product.gallery} />
+
               {product.orderDetails.map(orderDetail => (
-                <>
+                <div>
                 {orderDetail.volumeSize} - £{orderDetail.price}
                 <button
                   key={orderDetail.id}
                   className="p-4 mr-4 bg-gray-300 Product__buy Product snipcart-add-item"
                   data-item-id={product.name + " | " + orderDetail.volumeSize}
                   data-item-price={orderDetail.price}
-                  data-item-image={product.image.url}
+                  data-item-image={product.gallery[0].fluid.url}
+                  data-item-description={product.description}
                   data-item-name={product.name + " | " + orderDetail.volumeSize}
                   data-item-url={`https://www.zuckermausbakery.com/products/`}
                 >
                  <MdAddShoppingCart className="inline text-4xl" /> Add to basket
                 </button>
-                </>
+                </div>
               ))}
             </div>
           ))}
@@ -82,12 +88,13 @@ export const query = graphql`
           id
           name
           slug
+          description
           orderDetails {
             price
             volumeSize
             id
           }
-          image {
+          gallery {
             fluid {
               ...GatsbyDatoCmsFluid
             }
