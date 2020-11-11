@@ -2,6 +2,8 @@ import React from "react"
 import SEO from "../components/seo"
 import { motion } from "framer-motion"
 import GatsbyImage from "gatsby-image"
+import { graphql } from "gatsby"
+import { MdAddShoppingCart } from 'react-icons/md'
 
 const duration = 0.35
 
@@ -26,7 +28,6 @@ export default function ProductsPage({ data }) {
   const products = data.allDatoCmsProduct
   return (
     <>
-      {console.log(data)}
       <SEO title="Home" />
       <motion.section
         variants={container}
@@ -43,21 +44,27 @@ export default function ProductsPage({ data }) {
         <motion.div className="content" variants={item} transition="easeInOut">
           {/* Change node to be product */}
           {products.edges.map(({ node: product }) => (
-            <div key={product.id} className="max-w-sm py-8 my-8 border-t border-gray-500">
+            <div
+              key={product.id}
+              className="max-w-sm py-8 my-8 border-t border-gray-500"
+            >
               <h2>{product.name}</h2>
               <GatsbyImage fluid={product.image.fluid} className="mb-4" />
               {product.orderDetails.map(orderDetail => (
-              <button
-                className="p-4 mr-4 bg-gray-300 Product__buy Product snipcart-add-item"
-                data-item-id={product.name + " | " + orderDetail.volumeSize} 
-                data-item-price={orderDetail.price}
-                data-item-image={product.image.url}
-                data-item-name={product.name + " | " + orderDetail.volumeSize} 
-                data-item-url={`https://www.zuckermausbakery.com/products/`}
-              >
-                
-              {orderDetail.volumeSize} - £{orderDetail.price}
-              </button>
+                <>
+                {orderDetail.volumeSize} - £{orderDetail.price}
+                <button
+                  key={orderDetail.id}
+                  className="p-4 mr-4 bg-gray-300 Product__buy Product snipcart-add-item"
+                  data-item-id={product.name + " | " + orderDetail.volumeSize}
+                  data-item-price={orderDetail.price}
+                  data-item-image={product.image.url}
+                  data-item-name={product.name + " | " + orderDetail.volumeSize}
+                  data-item-url={`https://www.zuckermausbakery.com/products/`}
+                >
+                 <MdAddShoppingCart className="inline text-4xl" /> Add to basket
+                </button>
+                </>
               ))}
             </div>
           ))}
@@ -78,6 +85,7 @@ export const query = graphql`
           orderDetails {
             price
             volumeSize
+            id
           }
           image {
             fluid {

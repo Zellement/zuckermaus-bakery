@@ -19,10 +19,13 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: 'gatsby-plugin-snipcartv3',
+      resolve: 'gatsby-plugin-snipcart-advanced',
 			options: {
-				apiKey: process.env.SNIPCART_API,
-        autopop: false
+				publicApiKey: process.env.SNIPCART_API,
+        defaultLang: 'en',
+        provideDefaultCurrency: false,
+        currency: 'gbp',
+        openCartOnAdd: false
 			},
     },
     {
