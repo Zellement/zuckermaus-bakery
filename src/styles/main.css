@@ -16,3 +16,7 @@
 
 /* Tailwind Utils */
 @import 'tailwindcss/utilities';
+
+.snipcart-modal__container {
+  z-index:50!important;
+}

@@ -1,7 +1,7 @@
 import React from "react"
 import SEO from "../components/seo"
 import { motion } from "framer-motion"
-import GatsbyImage from "gatsby-image"
+// import GatsbyImage from "gatsby-image"
 import { graphql } from "gatsby"
 import { MdAddShoppingCart } from 'react-icons/md'
 import GalleryCarousel from "../components/gallery-carousel"
@@ -56,7 +56,7 @@ export default function ProductsPage({ data }) {
               <GalleryCarousel images={product.gallery} />
 
               {product.orderDetails.map(orderDetail => (
-                <div>
+                <div key={orderDetail.id}>
                 {orderDetail.volumeSize} - £{orderDetail.price}
                 <button
                   key={orderDetail.id}
@@ -68,7 +68,7 @@ export default function ProductsPage({ data }) {
                   data-item-name={product.name + " | " + orderDetail.volumeSize}
                   data-item-url={`https://www.zuckermausbakery.com/products/`}
                 >
-                 <MdAddShoppingCart className="inline text-4xl" /> Add to basket
+                 <MdAddShoppingCart className="inline text-4xl bg-gray-400" /> Add to basket
                 </button>
                 </div>
               ))}
