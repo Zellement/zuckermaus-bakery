@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { graphql } from "gatsby"
 import { MdAddShoppingCart } from 'react-icons/md'
 import GalleryCarousel from "../components/gallery-carousel"
+import NumberFormat from 'react-number-format';
 
 const duration = 0.35
 
@@ -44,12 +45,15 @@ export default function ProductsPage({ data }) {
 
         <motion.div className="content" variants={item} transition="easeInOut">
           {/* Change node to be product */}
-          {products.edges.map(({ node: product }) => (
+          {products.edges.map(({ node: product }, index) => (
             <div
               key={product.id}
               className="max-w-sm py-8 my-8 border-t border-gray-500"
             >
+
               <h2>{product.name}</h2>
+              
+                  <p>{index}</p>
 
               <p>{product.description}</p>
               
@@ -57,18 +61,18 @@ export default function ProductsPage({ data }) {
 
               {product.orderDetails.map(orderDetail => (
                 <div key={orderDetail.id}>
-                {orderDetail.volumeSize} - £{orderDetail.price}
+                {orderDetail.volumeSize} - <NumberFormat prefix={"£"} value={orderDetail.price} decimalScale={2} displayType={'text'} fixedDecimalScale={true} />
                 <button
                   key={orderDetail.id}
-                  className="p-4 mr-4 bg-gray-300 Product__buy Product snipcart-add-item"
+                  className="p-2 mr-4 bg-gray-300 Product__buy Product snipcart-add-item"
                   data-item-id={product.name + " | " + orderDetail.volumeSize}
                   data-item-price={orderDetail.price}
-                  data-item-image={product.gallery[0].fluid.url}
+                  // data-item-image={product.gallery[0].fluid.url && product.gallery[0].fluid.url}
                   data-item-description={product.description}
                   data-item-name={product.name + " | " + orderDetail.volumeSize}
                   data-item-url={`https://www.zuckermausbakery.com/products/`}
                 >
-                 <MdAddShoppingCart className="inline text-4xl bg-gray-400" /> Add to basket
+                 <MdAddShoppingCart className="inline text-4xl" /> Add to basket
                 </button>
                 </div>
               ))}
@@ -82,7 +86,7 @@ export default function ProductsPage({ data }) {
 
 export const query = graphql`
   query {
-    allDatoCmsProduct {
+    allDatoCmsProduct(sort: {fields: name, order: ASC}) {
       edges {
         node {
           id
