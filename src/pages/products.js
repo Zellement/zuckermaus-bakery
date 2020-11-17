@@ -2,10 +2,11 @@ import React from "react"
 import SEO from "../components/seo"
 import { motion } from "framer-motion"
 // import GatsbyImage from "gatsby-image"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { MdAddShoppingCart } from 'react-icons/md'
 import GalleryCarousel from "../components/gallery-carousel"
 import NumberFormat from 'react-number-format';
+import CategoryFilter from "../components/category-filter"
 
 const duration = 0.35
 
@@ -41,12 +42,15 @@ export default function ProductsPage({ data }) {
           <p className="pl-3 text-lg border-l-2 border-black md:text-xl">
             Products
           </p>
+
+          <CategoryFilter />
         </motion.div>
 
         <motion.div className="content" variants={item} transition="easeInOut">
           {/* Change node to be product */}
           {products.edges.map(({ node: product }, index) => (
-            <div
+            <Link
+              to={`product/` + product.slug + `/`}
               key={product.id}
               className="max-w-sm py-8 my-8 border-t border-gray-500"
             >
@@ -76,7 +80,7 @@ export default function ProductsPage({ data }) {
                 </button>
                 </div>
               ))}
-            </div>
+            </Link>
           ))}
         </motion.div>
       </motion.section>

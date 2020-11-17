@@ -7,7 +7,7 @@ import { MdShoppingCart } from 'react-icons/md'
 
 const Header = ({ siteTitle }) => (
   <header className="py-8 md:py-16">
-    <div className="fixed z-10 bg-white cursor-pointer Header__summary snipcart-summary snipcart-checkout">
+    <div className="fixed top-0 right-0 z-10 bg-white cursor-pointer Header__summary snipcart-summary snipcart-checkout">
       <div className="Header__summary__title"><MdShoppingCart className="text-4xl" /></div>
       <div className="Header__summary__line">
         Number of items: <span className="snipcart-total-items"></span>
