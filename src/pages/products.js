@@ -3,10 +3,10 @@ import SEO from "../components/seo"
 import { motion } from "framer-motion"
 // import GatsbyImage from "gatsby-image"
 import { graphql, Link } from "gatsby"
-import { MdAddShoppingCart } from 'react-icons/md'
 import GalleryCarousel from "../components/gallery-carousel"
-import NumberFormat from 'react-number-format';
+import NumberFormat from "react-number-format"
 import CategoryFilter from "../components/category-filter"
+import { MdAddShoppingCart } from "react-icons/md"
 
 const duration = 0.35
 
@@ -46,41 +46,56 @@ export default function ProductsPage({ data }) {
           <CategoryFilter />
         </motion.div>
 
-        <motion.div className="content" variants={item} transition="easeInOut">
+        <motion.div className="flex flex-row flex-wrap -m-2 content" variants={item} transition="easeInOut">
           {/* Change node to be product */}
           {products.edges.map(({ node: product }, index) => (
-            <Link
-              to={`product/` + product.slug + `/`}
-              key={product.id}
-              className="max-w-sm py-8 my-8 border-t border-gray-500"
-            >
+            <div key={product.id} className="w-1/3 p-5 bg-gray-100 border-4 border-white">
+              <Link
+                to={`/product/` + product.slug + `/`}
+                key={product.id}
+                className="max-w-sm py-8 my-8 border-t border-gray-500"
+              >
+                <h2>{product.name}</h2>
+              </Link>
 
-              <h2>{product.name}</h2>
-              
-                  <p>{index}</p>
+              {/* <p>{index}</p> */}
 
               <p>{product.description}</p>
-              
+
               <GalleryCarousel images={product.gallery} />
 
               {product.orderDetails.map(orderDetail => (
                 <div key={orderDetail.id}>
-                {orderDetail.volumeSize} - <NumberFormat prefix={"£"} value={orderDetail.price} decimalScale={2} displayType={'text'} fixedDecimalScale={true} />
-                <button
-                  key={orderDetail.id}
-                  className="p-2 mr-4 bg-gray-300 Product__buy Product snipcart-add-item"
-                  data-item-id={product.name + " | " + orderDetail.volumeSize}
-                  data-item-price={orderDetail.price}
-                  // data-item-image={product.gallery[0].fluid.url && product.gallery[0].fluid.url}
-                  data-item-description={product.description}
-                  data-item-name={product.name + " | " + orderDetail.volumeSize}
-                  data-item-url={`https://www.zuckermausbakery.com/products/`}
-                >
-                 <MdAddShoppingCart className="inline text-4xl" /> Add to basket
-                </button>
+                  {orderDetail.volumeSize} -{" "}
+                  <NumberFormat
+                    prefix={"£"}
+                    value={orderDetail.price}
+                    decimalScale={2}
+                    displayType={"text"}
+                    fixedDecimalScale={true}
+                  />
+                  <button
+                    key={orderDetail.id}
+                    className="p-2 mr-4 bg-gray-300 Product__buy Product snipcart-add-item"
+                    data-item-id={product.name + " | " + orderDetail.volumeSize}
+                    data-item-price={orderDetail.price}
+                    // data-item-image={product.gallery[0].fluid.url && product.gallery[0].fluid.url}
+                    data-item-description={product.description}
+                    data-item-name={
+                      product.name + " | " + orderDetail.volumeSize
+                    }
+                    data-item-url={
+                      `https://www.zuckermausbakery.com/products/` +
+                      product.name +
+                      "/"
+                    }
+                  >
+                    <MdAddShoppingCart className="inline text-4xl" /> Add to
+                    basket
+                  </button>
                 </div>
               ))}
-            </Link>
+            </div>
           ))}
         </motion.div>
       </motion.section>
@@ -89,8 +104,11 @@ export default function ProductsPage({ data }) {
 }
 
 export const query = graphql`
-  query {
-    allDatoCmsProduct(sort: {fields: name, order: ASC}) {
+  query($slug: String) {
+    allDatoCmsProduct(
+      sort: { fields: name, order: ASC }
+      filter: { productCategory: { slug: { eq: $slug } } }
+    ) {
       edges {
         node {
           id
