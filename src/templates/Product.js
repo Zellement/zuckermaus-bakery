@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { graphql, Link } from "gatsby"
 import NumberFormat from "react-number-format"
 import { MdAddShoppingCart } from "react-icons/md"
+import GalleryCarousel from "../components/gallery-carousel"
 
 const duration = 0.35
 
@@ -37,6 +38,9 @@ export default function ProductPage({ data }) {
         <motion.div className="content" variants={item} transition="easeInOut">
           <div>
             <Link to="/products/">Go back</Link>
+
+              <div className="absolute top-0 right-0 w-1/2 h-screen"><GalleryCarousel images={ data.product.gallery } /></div>
+              
             <h1 className="mt-40">{data.product.name}</h1>
             {data.product.orderDetails.map(orderDetail => (
               <div key={data.product.id}>
@@ -87,6 +91,11 @@ export const query = graphql`
       orderDetails {
         price
         volumeSize
+      }
+      gallery {
+        fluid(imgixParams: { w: "1200", h: "1200", fit: "crop" }) {
+          ...GatsbyDatoCmsFluid
+        }
       }
     }
   }

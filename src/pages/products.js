@@ -46,10 +46,13 @@ export default function ProductsPage({ data }) {
           <CategoryFilter />
         </motion.div>
 
-        <motion.div className="flex flex-row flex-wrap -m-2 content" variants={item} transition="easeInOut">
-          {/* Change node to be product */}
+        <motion.div
+          className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
+          variants={item}
+          transition="easeInOut"
+        >
           {products.edges.map(({ node: product }, index) => (
-            <div key={product.id} className="w-1/3 p-5 bg-gray-100 border-4 border-white">
+            <div key={product.id} className="p-5 bg-gray-100">
               <Link
                 to={`/product/` + product.slug + `/`}
                 key={product.id}
@@ -58,11 +61,9 @@ export default function ProductsPage({ data }) {
                 <h2>{product.name}</h2>
               </Link>
 
-              {/* <p>{index}</p> */}
+              <GalleryCarousel images={ product.gallery } />
 
               <p>{product.description}</p>
-
-              <GalleryCarousel images={product.gallery} />
 
               {product.orderDetails.map(orderDetail => (
                 <div key={orderDetail.id}>
@@ -121,7 +122,7 @@ export const query = graphql`
             id
           }
           gallery {
-            fluid {
+            fluid(imgixParams: { w: "400", h: "400", fit: "crop" }) {
               ...GatsbyDatoCmsFluid
             }
           }
