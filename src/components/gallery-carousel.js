@@ -26,15 +26,14 @@ export const NextButton = ({ enabled, onClick }) => (
 )
 
 export default function GalleryCarousel({ images }) {
+
   const fallbackImage = useStaticQuery(graphql`
     query {
-      imageSharp(
-        id: { eq: "c462a40e-3ba2-542b-8c14-8daf4b7dd471" }
-      ) 
-      {
-        id
-        fluid {
+      file(relativePath: { eq: "no-image.png" }) {
+        childImageSharp {
+          fluid {
           ...GatsbyImageSharpFluid
+          }
         }
       }
     }
@@ -122,7 +121,7 @@ export default function GalleryCarousel({ images }) {
               >
                 <Img
                   backgroundColor="#26486E"
-                  fluid={fallbackImage.imageSharp.fluid}
+                  fluid={fallbackImage.file.childImageSharp.fluid}
                   className="block w-full h-auto mb-px"
                 />
               </div>
