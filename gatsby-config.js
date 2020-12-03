@@ -1,6 +1,11 @@
-require('dotenv').config()
+require("dotenv").config()
 
 module.exports = {
+  flags: {
+    PRESERVE_WEBPACK_CACHE: true,
+    FAST_REFRESH: true,
+    FAST_DEV: true,
+  },
   siteMetadata: {
     title: `Zuckermaus Bakery`,
     description: `Bakery`,
@@ -19,19 +24,19 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: 'gatsby-plugin-snipcart-advanced',
-			options: {
-				publicApiKey: process.env.SNIPCART_API,
-        defaultLang: 'en',
+      resolve: "gatsby-plugin-snipcart-advanced",
+      options: {
+        publicApiKey: process.env.SNIPCART_API,
+        defaultLang: "en",
         provideDefaultCurrency: false,
-        currency: 'gbp',
-        openCartOnAdd: false
-			},
+        currency: "gbp",
+        openCartOnAdd: false,
+      },
     },
     {
-    resolve: `gatsby-source-datocms`,
-    options: {
-      apiToken: process.env.DATO_API,
+      resolve: `gatsby-source-datocms`,
+      options: {
+        apiToken: process.env.DATO_API,
       },
     },
     {

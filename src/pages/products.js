@@ -39,9 +39,6 @@ export default function ProductsPage({ data }) {
         className="container"
       >
         <motion.div className="content" variants={item} transition="easeInOut">
-          <p className="pl-3 text-lg border-l-2 border-black md:text-xl">
-            Products
-          </p>
 
           <CategoryFilter />
         </motion.div>

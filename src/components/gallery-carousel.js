@@ -70,7 +70,7 @@ export default function GalleryCarousel({ images }) {
                   fluid={image.fluid}
                   key={image.title}
                   alt={image.alt}
-                  className="block w-full mb-px"
+                  className="block object-cover w-full h-full mb-px"
                 />
                 <span className="absolute bottom-0 right-0 z-20 p-1 text-sm text-black bg-white">
                   {("0" + (index + 1)).slice(-2)}

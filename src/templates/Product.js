@@ -1,19 +1,17 @@
 import React from "react"
 import SEO from "../components/seo"
 import { motion } from "framer-motion"
-import { graphql, Link } from "gatsby"
+import { graphql, Link, navigate } from "gatsby"
 import NumberFormat from "react-number-format"
 import { MdAddShoppingCart } from "react-icons/md"
 import GalleryCarousel from "../components/gallery-carousel"
-
-const duration = 0.35
 
 const container = {
   visible: {
     transition: {
       when: "beforeChildren",
       staggerChildren: 0.2,
-      delayChildren: duration,
+      delayChildren: 0.3,
     },
   },
 }
@@ -22,7 +20,42 @@ const item = {
   visible: {
     y: 0,
     opacity: 1,
+    transition: {
+      when: "beforeChildren",
+      staggerChildren: 1,
+      delayChildren: 1,
+      duration: 0.3,
+    },
   },
+}
+
+const slideInLeft = {
+  hidden: { opacity: 0, x: -1000 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      ease: "easeOut",
+      duration: 1.5,
+      type: "tween", bounce: 0.25 ,
+    },
+  },
+}
+
+const slideInRight = {
+  hidden: { opacity: 0, x: 1000 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      duration: 2,
+    },
+  },
+}
+
+const goBack = e => {
+  e.preventDefault();
+  navigate(-1);
 }
 
 export default function ProductPage({ data }) {
@@ -35,14 +68,33 @@ export default function ProductPage({ data }) {
         animate="visible"
         className="container"
       >
-        <motion.div className="content" variants={item} transition="easeInOut">
+        <motion.div className="overflow-hidden content" variants={item} transition="easeInOut">
           <div>
-            <Link to="/products/">Go back</Link>
+            <Link onClick={goBack} to="/products/">Go back</Link>
 
-              <div className="absolute top-0 right-0 w-1/2 h-screen"><GalleryCarousel images={ data.product.gallery } /></div>
+            <div className="absolute top-0 right-0 z-10 w-1/2 h-screen overflow-x-hidden">
+              <motion.div
+              variants={slideInRight}
+              initial="hidden"
+              animate="visible"
+              className="w-100"
+            >
+
+              <GalleryCarousel images={data.product.gallery} />
               
-            <h1 className="mt-40">{data.product.name}</h1>
-            {data.product.orderDetails.map(orderDetail => (
+            </motion.div>
+            </div>
+
+            <motion.h1
+              initial="hidden"
+              animate="visible"
+              variants={slideInLeft}
+              className="p-8 mt-40 overflow-hidden bg-red-100"
+            >
+              {data.product.name}
+            </motion.h1>
+
+            {data.product.orderDetails.map((orderDetail) => (
               <div key={data.product.id}>
                 <NumberFormat
                   prefix={"£"}
@@ -75,7 +127,6 @@ export default function ProductPage({ data }) {
               </div>
             ))}
           </div>
-
         </motion.div>
       </motion.section>
     </>

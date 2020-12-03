@@ -22,18 +22,9 @@ const Header = ({ siteTitle }) => (
 
     <div className="container">
       <div className="flex flex-wrap items-center mb-4">
-        <motion.button
-          className="block w-5 h-5 mr-3 bg-black rounded"
-          animate={{ rotate: 180 }}
-          transition={{
-            loop: Infinity,
-            duration: 2,
-            ease: "anticipate",
-          }}
-        />
 
         <Link
-          className="block inline-block text-lg font-bold md:text-xl"
+          className="block inline-block text-3xl font-bold font-display md:text-5xl"
           to="/"
         >
           {siteTitle}

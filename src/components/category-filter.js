@@ -51,7 +51,6 @@ export default function CategoryFilter() {
 
   return (
     <div className="mb-12">
-      <p>Bread Categories</p>
       <Link className="inline-block p-4 m-2 bg-gray-200" to="/products/">All {products.nodes.length}</Link>
       {productsWithCounts.map(category => (
         <Link className="inline-block p-4 m-2 bg-gray-200" key={category.id} to={`/category/${category.slug}/`}>{category.name} {category.count}</Link>
