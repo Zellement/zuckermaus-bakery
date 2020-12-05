@@ -30,14 +30,15 @@ const item = {
 }
 
 const slideInLeft = {
-  hidden: { opacity: 0, x: -1000 },
+  hidden: { opacity: 0, x: -500 },
   visible: {
     x: 0,
     opacity: 1,
     transition: {
       ease: "easeOut",
       duration: 1.5,
-      type: "tween", bounce: 0.25 ,
+      type: "tween",
+      bounce: 0.25,
     },
   },
 }
@@ -53,9 +54,9 @@ const slideInRight = {
   },
 }
 
-const goBack = e => {
-  e.preventDefault();
-  navigate(-1);
+const goBack = (e) => {
+  e.preventDefault()
+  navigate(-1)
 }
 
 export default function ProductPage({ data }) {
@@ -68,21 +69,25 @@ export default function ProductPage({ data }) {
         animate="visible"
         className="container"
       >
-        <motion.div className="overflow-hidden content" variants={item} transition="easeInOut">
+        <motion.div
+          className="content"
+          variants={item}
+          transition="easeInOut"
+        >
           <div>
-            <Link onClick={goBack} to="/products/">Go back</Link>
+            <Link onClick={goBack} to="/products/">
+              Go back
+            </Link>
 
             <div className="absolute top-0 right-0 z-10 w-1/2 h-screen overflow-x-hidden">
               <motion.div
-              variants={slideInRight}
-              initial="hidden"
-              animate="visible"
-              className="w-100"
-            >
-
-              <GalleryCarousel images={data.product.gallery} />
-              
-            </motion.div>
+                variants={slideInRight}
+                initial="hidden"
+                animate="visible"
+                className="w-100"
+              >
+                <GalleryCarousel images={data.product.gallery} />
+              </motion.div>
             </div>
 
             <motion.h1
@@ -143,6 +148,8 @@ export const query = graphql`
         price
         volumeSize
       }
+      vegan
+      vegetarian
       gallery {
         fluid(imgixParams: { w: "1200", h: "1200", fit: "crop" }) {
           ...GatsbyDatoCmsFluid

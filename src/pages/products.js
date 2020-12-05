@@ -4,11 +4,15 @@ import { motion } from "framer-motion"
 // import GatsbyImage from "gatsby-image"
 import { graphql, Link } from "gatsby"
 import GalleryCarousel from "../components/gallery-carousel"
+import IconVegetarian from "../components/atoms/icons/Vegetarian"
+import IconVegan from "../components/atoms/icons/Vegan"
+import IconBestSeller from "../components/atoms/icons/BestSeller"
+import IconFeaturedProduct from "../components/atoms/icons/FeaturedProduct"
 import NumberFormat from "react-number-format"
 import CategoryFilter from "../components/category-filter"
 import { MdAddShoppingCart } from "react-icons/md"
 
-const duration = 0.35
+const duration = 0.2
 
 const container = {
   visible: {
@@ -20,7 +24,19 @@ const container = {
   },
 }
 const item = {
-  hidden: { y: 20, opacity: 0 },
+  hidden: { opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      when: "beforeChildren",
+      staggerChildren: 0.1,
+      delayChildren: .3,
+    },
+  },
+}
+const item__product = {
+  hidden: { y: 10, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
@@ -39,7 +55,6 @@ export default function ProductsPage({ data }) {
         className="container"
       >
         <motion.div className="content" variants={item} transition="easeInOut">
-
           <CategoryFilter />
         </motion.div>
 
@@ -49,20 +64,33 @@ export default function ProductsPage({ data }) {
           transition="easeInOut"
         >
           {products.edges.map(({ node: product }, index) => (
-            <div key={product.id} className="p-5 bg-gray-100">
+            <motion.div
+              variants={item__product}
+              transition="easeInOut"
+              key={product.id}
+              className="relative p-5 bg-gray-100"
+            >
+
+              {product.bestSeller ? <IconBestSeller /> : null}{" "}
+              {product.featuredProduct ? <IconFeaturedProduct /> : null}{" "}
+              
               <Link
                 to={`/product/` + product.slug + `/`}
                 key={product.id}
-                className="max-w-sm py-8 my-8 border-t border-gray-500"
+                className="max-w-sm py-8 my-8"
               >
-                <h2>{product.name}</h2>
+                <h2>
+                  {product.name}
+                  {product.vegetarian ? <IconVegetarian /> : null}{" "}
+                  {product.vegan ? <IconVegan /> : null}
+                </h2>
               </Link>
 
-              <GalleryCarousel images={ product.gallery } />
+              <GalleryCarousel images={product.gallery} />
 
               <p>{product.description}</p>
 
-              {product.orderDetails.map(orderDetail => (
+              {product.orderDetails.map((orderDetail) => (
                 <div key={orderDetail.id}>
                   {orderDetail.volumeSize} -{" "}
                   <NumberFormat
@@ -93,7 +121,7 @@ export default function ProductsPage({ data }) {
                   </button>
                 </div>
               ))}
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </motion.section>
@@ -113,6 +141,11 @@ export const query = graphql`
           name
           slug
           description
+          ingredients
+          vegan
+          vegetarian
+          bestSeller
+          featuredProduct
           orderDetails {
             price
             volumeSize
