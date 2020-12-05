@@ -6,6 +6,7 @@ import { graphql, Link } from "gatsby"
 import GalleryCarousel from "../components/gallery-carousel"
 import IconVegetarian from "../components/atoms/icons/Vegetarian"
 import IconVegan from "../components/atoms/icons/Vegan"
+import IconGlutenFree from "../components/atoms/icons/GlutenFree"
 import IconBestSeller from "../components/atoms/icons/BestSeller"
 import IconFeaturedProduct from "../components/atoms/icons/FeaturedProduct"
 import NumberFormat from "react-number-format"
@@ -56,6 +57,13 @@ export default function ProductsPage({ data }) {
       >
         <motion.div className="content" variants={item} transition="easeInOut">
           <CategoryFilter />
+
+          <div className="flex flex-row pt-8 my-8 text-xs border-t border-gray-100">
+            <span className="mr-4"><IconVegetarian /> Vegetarian</span>
+            <span className="mr-4"><IconVegan /> Vegan</span>
+            <span className="mr-4"><IconGlutenFree /> Gluten Free</span>
+          </div>
+          
         </motion.div>
 
         <motion.div
@@ -71,8 +79,8 @@ export default function ProductsPage({ data }) {
               className="relative p-5 bg-gray-100"
             >
 
-              {product.bestSeller ? <IconBestSeller /> : null}{" "}
-              {product.featuredProduct ? <IconFeaturedProduct /> : null}{" "}
+              {product.bestSeller ? <IconBestSeller /> : null}
+              {product.featuredProduct ? <IconFeaturedProduct /> : null}
               
               <Link
                 to={`/product/` + product.slug + `/`}
@@ -81,8 +89,9 @@ export default function ProductsPage({ data }) {
               >
                 <h2>
                   {product.name}
-                  {product.vegetarian ? <IconVegetarian /> : null}{" "}
+                  {product.vegetarian ? <IconVegetarian /> : null}
                   {product.vegan ? <IconVegan /> : null}
+                  {product.glutenFree ? <IconGlutenFree /> : null}
                 </h2>
               </Link>
 
@@ -145,6 +154,7 @@ export const query = graphql`
           vegan
           vegetarian
           bestSeller
+          glutenFree
           featuredProduct
           orderDetails {
             price

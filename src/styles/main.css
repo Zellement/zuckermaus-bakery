@@ -20,3 +20,9 @@
 .snipcart-modal__container {
   z-index:50!important;
 }
+
+.category-filter {
+  [aria-current="page"] {
+    @apply bg-purple-200;
+  }
+}
