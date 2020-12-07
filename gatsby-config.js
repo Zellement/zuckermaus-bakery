@@ -1,11 +1,6 @@
 require("dotenv").config()
 
 module.exports = {
-  flags: {
-    PRESERVE_WEBPACK_CACHE: true,
-    FAST_REFRESH: true,
-    FAST_DEV: true,
-  },
   siteMetadata: {
     title: `Zuckermaus Bakery`,
     description: `Bakery`,
@@ -42,8 +37,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `zuckermaus-bakery`,
+        short_name: `zuckermaus`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
