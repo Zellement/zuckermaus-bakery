@@ -1,9 +1,8 @@
 import React from "react"
-import SEO from "../components/seo"
+import SEO from "../components/SEO"
 import { motion } from "framer-motion"
-// import GatsbyImage from "gatsby-image"
 import { graphql, Link } from "gatsby"
-import GalleryCarousel from "../components/gallery-carousel"
+import GalleryCarousel from "../components/GalleryCarousel"
 import IconVegetarian from "../components/atoms/icons/Vegetarian"
 import IconVegan from "../components/atoms/icons/Vegan"
 import IconGlutenFree from "../components/atoms/icons/GlutenFree"
@@ -11,7 +10,7 @@ import IconBestSeller from "../components/atoms/icons/BestSeller"
 import IconFeaturedProduct from "../components/atoms/icons/FeaturedProduct"
 import NumberFormat from "react-number-format"
 import CategoryFilter from "../components/category-filter"
-import { MdAddShoppingCart } from "react-icons/md"
+import { FaShoppingBasket } from "react-icons/fa"
 
 const duration = 0.2
 
@@ -32,7 +31,7 @@ const item = {
     transition: {
       when: "beforeChildren",
       staggerChildren: 0.1,
-      delayChildren: .3,
+      delayChildren: 0.3,
     },
   },
 }
@@ -44,7 +43,7 @@ const item__product = {
   },
 }
 
-export default function ProductsPage({ data }) {
+export default function ShopPage({ data }) {
   const products = data.allDatoCmsProduct
   return (
     <>
@@ -53,17 +52,22 @@ export default function ProductsPage({ data }) {
         variants={container}
         initial="hidden"
         animate="visible"
-        className="container"
+        className="container p-8 lg:pt-56"
       >
         <motion.div className="content" variants={item} transition="easeInOut">
           <CategoryFilter />
 
           <div className="flex flex-row pt-8 my-8 text-xs border-t border-gray-100">
-            <span className="mr-4"><IconVegetarian /> Vegetarian</span>
-            <span className="mr-4"><IconVegan /> Vegan</span>
-            <span className="mr-4"><IconGlutenFree /> Gluten Free</span>
+            <span className="mr-4">
+              <IconVegetarian /> Vegetarian
+            </span>
+            <span className="mr-4">
+              <IconVegan /> Vegan
+            </span>
+            <span className="mr-4">
+              <IconGlutenFree /> Gluten Free
+            </span>
           </div>
-          
         </motion.div>
 
         <motion.div
@@ -78,10 +82,9 @@ export default function ProductsPage({ data }) {
               key={product.id}
               className="relative p-5 bg-gray-100"
             >
-
               {product.bestSeller ? <IconBestSeller /> : null}
               {product.featuredProduct ? <IconFeaturedProduct /> : null}
-              
+
               <Link
                 to={`/product/` + product.slug + `/`}
                 key={product.id}
@@ -100,18 +103,10 @@ export default function ProductsPage({ data }) {
               <p>{product.description}</p>
 
               {product.orderDetails.map((orderDetail) => (
-                <div key={orderDetail.id}>
-                  {orderDetail.volumeSize} -{" "}
-                  <NumberFormat
-                    prefix={"£"}
-                    value={orderDetail.price}
-                    decimalScale={2}
-                    displayType={"text"}
-                    fixedDecimalScale={true}
-                  />
+                <div key={orderDetail.id} className="mt-2">
                   <button
                     key={orderDetail.id}
-                    className="p-2 mr-4 bg-gray-300 Product__buy Product snipcart-add-item"
+                    className="flex flex-col items-center w-full p-4 text-white transition duration-300 Product__buy Product snipcart-add-item bg-red hover:bg-sugar-pink hover:text-sugar-pink-900"
                     data-item-id={product.name + " | " + orderDetail.volumeSize}
                     data-item-price={orderDetail.price}
                     // data-item-image={product.gallery[0].fluid.url && product.gallery[0].fluid.url}
@@ -125,8 +120,24 @@ export default function ProductsPage({ data }) {
                       "/"
                     }
                   >
-                    <MdAddShoppingCart className="inline text-4xl" /> Add to
-                    basket
+                    <span className="w-full mb-2 font-bold">
+                      {orderDetail.volumeSize}
+                    </span>
+
+                    <span className="flex flex-row justify-between w-full">
+                      <NumberFormat
+                        prefix={"£"}
+                        value={orderDetail.price}
+                        decimalScale={2}
+                        displayType={"text"}
+                        fixedDecimalScale={true}
+                      />
+                      {/* <GrFormAdd className="inline-block text-white fill-current" /> */}
+                      <span className="flex flex-row items-center">
+                        <FaShoppingBasket className="inline-block mr-2 -mt-1" />
+                        <span>Add to basket</span>
+                      </span>
+                    </span>
                   </button>
                 </div>
               ))}

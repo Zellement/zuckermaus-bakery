@@ -1,5 +1,5 @@
 import React from "react"
-import SEO from "../components/seo"
+import SEO from "../components/SEO"
 import { motion } from 'framer-motion'
 
 const duration = 0.35
@@ -29,14 +29,14 @@ const IndexPage = () => {
         variants={container}
         initial="hidden" 
         animate="visible"
-        className="container"
+        className="container p-8 lg:pt-56"
       >
         <motion.div 
           className="content"
           variants={item}
           transition="easeInOut"
         >
-          <p className="text-lg md:text-xl pl-3 border-l-2 border-black">An opinionated starter for Gatsby v2 with TailwindCSS, PostCSS and Framer Motion page transitions.</p>
+          <p className="pl-3 text-lg border-l-2 border-black md:text-xl">An opinionated starter for Gatsby v2 with TailwindCSS, PostCSS and Framer Motion page transitions.</p>
         </motion.div>
 
         <motion.div 

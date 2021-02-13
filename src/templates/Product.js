@@ -1,10 +1,10 @@
 import React from "react"
-import SEO from "../components/seo"
-import { motion } from "framer-motion"
 import { graphql, Link, navigate } from "gatsby"
+import SEO from "../components/SEO"
+import { motion } from "framer-motion"
 import NumberFormat from "react-number-format"
 import { MdAddShoppingCart } from "react-icons/md"
-import GalleryCarousel from "../components/gallery-carousel"
+import GalleryCarousel from "../components/GalleryCarousel"
 
 const container = {
   visible: {

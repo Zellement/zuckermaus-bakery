@@ -1,38 +1,27 @@
 import React from "react"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-// import { motion } from "framer-motion"
-import IconShoppingCart from "../components/atoms/icons/ShoppingCart"
-import Nav from "../components/nav"
-// import { MdShoppingCart } from 'react-icons/md'
+import Nav from "./Nav"
+import ZuckermausLogo from "./atoms/Logo"
+import Basket from "./Basket"
 
 const Header = ({ siteTitle }) => (
-  <header className="py-8 md:py-16">
-    <div className="fixed top-0 right-0 z-10 flex flex-row mt-4 bg-white cursor-pointer Header__summary snipcart-summary snipcart-checkout">
-      <div className="Header__summary__title"></div>
-      <div className="flex flex-row Header__summary__line">
-        <div className="relative flex flex-row items-center p-2 pr-4 mr-6 border border-black">
-          <IconShoppingCart /> <span className="snipcart-total-price"></span>
-          <span className="absolute top-0 right-0 flex items-center justify-center w-6 h-6 -mt-2 -mr-2 text-sm text-center bg-red-200 border border-black rounded-full snipcart-items-count"></span>
-        </div>
-      </div>
-      <div className="Header__summary__line">
-        
-      </div>
-    </div>
+  <header className="w-full lg:fixed bg-red lg:z-50">
 
-    <div className="container">
-      <div className="flex flex-wrap items-center mb-4">
+    <div className="container relative py-8">
+      <div className="flex flex-col items-center mb-4 space-y-4 lg:justify-between lg:space-y-0 lg:flex-row">
 
         <Link
-          className="block inline-block text-3xl font-bold font-display md:text-5xl"
+          className="inline-block p-4 mx-auto lg:ml-0"
           to="/"
         >
-          {siteTitle}
+          <ZuckermausLogo className="w-full h-auto fill-current text-sugar-pink" />
         </Link>
-      </div>
 
-      <Nav />
+        <Nav />
+        <Basket />
+
+      </div>
     </div>
   </header>
 )

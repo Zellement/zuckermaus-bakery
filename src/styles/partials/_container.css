@@ -1,6 +1,5 @@
 .container {
-    @apply 
-        px-8 mx-auto;
+    @apply mx-auto;
 
     max-width: theme('screens.2xl');
 }

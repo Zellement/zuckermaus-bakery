@@ -24,7 +24,7 @@ exports.createPages = async function({ actions, graphql }) {
   data.category.nodes.forEach(node => {
     actions.createPage({
       path: "category/" + node.slug + "/",
-      component: require.resolve(`./src/pages/products.js`),
+      component: require.resolve(`./src/pages/shop.js`),
       context: { slug: node.slug },
     })
   })
