@@ -11,6 +11,7 @@ import IconFeaturedProduct from "../components/atoms/icons/FeaturedProduct"
 import NumberFormat from "react-number-format"
 import CategoryFilter from "../components/category-filter"
 import { FaShoppingBasket } from "react-icons/fa"
+import { BiBadgeCheck } from "react-icons/bi"
 
 const duration = 0.2
 
@@ -44,7 +45,9 @@ const item__product = {
 }
 
 export default function ShopPage({ data }) {
+
   const products = data.allDatoCmsProduct
+  
   return (
     <>
       <SEO title="Home" />
@@ -102,11 +105,23 @@ export default function ShopPage({ data }) {
 
               <p>{product.description}</p>
 
-              {product.orderDetails.map((orderDetail) => (
-                <div key={orderDetail.id} className="mt-2">
+              {product.orderDetails.map((orderDetail, index) => (
+                <div key={orderDetail.id} className="relative mt-2" id={orderDetail.id}>
                   <button
+                    onClick={
+                      function() {
+                        // var thisCheckmark = document.getElementById("badge" + orderDetail.id);
+                        // thisCheckmark.classList.remove("opacity-0");
+                        // thisCheckmark.classList.add("checkmarkIcon");
+                        // setTimeout(thisCheckmark.classList.remove("checkmarkIcon"), 3000);
+                        // setTimeout(thisCheckmark.classList.add("opacity-0"), 3000);
+                        // var iconCheckmark = document.createElement("div");
+                        // iconCheckmark.innerHTML = <BiBadgeCheck className="absolute top-0 right-0 z-20 z-50 mt-2 mr-2 text-2xl text-green-500 bg-white border-2 border-white rounded-full opacity-100" id={ "badge" + orderDetail.id } />;
+                        // iconCheckmark.insertBefore()
+                      }
+                    }
                     key={orderDetail.id}
-                    className="flex flex-col items-center w-full p-4 text-white transition duration-300 Product__buy Product snipcart-add-item bg-red hover:bg-sugar-pink hover:text-sugar-pink-900"
+                    className="relative flex flex-col items-center w-full p-4 text-white transition duration-300 Product__buy Product snipcart-add-item bg-red hover:bg-sugar-pink hover:text-sugar-pink-900"
                     data-item-id={product.name + " | " + orderDetail.volumeSize}
                     data-item-price={orderDetail.price}
                     // data-item-image={product.gallery[0].fluid.url && product.gallery[0].fluid.url}
@@ -120,6 +135,9 @@ export default function ShopPage({ data }) {
                       "/"
                     }
                   >
+
+                    
+
                     <span className="w-full mb-2 font-bold">
                       {orderDetail.volumeSize}
                     </span>
