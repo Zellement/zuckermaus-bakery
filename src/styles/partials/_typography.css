@@ -42,3 +42,7 @@ h2 {
     @apply block pt-6;
   }
 }
+
+.font-display-first-line::first-line {
+  @apply font-display;  
+}

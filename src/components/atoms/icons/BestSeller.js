@@ -2,7 +2,7 @@ import React from "react"
 
 export default function IconBestSeller() {
   return (
-    <span className="absolute top-0 right-0 inline-flex items-center justify-center p-1 -mt-2 text-xs text-center text-yellow-400 bg-yellow-100 border border-yellow-400 rounded-full font-display">
+    <span className="absolute bottom-0 left-0 z-30 inline-flex items-center justify-center p-2 text-sm text-center bg-white text-red font-display">
       <svg
         width="24"
         height="24"

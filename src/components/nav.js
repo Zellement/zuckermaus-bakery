@@ -45,7 +45,7 @@ const Nav = class extends React.Component {
           </li>
         </ul>
       </div>
-      <div aria-label="Navigation menu button" tabIndex={0} role="button" className={`${burgerActive} fixed bottom-0 right-0 z-10 block text-white cursor-pointer bg-red md:hidden p-4`} onClick={this.toggleMenu} onKeyDown={this.toggleMenu}>
+      <div aria-label="Navigation menu button" tabIndex={0} role="button" className={`${burgerActive} fixed bottom-0 right-0 z-30 block text-white cursor-pointer bg-red md:hidden p-4`} onClick={this.toggleMenu} onKeyDown={this.toggleMenu}>
           <span className="text-xs uppercase">Menu</span> <HiOutlineMenuAlt1 className={`${burgerIcon} -mt-1`} /> <IoMdCloseCircleOutline className={`${closeIcon} -mt-1`} />
       </div>
     </nav>
