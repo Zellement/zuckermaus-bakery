@@ -16,8 +16,37 @@ const container = {
   visible: {
     transition: {
       when: "beforeChildren",
-      staggerChildren: 0.2,
+      staggerChildren: 0.3,
       delayChildren: duration,
+    },
+  },
+}
+const hero = {
+  hidden: { opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      when: "beforeChildren",
+      staggerChildren: 0.1,
+      delayChildren: 0.3,
+    },
+  },
+}
+const hero__header = {
+  start: { y: 300, opacity: 0 },
+  end: {
+    y: 0,
+    opacity: 1
+  },
+}
+const hero__subline = {
+  hidden: { y: 300, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      when: "beforeChildren",
     },
   },
 }
@@ -86,10 +115,26 @@ export default function ShopPage({ data }) {
         animate="visible"
         className="bg-red-500 lg:pt-56"
       >
-        <div className="container relative h-20 px-8 md:h-40">
-          <h1 className="absolute bottom-0 left-0 ml-8 -mb-6 text-6xl font-light text-sugar-pink font-display md:text-7xl">Shop</h1>
-          <span className="absolute bottom-0 right-0 text-sm text-red-500 mr-8 -mb-5 font-light font-display md:text-base">A little slice of Austria.</span>
-        </div>
+        <motion.div
+          variants={hero}
+          className="container relative h-20 px-8 md:h-40 lg:h-24 2xl:h-40"
+        >
+          <motion.h1
+            variants={hero__header}
+            initial="start"
+            animate="end"
+            transition="easeInOut"
+            className="absolute bottom-0 left-0 ml-8 -mb-5 overflow-hidden text-5xl font-light text-sugar-pink font-display md:text-8xl md:-mb-8 lg:text-10xl lg:-mb-10 2xl:text-15xl 2xl:-mb-16"
+          >
+            Shop
+          </motion.h1>
+          <motion.span
+            variants={hero__subline}
+            className="absolute bottom-0 right-0 mr-8 -mb-5 text-sm font-light text-red-500 font-display md:text-xl md:-mb-7 lg:-mb-10 lg:text-3xl 2xl:text-4xl 2xl:-mb-14"
+          >
+            A little slice of Austria.
+          </motion.span>
+        </motion.div>
       </motion.section>
 
       <motion.section
@@ -98,7 +143,11 @@ export default function ShopPage({ data }) {
         animate="visible"
         className="container"
       >
-        <motion.div className="content mt-12" variants={item} transition="easeInOut">
+        <motion.div
+          className="mt-12 content"
+          variants={item}
+          transition="easeInOut"
+        >
           <CategoryFilter className="flex flex-row flex-wrap p-8 text-xs md:text-sm md:space-x-2 lg:w-full lg:justify-between lg:text-base" />
 
           {/* <div className="flex flex-row pt-8 my-8 text-xs">
@@ -155,7 +204,6 @@ export default function ShopPage({ data }) {
               </div>
 
               <div className="px-8 -mt-8">
-
                 {product.orderDetails.map((orderDetail, index) => (
                   <div
                     key={orderDetail.id}
@@ -204,9 +252,7 @@ export default function ShopPage({ data }) {
                     </button>
                   </div>
                 ))}
-
-                </div>
-
+              </div>
             </motion.div>
           ))}
         </motion.div>
