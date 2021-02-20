@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { motion, AnimatePresence } from 'framer-motion'
 
-import Header from "./header"
+import Header from "./Header"
 import "../styles/main.css"
 
 const duration = 0.1

@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql, Link, navigate } from "gatsby"
-// import SEO from "../components/Seo"
+import SEO from "../components/SEO"
 import { motion } from "framer-motion"
 import NumberFormat from "react-number-format"
 import { MdAddShoppingCart } from "react-icons/md"
@@ -62,7 +62,7 @@ const goBack = (e) => {
 export default function ProductPage({ data }) {
   return (
     <>
-      {/* <SEO title={data.product.name} /> */}
+      <SEO title={data.product.name} />
       <motion.section
         variants={container}
         initial="hidden"

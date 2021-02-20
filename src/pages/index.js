@@ -1,5 +1,5 @@
 import React from "react"
-// import SEO from "../components/SEO"
+import SEO from "../components/SEO"
 import { motion } from 'framer-motion'
 
 const duration = 0.35
@@ -24,7 +24,7 @@ const item = {
 const IndexPage = () => {
   return (
     <>
-      {/* <SEO title="Home" /> */}
+      <SEO title="Home" />
       <motion.section
         variants={container}
         initial="hidden" 
