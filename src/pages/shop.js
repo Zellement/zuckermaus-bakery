@@ -1,5 +1,4 @@
 import React from "react"
-import SEO from "../components/Seo"
 import { motion } from "framer-motion"
 import { graphql, Link } from "gatsby"
 import GalleryCarousel from "../components/GalleryCarousel"
@@ -80,7 +79,7 @@ export default function ShopPage({ data }) {
 
   return (
     <>
-      <SEO title="Home" />
+      {/* <SEO title="Home" /> */}
       <motion.section
         variants={container}
         initial="hidden"
