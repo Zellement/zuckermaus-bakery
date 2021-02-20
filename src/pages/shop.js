@@ -84,10 +84,22 @@ export default function ShopPage({ data }) {
         variants={container}
         initial="hidden"
         animate="visible"
-        className="container p-8 lg:pt-56"
+        className="bg-red-500 lg:pt-56"
       >
-        <motion.div className="content" variants={item} transition="easeInOut">
-          <CategoryFilter className="flex flex-row flex-wrap text-xs md:text-sm md:space-x-2 lg:w-full lg:justify-between lg:text-base" />
+        <div className="container relative h-20 px-8 md:h-40">
+          <h1 className="absolute bottom-0 left-0 ml-8 -mb-6 text-6xl font-light text-sugar-pink font-display md:text-7xl">Shop</h1>
+          <span className="absolute bottom-0 right-0 text-sm text-red-500 mr-8 -mb-5 font-light font-display md:text-base">A little slice of Austria.</span>
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={container}
+        initial="hidden"
+        animate="visible"
+        className="container"
+      >
+        <motion.div className="content mt-12" variants={item} transition="easeInOut">
+          <CategoryFilter className="flex flex-row flex-wrap p-8 text-xs md:text-sm md:space-x-2 lg:w-full lg:justify-between lg:text-base" />
 
           {/* <div className="flex flex-row pt-8 my-8 text-xs">
             <span className="mr-4">
@@ -117,7 +129,7 @@ export default function ShopPage({ data }) {
               <Link
                 to={`/product/` + product.slug + `/`}
                 key={product.id}
-                className="block max-w-sm px-8"
+                className="block max-w-sm px-8 hover:text-rose-pink focus:text-rose-pink"
               >
                 <h2 className="text-lg">{product.name}</h2>
               </Link>
