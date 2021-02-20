@@ -1,5 +1,5 @@
 import React from "react"
-import SEO from "../components/SEO"
+import SEO from "../components/Seo"
 import { motion } from "framer-motion"
 import { graphql, Link } from "gatsby"
 import GalleryCarousel from "../components/GalleryCarousel"

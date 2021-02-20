@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql, Link, navigate } from "gatsby"
-import SEO from "../components/SEO"
+import SEO from "../components/Seo"
 import { motion } from "framer-motion"
 import NumberFormat from "react-number-format"
 import { MdAddShoppingCart } from "react-icons/md"
