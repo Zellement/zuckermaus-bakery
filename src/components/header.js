@@ -9,10 +9,10 @@ const Header = ({ siteTitle }) => (
   <header className="w-full lg:fixed bg-red lg:z-50">
 
     <div className="container relative py-8">
-      <div className="flex flex-col items-center mb-4 space-y-4 lg:justify-between lg:space-y-0 lg:flex-row">
+      <div className="flex flex-col items-center md:space-y-4 lg:justify-between lg:space-y-0 lg:flex-row">
 
         <Link
-          className="inline-block p-4 mx-auto lg:ml-0"
+          className="inline-block p-4 mx-auto lg:ml-0 lg:pl-8"
           to="/"
         >
           <ZuckermausLogo className="w-full h-auto fill-current text-sugar-pink" />

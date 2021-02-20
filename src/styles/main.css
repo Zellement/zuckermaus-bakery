@@ -23,6 +23,14 @@
 
 .category-filter {
   [aria-current="page"] {
-    @apply bg-purple-200;
+    @apply bg-sugar-pink-400;
   }
+}
+
+.nav a.is-active {
+  @apply text-white;
+  background: url("/images/active.svg") bottom left no-repeat;
+    @screen md {
+      background-position: bottom center;
+    }
 }

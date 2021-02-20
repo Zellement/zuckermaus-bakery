@@ -4,7 +4,7 @@
   src: url('../fonts/LostaMasta-Black.otf') format('opentype');
   font-display: swap;
   font-weight: 900;
-  font-style: bold;
+  font-style: black;
 }
 
 @font-face {
@@ -12,7 +12,7 @@
   src: url('../fonts/LostaMasta-Medium.otf') format('opentype');
   font-display: swap;
   font-weight: 500;
-  font-style: normal;
+  font-style: semibold;
 }
 
 @font-face {

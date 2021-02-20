@@ -8,7 +8,7 @@ import IconVegan from "../components/atoms/icons/Vegan"
 import IconGlutenFree from "../components/atoms/icons/GlutenFree"
 import IconBestSeller from "../components/atoms/icons/BestSeller"
 import NumberFormat from "react-number-format"
-import CategoryFilter from "../components/category-filter"
+import CategoryFilter from "../components/CategoryFilter"
 import { FaShoppingBasket } from "react-icons/fa"
 
 const duration = 0.2
@@ -88,9 +88,9 @@ export default function ShopPage({ data }) {
         className="container p-8 lg:pt-56"
       >
         <motion.div className="content" variants={item} transition="easeInOut">
-          <CategoryFilter />
+          <CategoryFilter className="flex flex-row flex-wrap text-xs md:text-sm md:space-x-2 lg:w-full lg:justify-between lg:text-base" />
 
-          <div className="flex flex-row pt-8 my-8 text-xs">
+          {/* <div className="flex flex-row pt-8 my-8 text-xs">
             <span className="mr-4">
               <IconVegetarian /> Vegetarian
             </span>
@@ -100,11 +100,11 @@ export default function ShopPage({ data }) {
             <span className="mr-4">
               <IconGlutenFree /> Gluten Free
             </span>
-          </div>
+          </div> */}
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-10 mt-16 md:grid-cols-2 lg:grid-cols-3"
           variants={item}
           transition="easeInOut"
         >
@@ -113,14 +113,14 @@ export default function ShopPage({ data }) {
               variants={item__product}
               transition="easeInOut"
               key={product.id}
-              className="relative p-8"
+              className="relative"
             >
               <Link
                 to={`/product/` + product.slug + `/`}
                 key={product.id}
                 className="block max-w-sm px-8"
               >
-                <h2 class="text-lg">{product.name}</h2>
+                <h2 className="text-lg">{product.name}</h2>
               </Link>
 
               <div className="relative m-8">
@@ -129,9 +129,9 @@ export default function ShopPage({ data }) {
                 <GalleryCarousel images={product.gallery} />
               </div>
 
-              <div className="p-8 pt-16 -mt-16 pb-16 bg-sugar-pink-400">
+              <div className="p-8 pt-16 pb-16 -mt-16 bg-sugar-pink-400">
                 <div className="flex flex-row">
-                  <p class="font-display-first-line text-rose-pink-900 w-3/4">
+                  <p className="w-3/4 font-display-first-line text-rose-pink-900">
                     {product.description}
                   </p>
 
@@ -143,7 +143,7 @@ export default function ShopPage({ data }) {
                 </div>
               </div>
 
-              <div className="-mt-8 px-8">
+              <div className="px-8 -mt-8">
 
                 {product.orderDetails.map((orderDetail, index) => (
                   <div
