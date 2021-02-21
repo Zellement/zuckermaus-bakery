@@ -10,59 +10,56 @@ import NumberFormat from "react-number-format"
 import CategoryFilter from "../components/CategoryFilter"
 import { FaShoppingBasket } from "react-icons/fa"
 
-
-// const container = {
-//   visible: {
-//     transition: {
-//       when: "beforeChildren",
-//       staggerChildren: 0.3,
-//       delayChildren: duration,
-//     },
-//   },
-// }
+const container = {
+  enter: {
+    transition: {
+      when: "beforeChildren",
+      staggerChildren: 0.3,
+      delayChildren: 0.3,
+    },
+  },
+  exit: {
+    opacity: 0,
+  }
+}
 const hero = {
   initial: {
-    y: -1000,
+    y: -300,
   },
   enter: {
     y: 0,
-  },
-  exit: {
-    y: -1000,
     transition: {
       duration: 1,
       ease: "easeOut",
-      // when: "beforeChildren",
-      // staggerChildren: 1,
+      when: "beforeChildren",
+      staggerChildren: 0.3,
     },
   },
+  exit: {
+    y: -300,
+    transition: {
+      duration: .3
+    }
+  },
 }
+
 const hero__header = {
   initial: { y: 200, opacity: 0 },
-  enter: { y: 0, opacity: 1 },
-  exit: {
-    y: 200,
-    opacity: 0,
+  enter: {
+    y: 0,
+    opacity: 1,
     transition: {
+      duration: .5,
       ease: "easeOut",
-      duration: 1,
-      delay: .5
+      when: "beforeChildren",
+      staggerChildren: 0.3,
     },
   },
 }
 
 const hero__subline = {
-  initial: { y: -200, opacity: 0 },
+  initial: { y: -50, opacity: 0 },
   enter: { y: 0, opacity: 1 },
-  exit: {
-    y: -200,
-    opacity: 0,
-    transition: {
-      ease: "easeOut",
-      duration: 1,
-      delay: 0.5
-    },
-  },
 }
 
 const item = {
@@ -128,9 +125,16 @@ export default function ShopPage({ data }) {
         initial="initial"
         animate="enter"
         exit="exit"
+        // initial="initial"
+        // animate="enter"
+        // exit="exit"
         className=""
       >
-        <motion.div variants={hero} className="container relative h-20 px-8 md:h-32 lg:h32 2xl:h-48 z-10 bg-red-500">
+        <motion.div
+          variants={hero}
+          className="relative z-10 bg-red-500 "
+        >
+          <div className="container relative h-20 px-8 md:h-32 lg:h32 2xl:h-48">
           <motion.h1
             variants={hero__header}
             className="absolute bottom-0 left-0 ml-8 -mb-5 text-5xl font-light text-sugar-pink font-display md:text-8xl md:-mb-8 lg:text-10xl lg:-mb-11 2xl:text-15xl 2xl:-mb-17"
@@ -143,117 +147,117 @@ export default function ShopPage({ data }) {
           >
             A little slice of Austria.
           </motion.span>
-        </motion.div>
-      </motion.div>
-
-      {/* <motion.section
-        variants={container}
-        initial="hidden"
-        animate="visible"
-        className="container"
-      >
-        <motion.div
-          className="mt-12 content"
-          variants={item}
-          transition="easeInOut"
-        >
-          <CategoryFilter className="flex flex-row flex-wrap p-8 text-xs md:text-sm md:space-x-2 lg:w-full lg:justify-between lg:text-base" />
-
+          </div>
         </motion.div>
 
-        <motion.div
-          className="grid grid-cols-1 gap-10 mt-16 md:grid-cols-2 lg:grid-cols-3"
-          variants={item}
-          transition="easeInOut"
+        <motion.section
+          variants={container}
+          initial="hidden"
+          animate="visible"
+          className="container"
         >
-          {products.edges.map(({ node: product }) => (
-            <motion.div
-              variants={item__product}
-              transition="easeInOut"
-              key={product.id}
-              className="relative"
-            >
-              <Link
-                to={`/product/` + product.slug + `/`}
+          <motion.div
+            className="mt-12 content"
+            variants={item}
+            transition="easeInOut"
+          >
+            <CategoryFilter className="flex flex-row flex-wrap p-8 text-xs md:text-sm md:space-x-2 lg:w-full lg:justify-between lg:text-base" />
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 gap-10 mt-16 md:grid-cols-2 lg:grid-cols-3"
+            variants={item}
+            transition="easeInOut"
+          >
+            {products.edges.map(({ node: product }) => (
+              <motion.div
+                variants={item__product}
+                transition="easeInOut"
                 key={product.id}
-                className="block max-w-sm px-8 hover:text-rose-pink focus:text-rose-pink"
+                className="relative"
               >
-                <h2 className="text-lg">{product.name}</h2>
-              </Link>
+                <Link
+                  to={`/shop/product/` + product.slug + `/`}
+                  key={product.id}
+                  className="block max-w-sm px-8 hover:text-rose-pink focus:text-rose-pink"
+                >
+                  <h2 className="text-lg">{product.name}</h2>
+                </Link>
 
-              <div className="relative m-8">
-                {product.bestSeller ? <IconBestSeller /> : null}
+                <div className="relative m-8">
+                  {product.bestSeller ? <IconBestSeller /> : null}
 
-                <GalleryCarousel images={product.gallery} />
-              </div>
+                  <GalleryCarousel linkTo={`/shop/product/` + product.slug + `/`} images={product.gallery} />
+                </div>
 
-              <div className="p-8 pt-16 pb-16 -mt-16 bg-sugar-pink-400">
-                <div className="flex flex-row">
-                  <p className="w-3/4 font-display-first-line text-rose-pink-900">
-                    {product.description}
-                  </p>
+                <div className="p-8 pt-16 pb-16 -mt-16 bg-sugar-pink-400">
+                  <div className="flex flex-row">
+                    <p className="w-3/4 font-display-first-line text-rose-pink-900">
+                      {product.description}
+                    </p>
 
-                  <div className="flex flex-row w-1/4 my-auto">
-                    {product.vegetarian ? <IconVegetarian /> : null}
-                    {product.vegan ? <IconVegan /> : null}
-                    {product.glutenFree ? <IconGlutenFree /> : null}
+                    <div className="flex flex-row w-1/4 my-auto">
+                      {product.vegetarian ? <IconVegetarian /> : null}
+                      {product.vegan ? <IconVegan /> : null}
+                      {product.glutenFree ? <IconGlutenFree /> : null}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="px-8 -mt-8">
-                {product.orderDetails.map((orderDetail, index) => (
-                  <div
-                    key={orderDetail.id}
-                    className="relative"
-                    id={orderDetail.id}
-                  >
-                    <button
-                      // https://stackoverflow.com/questions/33846682/react-onclick-function-fires-on-render
-                      onClick={() => {
-                        iconCheckmark(orderDetail.id)
-                      }}
-                      className="relative flex flex-col items-center w-full p-4 text-white transition duration-300 border Product__buy Product snipcart-add-item bg-red hover:bg-sugar-pink hover:text-sugar-pink-900 focus:border-red-800 focus:outline-none"
-                      data-item-id={
-                        product.name + " | " + orderDetail.volumeSize
-                      }
-                      data-item-price={orderDetail.price}
-                      // data-item-image={product.gallery[0].fluid.url && product.gallery[0].fluid.url}
-                      data-item-description={product.description}
-                      data-item-name={
-                        product.name + " | " + orderDetail.volumeSize
-                      }
-                      data-item-url={
-                        `https://www.zuckermausbakery.com/products/` +
-                        product.name +
-                        "/"
-                      }
+                <div className="px-8 -mt-8">
+                  {product.orderDetails.map((orderDetail, index) => (
+                    <div
+                      key={orderDetail.id}
+                      className="relative"
+                      id={orderDetail.id}
                     >
-                      <span className="w-full mb-2 font-bold">
-                        {orderDetail.volumeSize}
-                      </span>
-
-                      <span className="flex flex-row justify-between w-full">
-                        <NumberFormat
-                          prefix={"£"}
-                          value={orderDetail.price}
-                          decimalScale={2}
-                          displayType={"text"}
-                          fixedDecimalScale={true}
-                        />
-                        <span className="flex flex-row items-center">
-                          <FaShoppingBasket className="inline-block mr-2 -mt-1" />
-                          <span>Add to basket</span>
+                      <button
+                        // https://stackoverflow.com/questions/33846682/react-onclick-function-fires-on-render
+                        onClick={() => {
+                          iconCheckmark(orderDetail.id)
+                        }}
+                        className="relative flex flex-col items-center w-full p-4 text-white transition duration-300 border Product__buy Product snipcart-add-item bg-red hover:bg-sugar-pink hover:text-sugar-pink-900 focus:border-red-800 focus:outline-none"
+                        data-item-id={
+                          product.name + " | " + orderDetail.volumeSize
+                        }
+                        data-item-price={orderDetail.price}
+                        // data-item-image={product.gallery[0].fluid.url && product.gallery[0].fluid.url}
+                        data-item-description={product.description}
+                        data-item-name={
+                          product.name + " | " + orderDetail.volumeSize
+                        }
+                        data-item-url={
+                          `https://www.zuckermausbakery.com/products/` +
+                          product.name +
+                          "/"
+                        }
+                      >
+                        <span className="w-full mb-2 font-bold">
+                          {orderDetail.volumeSize}
                         </span>
-                      </span>
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </motion.section> */}
+
+                        <span className="flex flex-row justify-between w-full">
+                          <NumberFormat
+                            prefix={"£"}
+                            value={orderDetail.price}
+                            decimalScale={2}
+                            displayType={"text"}
+                            fixedDecimalScale={true}
+                          />
+                          <span className="flex flex-row items-center">
+                            <FaShoppingBasket className="inline-block mr-2 -mt-1" />
+                            <span>Add to basket</span>
+                          </span>
+                        </span>
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.section>
+      </motion.div>
     </>
   )
 }

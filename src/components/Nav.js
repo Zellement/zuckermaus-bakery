@@ -26,7 +26,8 @@ const Nav = class extends React.Component {
             <Link className="block py-2 font-bold md:text-white md:px-3 text-sugar-pink hover:text-sugar-pink" onClick={this.toggleMenu} activeClassName="is-active" to="/">Home</Link>
           </li>
           <li>
-            <Link className="block py-2 font-bold md:text-white md:px-3 text-sugar-pink hover:text-sugar-pink" onClick={this.toggleMenu} activeClassName="is-active" to="/shop/">Shop</Link>
+            <Link className="block py-2 font-bold md:text-white md:px-3 text-sugar-pink hover:text-sugar-pink" onClick={this.toggleMenu} activeClassName="is-active"
+                partiallyActive={true} to="/shop/">Shop</Link>
           </li>
           <li>
             <Link className="block py-2 font-bold md:text-white md:px-3 text-sugar-pink hover:text-sugar-pink" onClick={this.toggleMenu} activeClassName="is-active" to="/events/">Events</Link>

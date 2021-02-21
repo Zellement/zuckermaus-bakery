@@ -71,7 +71,7 @@ export default function CategoryFilter({ className }) {
         <Link
           className="flex flex-row items-center p-2 space-x-2 group hover:bg-sugar-pink-500 focus:sugar-pink-500"
           key={category.id}
-          to={`/category/${category.slug}/`}
+          to={`/shop/${category.slug}/`}
         >
           <BsArrowRight className="transition duration-300 text-sugar-pink group-hover:text-rose-pink-600" />
           <span>{category.name}</span>

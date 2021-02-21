@@ -13,7 +13,7 @@ const IndexPage = () => {
         initial="initial"
         animate="enter"
         exit="exit"
-        className="container p-8 lg:pt-56"
+        className="container p-8"
       >
         <motion.div 
           className="content"

@@ -16,14 +16,14 @@ exports.createPages = async function({ actions, graphql }) {
   `)
   data.pages.nodes.forEach(node => {
     actions.createPage({
-      path: "product/" + node.slug + "/",
+      path: "shop/product/" + node.slug + "/",
       component: require.resolve(`./src/templates/Product.js`),
       context: { slug: node.slug },
     })
   })
   data.category.nodes.forEach(node => {
     actions.createPage({
-      path: "category/" + node.slug + "/",
+      path: "shop/" + node.slug + "/",
       component: require.resolve(`./src/pages/shop.js`),
       context: { slug: node.slug },
     })
