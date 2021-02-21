@@ -7,13 +7,11 @@ import IconVegetarian from "../components/atoms/icons/Vegetarian"
 import IconVegan from "../components/atoms/icons/Vegan"
 import IconGlutenFree from "../components/atoms/icons/GlutenFree"
 import IconBestSeller from "../components/atoms/icons/BestSeller"
-import NumberFormat from "react-number-format"
 import Hero from "../components/Hero"
 import CategoryFilter from "../components/CategoryFilter"
-import IconCheckmark from "../components/atoms/IconCheckmark"
-import { FaShoppingBasket } from "react-icons/fa"
 import { BsArrowRight } from "react-icons/bs"
 import { container } from "../helpers/transitionHelper"
+import AddToBasket from "../components/atoms/AddToBasket"
 
 
 const item = {
@@ -127,45 +125,9 @@ export default function ShopPage({ data, pageContext }) {
                       className="relative"
                       id={orderDetail.id}
                     >
-                      <button
-                        // https://stackoverflow.com/questions/33846682/react-onclick-function-fires-on-render
-                        onClick={() => {
-                          IconCheckmark(orderDetail.id)
-                        }}
-                        className="relative flex flex-col items-center w-full p-4 text-white transition duration-300 border Product__buy Product snipcart-add-item bg-red hover:bg-sugar-pink hover:text-sugar-pink-900 focus:border-red-800 focus:outline-none"
-                        data-item-id={
-                          product.name + " | " + orderDetail.volumeSize
-                        }
-                        data-item-price={orderDetail.price}
-                        // data-item-image={product.gallery[0].fluid.url && product.gallery[0].fluid.url}
-                        data-item-description={product.description}
-                        data-item-name={
-                          product.name + " | " + orderDetail.volumeSize
-                        }
-                        data-item-url={
-                          `https://www.zuckermausbakery.com/products/` +
-                          product.name +
-                          "/"
-                        }
-                      >
-                        <span className="w-full mb-2 font-bold">
-                          {orderDetail.volumeSize}
-                        </span>
 
-                        <span className="flex flex-row justify-between w-full">
-                          <NumberFormat
-                            prefix={"£"}
-                            value={orderDetail.price}
-                            decimalScale={2}
-                            displayType={"text"}
-                            fixedDecimalScale={true}
-                          />
-                          <span className="flex flex-row items-center">
-                            <FaShoppingBasket className="inline-block mr-2 -mt-1" />
-                            <span>Add to basket</span>
-                          </span>
-                        </span>
-                      </button>
+                      <AddToBasket price={orderDetail.price} name={product.name} description={product.description} id={orderDetail.id} volumeSize={orderDetail.volumeSize} />
+
                     </div>
                   ))}
                 </div>
@@ -195,7 +157,6 @@ export const query = graphql`
           vegetarian
           bestSeller
           glutenFree
-          featuredProduct
           orderDetails {
             price
             volumeSize
