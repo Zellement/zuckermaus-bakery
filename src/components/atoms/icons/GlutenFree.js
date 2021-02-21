@@ -1,9 +1,27 @@
 import React from "react"
 
-export default function IconGlutenFree(){
+export default function IconGlutenFree({className}) {
   return (
-  <span className="inline-flex items-center justify-center w-8 h-8 p-1 text-xs text-center text-green-500 bg-green-100 border border-green-500 rounded-full font-display">
-    GF
-  </span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      width="40"
+      height="40"
+      viewBox="0 0 40 40"
+      className={className}
+    >
+      <defs />
+      <g clip-path="url(#clip0)">
+        <path
+          fill="#B05562"
+          d="M20 .001c-11.028 0-20 8.972-20 20s8.972 20 20 20 20-8.972 20-20S31.028 0 20 0zm-.473 24.928c-.497.534-1.029 1.01-1.883 1.425-.854.416-1.93.624-3.235.624-1.658 0-3.054-.515-4.104-1.546-1.05-1.03-1.616-2.37-1.616-4.015v-2.832c0-1.64.547-2.976 1.557-4.01 1.009-1.034 2.33-1.551 3.92-1.551 1.652 0 2.928.402 3.806 1.206.88.804 1.333 1.88 1.352 3.19l-.013.074h-2.562c-.05-.782-.28-1.308-.69-1.728-.41-.419-1.009-.637-1.798-.637-.832 0-1.48.316-1.988.958-.51.643-.741 1.465-.741 2.476v2.848c0 1.03.24 1.866.768 2.508.528.642 1.228.963 2.122.963.634 0 1.161-.065 1.546-.195s.575-.29.894-.483v-2.481H14.34v-1.884h5.189v5.09zM31.29 15.29h-6.752v3.766h5.792v2.026h-5.792v5.65h-2.665V13.265h9.417v2.026z"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0">
+          <path fill="#fff" d="M0 0h40v40H0z" />
+        </clipPath>
+      </defs>
+    </svg>
   )
 }

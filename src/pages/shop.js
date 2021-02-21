@@ -8,23 +8,13 @@ import IconVegan from "../components/atoms/icons/Vegan"
 import IconGlutenFree from "../components/atoms/icons/GlutenFree"
 import IconBestSeller from "../components/atoms/icons/BestSeller"
 import NumberFormat from "react-number-format"
+import Hero from "../components/Hero"
 import CategoryFilter from "../components/CategoryFilter"
+import IconCheckmark from "../components/atoms/IconCheckmark"
 import { FaShoppingBasket } from "react-icons/fa"
-import { hero, hero__header, hero__subline } from "../helpers/transitionHelper"
 import { BsArrowRight } from "react-icons/bs"
+import { container } from "../helpers/transitionHelper"
 
-const container = {
-  enter: {
-    transition: {
-      when: "beforeChildren",
-      staggerChildren: 0.3,
-      delayChildren: 0.3,
-    },
-  },
-  exit: {
-    opacity: 0,
-  },
-}
 
 const item = {
   hidden: { opacity: 0 },
@@ -46,65 +36,18 @@ const item__product = {
   },
 }
 
-function iconCheckmark(divId) {
-  // create a new div element
-  const newDiv = document.createElement("div")
-
-  // Add some classes to that div
-  newDiv.classList.add(
-    "absolute",
-    "top-0",
-    "right-0",
-    "rounded",
-    "bg-white",
-    "text-green-500",
-    "p-1",
-    "text-2xs",
-    "font-bold",
-    "mt-1",
-    "mr-1",
-    "checkmarkIcon"
-  )
-
-  // and give it some content
-  const newContent = document.createTextNode("Added!")
-
-  // add the text node to the newly created div
-  newDiv.appendChild(newContent)
-
-  // add the newly created element and its content into the DOM
-  const currentDiv = document.getElementById(divId)
-
-  // Place that div in the relevant ID div
-  currentDiv.appendChild(newDiv)
-}
-
 export default function ShopPage({ data, pageContext }) {
-
   const products = data.allDatoCmsProduct
 
   return (
     <>
       <SEO title={pageContext.title ? `${pageContext.title} | Shop` : `Shop`} />
       <motion.div initial="initial" animate="enter" exit="exit">
-        <motion.div variants={hero} className="relative bg-red-500">
-          <div className="container relative h-20 px-8 md:h-32 lg:h32 2xl:h-48">
-            <motion.h1
-              variants={hero__header}
-              className="absolute bottom-0 left-0 ml-8 -mb-5 text-5xl font-light pointer-events-none text-sugar-pink font-display md:text-8xl md:-mb-8 lg:text-10xl lg:-mb-11 2xl:text-15xl 2xl:-mb-17"
-            >
-              Shop
-              {pageContext.title ? <span className="text-lg text-white md:text-xl lg:text-2xl 2xl:text-4xl 2xl:-ml-40 -ml-28">{pageContext.title}</span> : null }
-            </motion.h1>
-
-            <motion.span
-              variants={hero__subline}
-              className="absolute bottom-0 right-0 mr-8 -mb-4 text-sm font-light leading-none text-red-500 pointer-events-none font-display md:text-xl md:-mb-6 lg:-mb-8 lg:text-3xl 2xl:text-4xl 2xl:-mb-11"
-            >
-              A little slice of Austria.
-            </motion.span>
-          </div>
-        </motion.div>
+        <Hero
+          header="Shop"
+          subheader="A little slice of Austria."
+          subpage={pageContext.title}
+        />
 
         <motion.section
           variants={container}
@@ -149,26 +92,30 @@ export default function ShopPage({ data, pageContext }) {
                   />
                 </div>
 
-                <div className="p-8 pt-16 pb-16 -mt-16 bg-sugar-pink-400">
+                <div className="p-8 pt-16 pb-16 -mt-16 bg-sugar-pink-300">
                   <div className="flex flex-row">
                     <div className="w-3/4">
-                    <p className="font-display-first-line text-rose-pink-900">
-                      {product.description}
-                    </p>
-                    <Link
-                      to={`/shop/product/` + product.slug + `/`}
-                      key={product.id}
-                      className="inline-flex items-center mt-2 text-xs text-rose-pink hover:text-rose-pink-700 focus:text-rose-pink-700 group"
-                    >
-                      <span className="inline-block">See product</span>
-                      <BsArrowRight className="inline-block ml-1 transition duration-300 transform group-hover:translate-x-4" />
-                    </Link>
+                      <p className="font-display-first-line text-rose-pink-900">
+                        {product.description}
+                      </p>
+                      <Link
+                        to={`/shop/product/` + product.slug + `/`}
+                        key={product.id}
+                        className="inline-flex items-center mt-2 text-xs text-rose-pink hover:text-rose-pink-700 focus:text-rose-pink-700 group"
+                      >
+                        <span className="inline-block">See product</span>
+                        <BsArrowRight className="inline-block ml-1 transition duration-300 transform group-hover:translate-x-4" />
+                      </Link>
                     </div>
 
-                    <div className="flex flex-row w-1/4 my-auto">
-                      {product.vegetarian ? <IconVegetarian /> : null}
-                      {product.vegan ? <IconVegan /> : null}
-                      {product.glutenFree ? <IconGlutenFree /> : null}
+                    <div className="flex flex-row justify-end w-1/4 my-auto space-x-2">
+                      {product.vegetarian ? (
+                        <IconVegetarian className="w-6 h-6" />
+                      ) : null}
+                      {product.vegan ? <IconVegan className="w-6 h-6" /> : null}
+                      {product.glutenFree ? (
+                        <IconGlutenFree className="w-6 h-6" />
+                      ) : null}
                     </div>
                   </div>
                 </div>
@@ -183,7 +130,7 @@ export default function ShopPage({ data, pageContext }) {
                       <button
                         // https://stackoverflow.com/questions/33846682/react-onclick-function-fires-on-render
                         onClick={() => {
-                          iconCheckmark(orderDetail.id)
+                          IconCheckmark(orderDetail.id)
                         }}
                         className="relative flex flex-col items-center w-full p-4 text-white transition duration-300 border Product__buy Product snipcart-add-item bg-red hover:bg-sugar-pink hover:text-sugar-pink-900 focus:border-red-800 focus:outline-none"
                         data-item-id={

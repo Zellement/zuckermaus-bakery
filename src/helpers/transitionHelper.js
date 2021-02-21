@@ -1,3 +1,16 @@
+export const container = {
+  enter: {
+    transition: {
+      when: "beforeChildren",
+      staggerChildren: 0.3,
+      delayChildren: 0.3,
+    },
+  },
+  exit: {
+    opacity: 0,
+  },
+}
+
 export const fade = {
 	initial: { opacity: 0 },
   enter: { 
@@ -9,6 +22,18 @@ export const fade = {
 		transition: { duration: 0.2, ease: [0.76, 0, 0.24, 1] }
 	}
 }
+
+export const slideInRight = {
+  hidden: { opacity: 0, x: 1000 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      duration: 2,
+    },
+  },
+}
+
 export const hero = {
   initial: {
     y: -300,
