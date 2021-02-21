@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Header from "./Header"
 import "../styles/main.css"
 
-const duration = 0.1
+const duration = .2
 
 const variants = {
   initial: {
@@ -42,17 +42,19 @@ const Layout = ({ children, location }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <AnimatePresence>
+      <div className="app">
+      <AnimatePresence exitBeforeEnter>
         <motion.main
           key={location.pathname}
-          variants={variants}
+          // variants={variants}
           initial="initial"
           animate="enter"
-          exit="exit"
+          exit={variants.exit}
         >
         {children}
         </motion.main>
       </AnimatePresence>
+      </div>
     </>
   )
 }

@@ -19,6 +19,14 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /images/,
+        },
+      },
+    },
+    {
       resolve: "gatsby-plugin-snipcart-advanced",
       options: {
         publicApiKey: process.env.SNIPCART_API,

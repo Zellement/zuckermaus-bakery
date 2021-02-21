@@ -1,5 +1,5 @@
 import React from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { graphql, Link } from "gatsby"
 import GalleryCarousel from "../components/GalleryCarousel"
 import IconVegetarian from "../components/atoms/icons/Vegetarian"
@@ -12,44 +12,62 @@ import { FaShoppingBasket } from "react-icons/fa"
 
 const duration = 0.2
 
-const container = {
-  visible: {
-    transition: {
-      when: "beforeChildren",
-      staggerChildren: 0.3,
-      delayChildren: duration,
-    },
-  },
-}
+// const container = {
+//   visible: {
+//     transition: {
+//       when: "beforeChildren",
+//       staggerChildren: 0.3,
+//       delayChildren: duration,
+//     },
+//   },
+// }
 const hero = {
-  hidden: { opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      when: "beforeChildren",
-      staggerChildren: 0.1,
-      delayChildren: 0.3,
-    },
+  start: {
+    y: -1000,
   },
-}
-const hero__header = {
-  start: { y: 300, opacity: 0 },
   end: {
     y: 0,
-    opacity: 1
+    transition: {
+      duration: .5,
+      ease: "easeOut",
+      // when: "beforeChildren",
+      // staggerChildren: 1,
+    },
   },
+  exit: {
+    y: -1000,
+    transition: {
+      duration: .5,
+      ease: "easeOut"
+    }
+  }
 }
-const hero__subline = {
-  hidden: { y: 300, opacity: 0 },
-  visible: {
+const hero__header = {
+  start: { y: 200, opacity: 0 },
+  end: {
     y: 0,
     opacity: 1,
     transition: {
-      when: "beforeChildren",
+      ease: "easeOut",
+      duration: .5,
+      delay: .5
     },
   },
 }
+
+const hero__subline = {
+  start: { y: -200, opacity: 0 },
+  end: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      ease: "easeOut",
+      duration: 1,
+      delay: 0.5
+    },
+  },
+}
+
 const item = {
   hidden: { opacity: 0 },
   visible: {
@@ -109,35 +127,38 @@ export default function ShopPage({ data }) {
   return (
     <>
       {/* <SEO title="Home" /> */}
-      <motion.section
-        variants={container}
-        initial="hidden"
-        animate="visible"
-        className="bg-red-500 lg:pt-56"
-      >
-        <motion.div
-          variants={hero}
-          className="container relative h-20 px-8 md:h-40 lg:h-24 2xl:h-40"
-        >
-          <motion.h1
-            variants={hero__header}
-            initial="start"
-            animate="end"
-            transition="easeInOut"
-            className="absolute bottom-0 left-0 ml-8 -mb-5 overflow-hidden text-5xl font-light text-sugar-pink font-display md:text-8xl md:-mb-8 lg:text-10xl lg:-mb-10 2xl:text-15xl 2xl:-mb-16"
+        <AnimatePresence>
+          <motion.div
+            variants={hero}
+            initial={hero.start}
+            animate={hero.end}
+            transition={hero.end.transition}
+            className="z-10 bg-red-500"
           >
-            Shop
-          </motion.h1>
-          <motion.span
-            variants={hero__subline}
-            className="absolute bottom-0 right-0 mr-8 -mb-5 text-sm font-light text-red-500 font-display md:text-xl md:-mb-7 lg:-mb-10 lg:text-3xl 2xl:text-4xl 2xl:-mb-14"
-          >
-            A little slice of Austria.
-          </motion.span>
-        </motion.div>
-      </motion.section>
+            <div className="container relative h-20 px-8 md:h-32 lg:h32 2xl:h-48 ">
+             <motion.h1
+              variants={hero__header}
+              initial={hero__header.start}
+              animate={hero__header.end}
+              transition={hero__header.end.transition}
+              className="absolute bottom-0 left-0 ml-8 -mb-5 text-5xl font-light text-sugar-pink font-display md:text-8xl md:-mb-8 lg:text-10xl lg:-mb-11 2xl:text-15xl 2xl:-mb-17"
+            >
+              Shop
+            </motion.h1>
+            <motion.span
+              variants={hero__subline}
+              initial={hero__subline.start}
+              animate={hero__subline.end}
+              transition={hero__subline.end.transition}
+              className="absolute bottom-0 right-0 mr-8 -mb-4 text-sm font-light leading-none text-red-500 font-display md:text-xl md:-mb-6 lg:-mb-8 lg:text-3xl 2xl:text-4xl 2xl:-mb-11"
+            >
+              A little slice of Austria.
+            </motion.span>
+            </div>
+          </motion.div>
+        </AnimatePresence>
 
-      <motion.section
+      {/* <motion.section
         variants={container}
         initial="hidden"
         animate="visible"
@@ -150,17 +171,6 @@ export default function ShopPage({ data }) {
         >
           <CategoryFilter className="flex flex-row flex-wrap p-8 text-xs md:text-sm md:space-x-2 lg:w-full lg:justify-between lg:text-base" />
 
-          {/* <div className="flex flex-row pt-8 my-8 text-xs">
-            <span className="mr-4">
-              <IconVegetarian /> Vegetarian
-            </span>
-            <span className="mr-4">
-              <IconVegan /> Vegan
-            </span>
-            <span className="mr-4">
-              <IconGlutenFree /> Gluten Free
-            </span>
-          </div> */}
         </motion.div>
 
         <motion.div
@@ -243,7 +253,6 @@ export default function ShopPage({ data }) {
                           displayType={"text"}
                           fixedDecimalScale={true}
                         />
-                        {/* <GrFormAdd className="inline-block text-white fill-current" /> */}
                         <span className="flex flex-row items-center">
                           <FaShoppingBasket className="inline-block mr-2 -mt-1" />
                           <span>Add to basket</span>
@@ -256,7 +265,7 @@ export default function ShopPage({ data }) {
             </motion.div>
           ))}
         </motion.div>
-      </motion.section>
+      </motion.section> */}
     </>
   )
 }

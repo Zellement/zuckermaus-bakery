@@ -44,6 +44,16 @@ module.exports = {
       sans: ["Montserrat", "sans-serif"],
     },
     extend: {
+      margin: {
+        15: "3.75rem",
+        17: "4.25rem",
+        18: "4.5rem",
+        19: "4.75rem",
+        "-15": "-3.75rem",
+        "-17": "-4.25rem",
+        "-18": "-4.5rem",
+        "-19": "-4.75rem",
+      },
       colors: {
         red: {
           DEFAULT: "#E62A30",

@@ -17,6 +17,18 @@
 /* Tailwind Utils */
 @import 'tailwindcss/utilities';
 
+  .app:before {
+    height: 0;
+    content: '';
+    @apply block w-full bg-red-200;
+    @screen lg {
+      height: 150px;
+    }
+    @screen xl {
+      height: 177px;
+    }
+  }
+
 .snipcart-modal__container {
   z-index:50!important;
 }
