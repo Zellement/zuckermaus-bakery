@@ -7,9 +7,9 @@ import ZuckermausLogo from '../images/ZuckermausLogo.svg'
 import Basket from "./Basket"
 
 const Header = ({ siteTitle }) => (
-  <header className="w-full lg:fixed bg-red lg:z-50">
+  <header className="relative w-full lg:fixed bg-red-500 z-40">
 
-    <div className="container relative py-8">
+    <div className="container relative py-8 z-40">
       <div className="flex flex-col items-center md:space-y-4 lg:justify-between lg:space-y-0 lg:flex-row">
 
         <Link

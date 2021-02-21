@@ -24,6 +24,7 @@ export const hero = {
   },
   exit: {
     y: -300,
+    opacity: 0,
     transition: {
       duration: .3
     }

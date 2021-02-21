@@ -11,6 +11,7 @@ import NumberFormat from "react-number-format"
 import CategoryFilter from "../components/CategoryFilter"
 import { FaShoppingBasket } from "react-icons/fa"
 import { hero, hero__header, hero__subline } from "../helpers/transitionHelper"
+import { BsArrowRight } from "react-icons/bs"
 
 const container = {
   enter: {
@@ -79,27 +80,26 @@ function iconCheckmark(divId) {
 }
 
 export default function ShopPage({ data, pageContext }) {
-  const products = data.allDatoCmsProduct
 
-  console.log(pageContext)
+  const products = data.allDatoCmsProduct
 
   return (
     <>
       <SEO title={pageContext.title ? `${pageContext.title} | Shop` : `Shop`} />
       <motion.div initial="initial" animate="enter" exit="exit">
-        <motion.div variants={hero} className="relative z-10 bg-red-500">
+        <motion.div variants={hero} className="relative bg-red-500">
           <div className="container relative h-20 px-8 md:h-32 lg:h32 2xl:h-48">
             <motion.h1
               variants={hero__header}
-              className="absolute bottom-0 left-0 ml-8 pointer-events-none -mb-5 text-5xl font-light text-sugar-pink font-display md:text-8xl md:-mb-8 lg:text-10xl lg:-mb-11 2xl:text-15xl 2xl:-mb-17"
+              className="absolute bottom-0 left-0 ml-8 -mb-5 text-5xl font-light pointer-events-none text-sugar-pink font-display md:text-8xl md:-mb-8 lg:text-10xl lg:-mb-11 2xl:text-15xl 2xl:-mb-17"
             >
               Shop
-              {pageContext.title ? <span className="text-white text-lg md:text-xl lg:text-2xl 2xl:text-4xl 2xl:-ml-40 -ml-28">{pageContext.title}</span> : null }
+              {pageContext.title ? <span className="text-lg text-white md:text-xl lg:text-2xl 2xl:text-4xl 2xl:-ml-40 -ml-28">{pageContext.title}</span> : null }
             </motion.h1>
 
             <motion.span
               variants={hero__subline}
-              className="absolute bottom-0 right-0 mr-8 -mb-4 pointer-events-none text-sm font-light leading-none text-red-500 font-display md:text-xl md:-mb-6 lg:-mb-8 lg:text-3xl 2xl:text-4xl 2xl:-mb-11"
+              className="absolute bottom-0 right-0 mr-8 -mb-4 text-sm font-light leading-none text-red-500 pointer-events-none font-display md:text-xl md:-mb-6 lg:-mb-8 lg:text-3xl 2xl:text-4xl 2xl:-mb-11"
             >
               A little slice of Austria.
             </motion.span>
@@ -117,7 +117,7 @@ export default function ShopPage({ data, pageContext }) {
             variants={item}
             transition="easeInOut"
           >
-            <CategoryFilter className="flex flex-row flex-wrap p-8 text-xs md:text-sm md:space-x-2 lg:w-full lg:justify-between lg:text-base" />
+            <CategoryFilter className="flex flex-row flex-wrap p-8 text-xs md:text-sm md:space-x-2 lg:w-full xl:justify-between lg:text-base" />
           </motion.div>
 
           <motion.div
@@ -151,9 +151,19 @@ export default function ShopPage({ data, pageContext }) {
 
                 <div className="p-8 pt-16 pb-16 -mt-16 bg-sugar-pink-400">
                   <div className="flex flex-row">
-                    <p className="w-3/4 font-display-first-line text-rose-pink-900">
+                    <div className="w-3/4">
+                    <p className="font-display-first-line text-rose-pink-900">
                       {product.description}
                     </p>
+                    <Link
+                      to={`/shop/product/` + product.slug + `/`}
+                      key={product.id}
+                      className="inline-flex items-center mt-2 text-xs text-rose-pink hover:text-rose-pink-700 focus:text-rose-pink-700 group"
+                    >
+                      <span className="inline-block">See product</span>
+                      <BsArrowRight className="inline-block ml-1 transition duration-300 transform group-hover:translate-x-4" />
+                    </Link>
+                    </div>
 
                     <div className="flex flex-row w-1/4 my-auto">
                       {product.vegetarian ? <IconVegetarian /> : null}

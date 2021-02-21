@@ -149,6 +149,8 @@ module.exports = {
     textColor: ["responsive", "group-hover", "hover", "focus", "group-focus"],
     padding: ["responsive", "group-hover", "hover", "focus", "group-focus"],
     scale: ["responsive", "group-hover", "hover", "focus", "group-focus"],
+    margin: ["responsive", "group-hover", "hover", "focus", "group-hover"],
+    translate: ["responsive", "group-hover", "hover", "focus", "group-hover"],
   },
   plugins: [],
   corePlugins: {
