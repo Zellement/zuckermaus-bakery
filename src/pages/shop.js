@@ -1,5 +1,5 @@
 import React from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { graphql, Link } from "gatsby"
 import GalleryCarousel from "../components/GalleryCarousel"
 import IconVegetarian from "../components/atoms/icons/Vegetarian"
@@ -10,7 +10,6 @@ import NumberFormat from "react-number-format"
 import CategoryFilter from "../components/CategoryFilter"
 import { FaShoppingBasket } from "react-icons/fa"
 
-const duration = 0.2
 
 // const container = {
 //   visible: {
@@ -22,44 +21,42 @@ const duration = 0.2
 //   },
 // }
 const hero = {
-  start: {
+  initial: {
     y: -1000,
   },
-  end: {
+  enter: {
     y: 0,
+  },
+  exit: {
+    y: -1000,
     transition: {
-      duration: .5,
+      duration: 1,
       ease: "easeOut",
       // when: "beforeChildren",
       // staggerChildren: 1,
     },
   },
-  exit: {
-    y: -1000,
-    transition: {
-      duration: .5,
-      ease: "easeOut"
-    }
-  }
 }
 const hero__header = {
-  start: { y: 200, opacity: 0 },
-  end: {
-    y: 0,
-    opacity: 1,
+  initial: { y: 200, opacity: 0 },
+  enter: { y: 0, opacity: 1 },
+  exit: {
+    y: 200,
+    opacity: 0,
     transition: {
       ease: "easeOut",
-      duration: .5,
+      duration: 1,
       delay: .5
     },
   },
 }
 
 const hero__subline = {
-  start: { y: -200, opacity: 0 },
-  end: {
-    y: 0,
-    opacity: 1,
+  initial: { y: -200, opacity: 0 },
+  enter: { y: 0, opacity: 1 },
+  exit: {
+    y: -200,
+    opacity: 0,
     transition: {
       ease: "easeOut",
       duration: 1,
@@ -127,36 +124,27 @@ export default function ShopPage({ data }) {
   return (
     <>
       {/* <SEO title="Home" /> */}
-        <AnimatePresence>
-          <motion.div
-            variants={hero}
-            initial={hero.start}
-            animate={hero.end}
-            transition={hero.end.transition}
-            className="z-10 bg-red-500"
+      <motion.div
+        initial="initial"
+        animate="enter"
+        exit="exit"
+        className=""
+      >
+        <motion.div variants={hero} className="container relative h-20 px-8 md:h-32 lg:h32 2xl:h-48 z-10 bg-red-500">
+          <motion.h1
+            variants={hero__header}
+            className="absolute bottom-0 left-0 ml-8 -mb-5 text-5xl font-light text-sugar-pink font-display md:text-8xl md:-mb-8 lg:text-10xl lg:-mb-11 2xl:text-15xl 2xl:-mb-17"
           >
-            <div className="container relative h-20 px-8 md:h-32 lg:h32 2xl:h-48 ">
-             <motion.h1
-              variants={hero__header}
-              initial={hero__header.start}
-              animate={hero__header.end}
-              transition={hero__header.end.transition}
-              className="absolute bottom-0 left-0 ml-8 -mb-5 text-5xl font-light text-sugar-pink font-display md:text-8xl md:-mb-8 lg:text-10xl lg:-mb-11 2xl:text-15xl 2xl:-mb-17"
-            >
-              Shop
-            </motion.h1>
-            <motion.span
-              variants={hero__subline}
-              initial={hero__subline.start}
-              animate={hero__subline.end}
-              transition={hero__subline.end.transition}
-              className="absolute bottom-0 right-0 mr-8 -mb-4 text-sm font-light leading-none text-red-500 font-display md:text-xl md:-mb-6 lg:-mb-8 lg:text-3xl 2xl:text-4xl 2xl:-mb-11"
-            >
-              A little slice of Austria.
-            </motion.span>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+            Shop
+          </motion.h1>
+          <motion.span
+            variants={hero__subline}
+            className="absolute bottom-0 right-0 mr-8 -mb-4 text-sm font-light leading-none text-red-500 font-display md:text-xl md:-mb-6 lg:-mb-8 lg:text-3xl 2xl:text-4xl 2xl:-mb-11"
+          >
+            A little slice of Austria.
+          </motion.span>
+        </motion.div>
+      </motion.div>
 
       {/* <motion.section
         variants={container}

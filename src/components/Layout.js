@@ -1,32 +1,10 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 
 import Header from "./Header"
 import "../styles/main.css"
-
-const duration = .2
-
-const variants = {
-  initial: {
-    opacity: 0,
-  },
-  enter: {
-    opacity: 1,
-    transition: {
-      duration: duration,
-      delay: duration,
-      when: 'beforeChildren',
-    },
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      duration: duration,
-    },
-  },
-}
 
 const Layout = ({ children, location }) => {
   const data = useStaticQuery(graphql`
@@ -43,17 +21,9 @@ const Layout = ({ children, location }) => {
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
       <div className="app">
-      <AnimatePresence exitBeforeEnter>
-        <motion.main
-          key={location.pathname}
-          // variants={variants}
-          initial="initial"
-          animate="enter"
-          exit={variants.exit}
-        >
-        {children}
-        </motion.main>
-      </AnimatePresence>
+        <AnimatePresence exitBeforeEnter>
+          {children}
+        </AnimatePresence>
       </div>
     </>
   )
