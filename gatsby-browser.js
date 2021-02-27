@@ -1,11 +1,11 @@
 import React from "react";
 import Layout from "./src/components/Layout";
 
-const transitionDelay = 500;
-
 export const wrapPageElement = ({ element, props }) => {
   return <Layout {...props}>{element}</Layout>;
 };
+
+const transitionDelay = 500;
 
 export const shouldUpdateScroll = ({
   routerProps: { location },

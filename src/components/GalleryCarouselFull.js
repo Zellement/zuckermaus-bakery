@@ -96,7 +96,7 @@ export default function GalleryCarousel({ images }) {
                   className="block embla__slide embla__slide--gallery"
                 >
                   <Img
-                    backgroundColor="#26486E"
+                    backgroundColor="#E62A30"
                     fluid={image.fluid}
                     key={image.title}
                     alt={image.alt}

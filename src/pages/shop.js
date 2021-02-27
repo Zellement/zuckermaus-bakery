@@ -12,8 +12,6 @@ import CategoryFilter from "../components/CategoryFilter"
 import { BsArrowRight } from "react-icons/bs"
 import { container } from "../helpers/transitionHelper"
 import AddToBasket from "../components/atoms/AddToBasket"
-import InstagramFeed from "../components/InstagramFeed"
-
 
 const item = {
   hidden: { opacity: 0 },
@@ -79,11 +77,11 @@ export default function ShopPage({ data, pageContext }) {
                   key={product.id}
                   className="block max-w-sm px-8 hover:text-rose-pink focus:text-rose-pink"
                 >
-                  <h2 className="text-lg">{product.name}</h2>
+                  <h2 className="text-lg text-red-500 lg:text-xl">{product.name}</h2>
                 </Link>
 
                 <div className="relative m-8">
-                  {product.bestSeller ? <IconBestSeller /> : null}
+                  {product.bestSeller ? <IconBestSeller className="absolute bottom-0 left-0 bg-white text-red z-30 " /> : null}
 
                   <GalleryCarousel
                     linkTo={`/shop/product/` + product.slug + `/`}
@@ -136,8 +134,6 @@ export default function ShopPage({ data, pageContext }) {
             ))}
           </motion.div>
         </motion.section>
-          
-          <InstagramFeed />
           
       </motion.div>
     </>
