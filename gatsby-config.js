@@ -27,6 +27,12 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-instagram`,
+      options: {
+        username: `8007543619`,
+      },
+    },
+    {
       resolve: "gatsby-plugin-snipcart-advanced",
       options: {
         publicApiKey: process.env.SNIPCART_API,

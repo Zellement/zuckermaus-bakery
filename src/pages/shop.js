@@ -12,6 +12,7 @@ import CategoryFilter from "../components/CategoryFilter"
 import { BsArrowRight } from "react-icons/bs"
 import { container } from "../helpers/transitionHelper"
 import AddToBasket from "../components/atoms/AddToBasket"
+import InstagramFeed from "../components/InstagramFeed"
 
 
 const item = {
@@ -135,6 +136,9 @@ export default function ShopPage({ data, pageContext }) {
             ))}
           </motion.div>
         </motion.section>
+          
+          <InstagramFeed />
+          
       </motion.div>
     </>
   )

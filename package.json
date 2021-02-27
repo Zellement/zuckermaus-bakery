@@ -22,6 +22,7 @@
     "gatsby-plugin-snipcartv3": "^2.3.3",
     "gatsby-source-datocms": "^2.5.7",
     "gatsby-source-filesystem": "^2.7.0",
+    "gatsby-source-instagram": "^0.9.0",
     "gatsby-transformer-sharp": "^2.8.0",
     "postcss": "^8.1.13",
     "prop-types": "^15.7.2",
