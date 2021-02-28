@@ -1,5 +1,5 @@
 import React from "react"
-import IconCheckmark from "../../components/atoms/IconCheckmark"
+import AddToBasketAnimation from "../../components/atoms/AddToBasketAnimation"
 import { FaShoppingBasket } from "react-icons/fa"
 import NumberFormat from "react-number-format"
 
@@ -8,7 +8,7 @@ export default function AddToBasket( {name, description, volumeSize, price, id} 
     <button
       // https://stackoverflow.com/questions/33846682/react-onclick-function-fires-on-render
       onClick={() => {
-        IconCheckmark(id)
+        AddToBasketAnimation(id)
       }}
       className="relative flex flex-col items-center w-full p-4 text-white transition duration-300 border Product__buy Product snipcart-add-item bg-red hover:bg-sugar-pink hover:text-sugar-pink-900 focus:border-red-800 focus:outline-none"
       data-item-id={name + " | " + volumeSize}

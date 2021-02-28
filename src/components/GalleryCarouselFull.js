@@ -66,7 +66,7 @@ export default function GalleryCarousel({ images }) {
             {images.map((image, index) => (
               <div key={index} className="embla__slide embla__slide--gallery">
                 <Img
-                  backgroundColor="#26486E"
+                  backgroundColor="#F3B8D5"
                   fluid={image.fluid}
                   key={image.title}
                   alt={image.alt}
@@ -96,7 +96,7 @@ export default function GalleryCarousel({ images }) {
                   className="block embla__slide embla__slide--gallery"
                 >
                   <Img
-                    backgroundColor="#E62A30"
+                    backgroundColor="#F3B8D5"
                     fluid={image.fluid}
                     key={image.title}
                     alt={image.alt}

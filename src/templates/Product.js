@@ -24,10 +24,10 @@ export default function ProductPage({ data }) {
       <SEO title={data.product.name} />
       <motion.div initial="initial" animate="enter" exit="exit">
         <motion.div variants={hero} className={"relative bg-red-500"}>
-          <div className="container relative h-32 px-8 md:h-32 lg:h-56">
+          <div className="container px-8">
             <Link
               to={"/shop/" + data.product.productCategory.slug + "/"}
-              className="inline-flex items-center mt-2 text-base text-white group lg:text-lg"
+              className="inline-flex items-center mt-2 mb-8 text-base text-white group lg:text-lg lg:mb-16"
             >
               <BsArrowLeft className="inline-block mr-1 " />
               <span className="inline-block transition duration-300 transform group-hover:translate-x-4 group-focus:translate-x-4">
@@ -36,9 +36,9 @@ export default function ProductPage({ data }) {
             </Link>
             <motion.h1
               variants={hero__header}
-              className="absolute bottom-0 left-0 w-full pl-8 -mb-1 text-2xl font-light leading-none pointer-events-none md:-mb-2 md:text-4xl lg:text-5xl text-sugar-pink font-display lg:w-2/5 xl:text-6xl lg:-mb-3 xl:-mb-4"
+              className="w-full text-2xl font-light leading-none pointer-events-none text-sugar-pink font-display sm:text-3xl md:text-4xl lg:w-2/5 lg:text-5xl xl:text-7xl"
             >
-              {data.product.name}
+              <span className="inline-block -mb-1 align-text-bottom sm:-mb-2 lg:-mb-3 xl:-mb-5">{data.product.name}</span>
             </motion.h1>
           </div>
         </motion.div>
@@ -71,7 +71,7 @@ export default function ProductPage({ data }) {
                   <HTMLContent content={data.product.description} />
                 </div>
 
-                <div className="flex flex-row justify-start items-center mb-8 space-x-2">
+                <div className="flex flex-row items-center justify-start mb-8 space-x-2">
                   {data.product.bestSeller ? <IconBestSeller className="text-red-500" /> : null}
                   {data.product.vegetarian ? (
                     <IconVegetarian className="w-8 h-8" />
@@ -119,6 +119,7 @@ export const query = graphql`
       orderDetails {
         price
         volumeSize
+        id
       }
       productCategory {
         id
