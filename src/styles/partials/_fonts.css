@@ -38,3 +38,11 @@
   font-weight: 700;
   font-style: bold;
 }
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../fonts/Montserrat-Black.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 900;
+  font-style: bold;
+}

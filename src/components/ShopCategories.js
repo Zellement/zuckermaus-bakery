@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql, Link, useStaticQuery } from "gatsby"
-import { BsArrowRight } from "react-icons/bs"
 
 function countProductsInCategories(products) {
   // Return the products with counts
@@ -34,7 +33,7 @@ function countProductsInCategories(products) {
   return sortedCatgeories
 }
 
-export default function CategoryFilter({ className }) {
+export default function CategoryFilter({ className, showAll, linkClasses }) {
   const { products } = useStaticQuery(graphql`
     query {
       products: allDatoCmsProduct(
@@ -56,28 +55,26 @@ export default function CategoryFilter({ className }) {
   const productsWithCounts = countProductsInCategories(products.nodes)
 
   return (
-    <div className={"category-filter " + className}>
-      <Link
-        className="flex flex-row items-center p-2 space-x-2 group hover:bg-sugar-pink-500 focus:sugar-pink-500"
+    <>
+      { showAll ? <Link
+        className={"flex flex-row items-center space-x-2 group md:hover:text-red-500 md:focus:text-red-500 " + linkClasses }
         to="/shop/"
       >
-        <BsArrowRight className="transition duration-300 text-sugar-pink group-hover:text-rose-pink-600" />
         <span>All</span>{" "}
         <span className="text-2xs text-sugar-pink-700">
           {products.nodes.length}
         </span>
-      </Link>
+      </Link> : null }
       {productsWithCounts.map((category) => (
         <Link
-          className="flex flex-row items-center p-2 space-x-2 group hover:bg-sugar-pink-500 focus:sugar-pink-500"
+          className={"flex flex-row items-center space-x-2 group md:hover:text-red-500 md:focus:text-red-500 " + linkClasses }
           key={category.id}
           to={`/shop/${category.slug}/`}
         >
-          <BsArrowRight className="transition duration-300 text-sugar-pink group-hover:text-rose-pink-600" />
           <span>{category.name}</span>
-          <span className="text-2xs text-sugar-pink-700">{category.count}</span>
+          {/* <span className="text-2xs text-sugar-pink-700">{category.count}</span> */}
         </Link>
       ))}
-    </div>
+    </>
   )
 }

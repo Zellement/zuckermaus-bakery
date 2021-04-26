@@ -20,12 +20,9 @@
   .app:before {
     height: 0;
     content: '';
-    @apply block w-full bg-red-200;
+    @apply block w-full;
     @screen lg {
-      height: 150px;
-    }
-    @screen xl {
-      height: 177px;
+      height: 182px;
     }
   }
 
@@ -40,9 +37,9 @@
 }
 
 .nav a.is-active {
-  @apply text-white;
   background: url("/images/active.svg") bottom left no-repeat;
     @screen md {
+      background-image: url("/images/active-red.svg");
       background-position: bottom center;
     }
 }
@@ -59,4 +56,18 @@
   @screen 2xl {
     line-height: 7rem;
   }
+}
+
+/* Nav / subnav */
+
+.shop-link:hover + .subnav {
+	@apply 
+		visible block;
+}
+
+.subnav {
+	&:hover {
+		@apply 
+			visible block;
+	}
 }
