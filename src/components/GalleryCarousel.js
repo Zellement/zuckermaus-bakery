@@ -4,24 +4,26 @@ import Img from "gatsby-image"
 import { useEmblaCarousel } from "embla-carousel/react"
 import { useStaticQuery, graphql } from "gatsby"
 import { BsArrowRight, BsArrowLeft } from "react-icons/bs"
+import { ArrowRight, ArrowLeft } from "./atoms/icons/Arrows"
+// import ArrowLeft from "./atoms/icons/ArrowRight"
 
 export const PrevButton = ({ enabled, onClick }) => (
   <button
-    className="absolute top-0 left-0 z-20 p-1 -ml-6 text-2xl transition duration-300 bg-white cursor-pointer hover:bg-sugar-pink text-sugar-pink-900 embla__button embla__button--prev"
+    className="absolute top-0 left-0 z-20 p-2 pr-4 -ml-6 text-2xl transition-all duration-300 bg-white cursor-pointer focus:outline-none focus:bg-red-500 group max-w-20 embla__button embla__button--prev"
     onClick={onClick}
     disabled={!enabled}
   >
-    <BsArrowLeft />
+    <ArrowLeft className="transition-all duration-300 transform group-hover:translate-x-2 group-focus:text-white" />
   </button>
 )
 
 export const NextButton = ({ enabled, onClick }) => (
   <button
-    className="absolute top-0 right-0 z-20 h-10 p-1 -mr-6 text-2xl transition duration-300 bg-white cursor-pointer hover:bg-sugar-pink text-sugar-pink-900 embla__button embla__button--next"
+    className="absolute top-0 right-0 z-20 p-2 pr-4 -mr-6 text-2xl transition-all duration-300 bg-white cursor-pointer focus:outline-none focus:bg-red-500 group max-w-20 embla__button embla__button--next "
     onClick={onClick}
     disabled={!enabled}
   >
-    <BsArrowRight />
+    <ArrowRight className="transition-all duration-300 transform group-hover:translate-x-2 group-focus:text-white" />
   </button>
 )
 

@@ -9,10 +9,10 @@ import IconGlutenFree from "../components/atoms/icons/GlutenFree"
 import IconBestSeller from "../components/atoms/icons/BestSeller"
 import Hero from "../components/Hero"
 //import CategoryFilter from "../components/CategoryFilter"
-import { BsArrowRight } from "react-icons/bs"
 import { container } from "../helpers/transitionHelper"
 import AddToBasket from "../components/atoms/AddToBasket"
 import AustrianFlag from "../components/atoms/icons/AustrianFlag"
+import ArrowLink from "../components/atoms/ArrowLink"
 
 const item = {
   hidden: { opacity: 0 },
@@ -58,7 +58,7 @@ export default function ShopPage({ data, pageContext }) {
           </motion.div> */}
 
           <motion.div
-            className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3"
+            className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3"
             variants={item}
             transition="easeInOut"
           >
@@ -96,22 +96,20 @@ export default function ShopPage({ data, pageContext }) {
                     :
                     null }
                   </Link>
-                  <div className="flex flex-row">
+                  <div className="flex flex-row my-4">
                     <div className="w-3/4">
-                      <p className="text-rose-pink-900">
+                      <p className="mb-4 text-rose-pink-900 xl:text-base">
                         {product.description}
                       </p>
-                      <Link
-                        to={`/shop/product/` + product.slug + `/`}
-                        key={product.id}
-                        className="inline-flex items-center mt-2 text-xs text-rose-pink hover:text-rose-pink-700 focus:text-rose-pink-700 group"
-                      >
-                        <span className="inline-block">See product</span>
-                        <BsArrowRight className="inline-block ml-1 transition duration-300 transform group-hover:translate-x-4" />
-                      </Link>
+
+                      <ArrowLink
+                        destination={`/shop/product/` + product.slug + `/`}
+                        alkey={product.id}
+                        text="See product"
+                      />
                     </div>
 
-                    <div className="flex flex-row justify-end w-1/4 my-auto space-x-2">
+                    <div className="flex flex-row justify-end w-1/4 my-4 space-x-2">
                       {product.vegetarian ? (
                         <IconVegetarian className="w-6 h-6" />
                       ) : null}
@@ -123,7 +121,7 @@ export default function ShopPage({ data, pageContext }) {
                   </div>
                 </div>
 
-                <div className="">
+                <div className="flex flex-col space-y-2">
                   {product.orderDetails.map((orderDetail, index) => (
                     <div
                       key={orderDetail.id}

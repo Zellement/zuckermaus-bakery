@@ -10,17 +10,17 @@ export default function AddToBasket( {name, description, volumeSize, price, id} 
       onClick={() => {
         AddToBasketAnimation(id)
       }}
-      className="relative flex flex-col items-center w-full p-4 text-white transition duration-300 border Product__buy Product snipcart-add-item bg-red hover:bg-sugar-pink hover:text-sugar-pink-900 focus:border-red-800 focus:outline-none"
+      className="relative flex flex-col w-full p-4 text-lg font-bold text-left text-red-500 transition duration-300 bg-red-100 Product__buy Product snipcart-add-item hover:bg-red-500 hover:text-red-100 focus:bg-red-500 focus:text-red-100 focus:outline-none"
       data-item-id={name + " | " + volumeSize}
       data-item-price={price}
       // data-item-image={product.gallery[0].fluid.url && product.gallery[0].fluid.url}
       data-item-description={description}
       data-item-name={name + " | " + volumeSize}
       data-item-url={
-        `https://www.zuckermausbakery.com/products/` + name + "/"
+        `https://www.zuckermausbakery.com/shop/` + name + "/"
       }
     >
-      <span className="w-full mb-2 font-bold">{volumeSize}</span>
+      <span className="w-full mb-2">{volumeSize}</span>
 
       <span className="flex flex-row justify-between w-full">
         <NumberFormat

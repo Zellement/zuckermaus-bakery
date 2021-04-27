@@ -15,7 +15,6 @@ export default function AddToBasketAnimation(divId) {
     "bg-white",
     "text-green-500",
     "p-1",
-    "text-2xs",
     "font-bold",
     "mt-1",
     "mr-1",

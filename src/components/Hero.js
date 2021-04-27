@@ -2,7 +2,7 @@ import React from "react"
 import { motion } from "framer-motion"
 import { hero, hero__header } from "../helpers/transitionHelper"
 
-export default function Hero({ header, subheader, subpage, className }) {
+export default function Hero({ header, subpage, className }) {
   return (
   <motion.div variants={hero} className={"relative border-t-2 p-8 border-gray-100 mt-4 " + className}>
     <div className="container relative ">

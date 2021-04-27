@@ -17,12 +17,14 @@ import IconVegetarian from "../components/atoms/icons/Vegetarian"
 import IconVegan from "../components/atoms/icons/Vegan"
 import IconGlutenFree from "../components/atoms/icons/GlutenFree"
 import IconBestSeller from "../components/atoms/icons/BestSeller"
+import Hero from "../components/Hero"
 
 export default function ProductPage({ data }) {
   return (
     <>
       <SEO title={data.product.name} />
       <motion.div initial="initial" animate="enter" exit="exit">
+        <Hero className="pt-12" header={data.product.name} />
         <motion.div variants={hero} className={"relative bg-red-500"}>
           <div className="container px-8">
             <Link

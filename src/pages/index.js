@@ -4,7 +4,7 @@ import SEO from "../components/SEO"
 import { motion } from "framer-motion"
 import { fade } from "../helpers/transitionHelper"
 import Img from "gatsby-image"
-import ArrowRight from "../components/atoms/icons/ArrowRight"
+import { ArrowRight } from "../components/atoms/icons/Arrows"
 
 export const query = graphql`
   query {

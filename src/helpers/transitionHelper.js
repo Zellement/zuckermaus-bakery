@@ -57,7 +57,7 @@ export const hero = {
 }
 
 export const hero__header = {
-  initial: { y: 200, opacity: 0 },
+  initial: { y: 100, opacity: 0 },
   enter: {
     y: 0,
     opacity: 1,
