@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { AnimatePresence } from 'framer-motion'
-import InstagramFeed from "../components/InstagramFeed"
+// import InstagramFeed from "../components/InstagramFeed"
 
 import Header from "./Header"
 import "../styles/main.css"
@@ -29,7 +29,7 @@ const Layout = ({ children }) => {
           {children}
         </AnimatePresence>
       </div>
-      { process.env.GATSBY_MY_ENVIRONMENT === "Development" ? null : <InstagramFeed /> }
+      {/* { process.env.GATSBY_MY_ENVIRONMENT === "Development" ? null : <InstagramFeed /> } */}
     </>
   )
 }

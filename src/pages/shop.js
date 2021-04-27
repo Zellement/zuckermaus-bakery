@@ -6,9 +6,8 @@ import GalleryCarousel from "../components/GalleryCarousel"
 import IconVegetarian from "../components/atoms/icons/Vegetarian"
 import IconVegan from "../components/atoms/icons/Vegan"
 import IconGlutenFree from "../components/atoms/icons/GlutenFree"
-import IconBestSeller from "../components/atoms/icons/BestSeller"
+import { IconBestSeller, IconTrendingNow } from "../components/atoms/icons/Trends"
 import Hero from "../components/Hero"
-//import CategoryFilter from "../components/CategoryFilter"
 import { container } from "../helpers/transitionHelper"
 import AddToBasket from "../components/atoms/AddToBasket"
 import AustrianFlag from "../components/atoms/icons/AustrianFlag"
@@ -41,7 +40,7 @@ export default function ShopPage({ data, pageContext }) {
     <>
       <SEO title={pageContext.title ? `${pageContext.title} | Shop` : `Shop`} />
       <motion.div initial="initial" animate="enter" exit="exit">
-        <Hero className="pt-12" header="Shop" subpage={pageContext.title} />
+        <Hero className="" header="Shop" subpage={pageContext.title} />
 
         <motion.section
           variants={container}
@@ -67,12 +66,17 @@ export default function ShopPage({ data, pageContext }) {
                 variants={item__product}
                 transition="easeInOut"
                 key={product.id}
-                className="relative p-8 border border-gray-100"
+                className="relative p-8 bg-white border border-gray-100"
               >
                 <div className="relative">
-                  {product.bestSeller ? (
-                    <IconBestSeller className="absolute bottom-0 left-0 z-30 bg-white text-red " />
-                  ) : null}
+                  <div className="absolute bottom-0 left-0 z-30 bg-white text-red">
+                    {product.bestSeller ? (
+                      <IconBestSeller className="" />
+                    ) : null}
+                    {product.trendingNow ? (
+                      <IconTrendingNow className="" />
+                    ) : null}
+                  </div>
 
                   <GalleryCarousel
                     linkTo={`/shop/product/` + product.slug + `/`}
@@ -84,17 +88,17 @@ export default function ShopPage({ data, pageContext }) {
                   <Link
                     to={`/shop/product/` + product.slug + `/`}
                     key={product.id}
-                    className="block max-w-sm hover:text-rose-pink focus:text-rose-pink"
+                    className="block max-w-sm group"
                   >
-                    <h2 className="m-0 mb-2 text-lg font-semibold text-sugar-pink-900 lg:text-xl">
+                    <h2 className="m-0 mb-2 text-lg font-semibold transition duration-300 group-hover:text-black text-sugar-pink-900 lg:text-xl">
                       {product.name}
                     </h2>
-                    {product.secondaryName ?
-                    <h3 className="flex flex-row items-center mb-4 space-x-2 font-semibold text-red-500 lg:text-lg">
-                      <AustrianFlag className="w-6" /> <span>{product.secondaryName}</span>
-                    </h3>
-                    :
-                    null }
+                    {product.secondaryName ? (
+                      <h3 className="flex flex-row items-center mb-4 space-x-2 font-semibold text-red-500 transition duration-300 group-hover:text-black lg:text-lg">
+                        <AustrianFlag className="w-6" />{" "}
+                        <span>{product.secondaryName}</span>
+                      </h3>
+                    ) : null}
                   </Link>
                   <div className="flex flex-row my-4">
                     <div className="w-3/4">
@@ -106,6 +110,7 @@ export default function ShopPage({ data, pageContext }) {
                         destination={`/shop/product/` + product.slug + `/`}
                         alkey={product.id}
                         text="See product"
+                        className="hover:text-black"
                       />
                     </div>
 
@@ -134,6 +139,7 @@ export default function ShopPage({ data, pageContext }) {
                         description={product.description}
                         id={orderDetail.id}
                         volumeSize={orderDetail.volumeSize}
+                        slug={product.slug}
                       />
                     </div>
                   ))}
@@ -164,6 +170,7 @@ export const query = graphql`
           vegan
           vegetarian
           bestSeller
+          trendingNow
           glutenFree
           orderDetails {
             price

@@ -3,9 +3,7 @@ import PropTypes from "prop-types"
 import Img from "gatsby-image"
 import { useEmblaCarousel } from "embla-carousel/react"
 import { useStaticQuery, graphql } from "gatsby"
-import { BsArrowRight, BsArrowLeft } from "react-icons/bs"
 import { ArrowRight, ArrowLeft } from "./atoms/icons/Arrows"
-// import ArrowLeft from "./atoms/icons/ArrowRight"
 
 export const PrevButton = ({ enabled, onClick }) => (
   <button
@@ -74,7 +72,7 @@ export default function GalleryCarousel({ images }) {
                   alt={image.alt}
                   className="block object-cover w-full h-full mb-px"
                 />
-                <span className="absolute top-0 right-0 z-20 p-2 mr-4 text-sm bg-white font-display text-rose-pink">
+                <span className="absolute bottom-0 right-0 z-20 p-2 text-sm bg-white font-display text-rose-pink">
                   {("0" + (index + 1)).slice(-2)}
                 </span>
               </div>

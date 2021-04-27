@@ -5,6 +5,7 @@ module.exports = {
     title: `Zuckermaus Bakery`,
     description: `Bakery`,
     author: `@Zellement`,
+    siteURL: `https://www.zuckermausbakery.com`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

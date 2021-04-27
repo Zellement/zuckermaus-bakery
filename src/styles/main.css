@@ -22,7 +22,7 @@
     content: '';
     @apply block w-full;
     @screen lg {
-      height: 182px;
+      height: 151px;
     }
   }
 

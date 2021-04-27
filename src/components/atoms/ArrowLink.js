@@ -1,16 +1,17 @@
 import React from "react"
 import { Link } from "gatsby"
-import { ArrowRight } from "./icons/Arrows"
+import { ArrowRight, ArrowLeft } from "./icons/Arrows"
 
-export default function ArrowLink( {destination, alkey, className, text} ) {
+export default function ArrowLink( {destination, alkey, className, text, arrowLeft} ) {
   return (
     <Link
       to={destination}
       key={alkey}
-      className={"inline-flex items-center mt-2 group space-x-2 transition-all duration-300 text-lg text-sugar-pink-900 group " + className }
+      className={"inline-flex items-center mt-2 group space-x-2 text-lg text-sugar-pink-900 group " + className }
     >
-      <span className="inline-block font-bold transition-all duration-300 group-hover:pr-4 whitespace-nowrap">{ text }</span>
-      <ArrowRight />
+      { arrowLeft ? <ArrowLeft className="max-w-16" /> : null }
+      <span className={"inline-block font-bold transition-all flex-grow flex " +  ( arrowLeft ? "group-hover:pl-4" : "group-hover:pr-4" ) }>{ text }</span>
+      { arrowLeft ? null : <ArrowRight className="max-w-16" /> }
     </Link>
   )
 }

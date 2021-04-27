@@ -2,8 +2,25 @@ import React from "react"
 import AddToBasketAnimation from "../../components/atoms/AddToBasketAnimation"
 import { FaShoppingBasket } from "react-icons/fa"
 import NumberFormat from "react-number-format"
+import { useStaticQuery, graphql } from "gatsby"
 
-export default function AddToBasket( {name, description, volumeSize, price, id} ) {
+export default function AddToBasket({
+  name,
+  description,
+  volumeSize,
+  price,
+  id,
+  slug
+}) {
+  const data = useStaticQuery(graphql`
+    query SiteQuery {
+      site {
+        siteMetadata {
+          siteURL
+        }
+      }
+    }
+  `)
   return (
     <button
       // https://stackoverflow.com/questions/33846682/react-onclick-function-fires-on-render
@@ -16,9 +33,7 @@ export default function AddToBasket( {name, description, volumeSize, price, id} 
       // data-item-image={product.gallery[0].fluid.url && product.gallery[0].fluid.url}
       data-item-description={description}
       data-item-name={name + " | " + volumeSize}
-      data-item-url={
-        `https://www.zuckermausbakery.com/shop/` + name + "/"
-      }
+      data-item-url={data.site.siteMetadata.siteURL + "/shop/product/" + slug + "/"}
     >
       <span className="w-full mb-2">{volumeSize}</span>
 

@@ -21,7 +21,7 @@ const Nav = class extends React.Component {
     const burgerIcon = this.state.showMenu ? "hidden" : "inline-block"
     const closeIcon = this.state.showMenu ? "inline-block" : "hidden"
     return (
-      <nav className="lg:flex lg:content-end lg:justify-end lg:flex-col lg:pr-8 nav">
+      <nav className="lg:flex lg:content-end lg:justify-end lg:flex-col lg:p-0 nav">
         <div
           className={`bg-red md:bg-none duration-300 transition-all transform fixed top-0 left-0 z-40 w-full h-screen p-6 ease-in md:relative md:top-auto md:left-auto md:block md:w-full md:h-auto md:p-0 md:bg-transparent text-white ${menuActive}`}
         >
@@ -48,7 +48,7 @@ const Nav = class extends React.Component {
               </Link>
 
             <ul className="my-2 subnav md:hidden hover:block md:absolute md:m-0 md:top-full md:left-1/2 md:-translate-x-1/2 md:transform md:w-64 md:bg-white category-filter md:shadow-xl">
-                <ShopCategories linkClasses="text-sugar-pink-200 text-xs md:text-black p-2 md:px-4 md:py-3 md:border-l-2 md:border-red-500 md:hover:border-black md:hover:border-l-4 transition duration-300 md:hover:bg-sugar-pink-100" className="flex flex-row flex-wrap p-8 md:space-x-2 lg:w-full xl:justify-between" />
+                <ShopCategories linkClasses="text-sugar-pink-200 text-xs md:text-black p-2 md:px-4 md:py-3 md:border-l-2 md:border-red-500 md:hover:border-black md:hover:border-l-4 transition duration-300 md:hover:bg-sugar-pink-100 md:text-sm" className="flex flex-row flex-wrap p-8 md:space-x-2 lg:w-full xl:justify-between" />
               </ul>
             </li>
             <li>
