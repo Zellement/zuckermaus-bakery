@@ -1,7 +1,7 @@
 import React from "react"
 import { motion } from "framer-motion"
 import { graphql, Link } from "gatsby"
-import SEO from "../components/SEO"
+import Seo from "../components/Seo"
 import GalleryCarousel from "../components/GalleryCarousel"
 import IconVegetarian from "../components/atoms/icons/Vegetarian"
 import IconVegan from "../components/atoms/icons/Vegan"
@@ -41,7 +41,7 @@ export default function ShopPage({ data, pageContext }) {
 
   return (
     <>
-      <SEO title={pageContext.title ? `${pageContext.title} | Shop` : `Shop`} />
+      <Seo title={pageContext.title ? `${pageContext.title} | Shop` : `Shop`} />
       <motion.div initial="initial" animate="enter" exit="exit">
         <Hero className="" header="Shop" subpage={pageContext.title} />
 
@@ -181,9 +181,7 @@ export const query = graphql`
             id
           }
           gallery {
-            fluid(imgixParams: { w: "400", h: "400", fit: "crop" }) {
-              ...GatsbyDatoCmsFluid
-            }
+            gatsbyImageData(layout: CONSTRAINED, width: 400, height: 400)
           }
         }
       }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react"
 import PropTypes from "prop-types"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import { useEmblaCarousel } from "embla-carousel/react"
 import { useStaticQuery, graphql } from "gatsby"
 import { ArrowRight, ArrowLeft } from "./atoms/icons/Arrows"
@@ -27,17 +27,14 @@ export const NextButton = ({ enabled, onClick }) => (
 
 export default function GalleryCarousel({ images }) {
 
-  const fallbackImage = useStaticQuery(graphql`
-    query {
-      file(relativePath: { eq: "no-image.png" }) {
-        childImageSharp {
-          fluid {
-          ...GatsbyImageSharpFluid
-          }
-        }
-      }
+  const fallbackImage = useStaticQuery(graphql`{
+  file(relativePath: {eq: "no-image.png"}) {
+    childImageSharp {
+      gatsbyImageData(layout: FULL_WIDTH)
     }
-  `)
+  }
+}
+`)
 
   const [viewportRef, embla] = useEmblaCarousel()
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
@@ -65,13 +62,12 @@ export default function GalleryCarousel({ images }) {
           <div className="embla__container">
             {images.map((image, index) => (
               <div key={index} className=" embla__slide embla__slide--gallery">
-                <Img
+                <GatsbyImage
+                  image={image.gatsbyImageData}
                   backgroundColor="#F3B8D5"
-                  fluid={image.fluid}
                   key={image.title}
                   alt={image.alt}
-                  className="block object-cover w-full h-full mb-px"
-                />
+                  className="block object-cover w-full h-full mb-px" />
                 <span className="absolute bottom-0 right-0 z-20 p-2 text-sm bg-white font-display text-rose-pink">
                   {("0" + (index + 1)).slice(-2)}
                 </span>
@@ -82,54 +78,48 @@ export default function GalleryCarousel({ images }) {
         <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
         <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
       </div>
-    )
+    );
   } else if (images.length === 1) {
-    return (
-      <>
-        <section initial="hidden" animate="visible">
-          <div className="relative">
-            <div className="max-w-full embla__container">
-              {images.map((image, index) => (
-                <div
-                  key={index}
-                  transition="easeInOut"
-                  className="block embla__slide embla__slide--gallery"
-                >
-                  <Img
-                    backgroundColor="#F3B8D5"
-                    fluid={image.fluid}
-                    key={image.title}
-                    alt={image.alt}
-                    className="block w-full mb-px"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </>
-    )
-  } else {
-    return (
-      <>
-        <section initial="hidden" animate="visible">
-          <div className="relative">
-            <div className="max-w-full embla__container">
+    return <>
+      <section initial="hidden" animate="visible">
+        <div className="relative">
+          <div className="max-w-full embla__container">
+            {images.map((image, index) => (
               <div
+                key={index}
                 transition="easeInOut"
                 className="block embla__slide embla__slide--gallery"
               >
-                <Img
-                  backgroundColor="#26486E"
-                  fluid={fallbackImage.file.childImageSharp.fluid}
-                  className="block w-full h-auto mb-px"
-                />
+                <GatsbyImage
+                  image={image.gatsbyImageData}
+                  backgroundColor="#F3B8D5"
+                  key={image.title}
+                  alt={image.alt}
+                  className="block w-full mb-px" />
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>;
+  } else {
+    return <>
+      <section initial="hidden" animate="visible">
+        <div className="relative">
+          <div className="max-w-full embla__container">
+            <div
+              transition="easeInOut"
+              className="block embla__slide embla__slide--gallery"
+            >
+              <GatsbyImage
+                image={fallbackImage.file.childImageSharp.gatsbyImageData}
+                backgroundColor="#26486E"
+                className="block w-full h-auto mb-px" />
             </div>
           </div>
-        </section>
-      </>
-    )
+        </div>
+      </section>
+    </>;
   }
 }
 

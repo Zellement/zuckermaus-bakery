@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import SEO from "../components/SEO"
+import Seo from "../components/Seo"
 import { motion } from "framer-motion"
 import GalleryCarousel from "../components/GalleryCarousel"
 import { container, slideInRight, fade } from "../helpers/transitionHelper"
@@ -19,7 +19,7 @@ import ArrowLink from "../components/atoms/ArrowLink"
 export default function ProductPage({ data }) {
   return (
     <>
-      <SEO title={data.product.name} />
+      <Seo title={data.product.name} />
       <motion.div
         initial="initial"
         className="overflow-hidden"
@@ -131,9 +131,7 @@ export const query = graphql`
       bestSeller
       trendingNow
       gallery {
-        fluid(imgixParams: { w: "1200", h: "1000", fit: "crop" }) {
-          ...GatsbyDatoCmsFluid_tracedSVG
-        }
+        gatsbyImageData(layout: CONSTRAINED, width: 1200, height: 1000)
       }
     }
   }

@@ -16,8 +16,9 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-plugin-postcss`,
+    `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
+    `gatsby-plugin-postcss`,
     `gatsby-plugin-sharp`,
     {
       resolve: "gatsby-plugin-react-svg",
