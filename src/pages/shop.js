@@ -6,7 +6,10 @@ import GalleryCarousel from "../components/GalleryCarousel"
 import IconVegetarian from "../components/atoms/icons/Vegetarian"
 import IconVegan from "../components/atoms/icons/Vegan"
 import IconGlutenFree from "../components/atoms/icons/GlutenFree"
-import { IconBestSeller, IconTrendingNow } from "../components/atoms/icons/Trends"
+import {
+  IconBestSeller,
+  IconTrendingNow,
+} from "../components/atoms/icons/Trends"
 import Hero from "../components/Hero"
 import { container } from "../helpers/transitionHelper"
 import AddToBasket from "../components/atoms/AddToBasket"
@@ -100,7 +103,7 @@ export default function ShopPage({ data, pageContext }) {
                       </h3>
                     ) : null}
                   </Link>
-                  <div className="flex flex-row my-4">
+                  <div className="flex flex-row my-4 text-sugar-pink-800">
                     <div className="w-3/4">
                       <p className="mb-4 text-rose-pink-900 xl:text-base">
                         {product.description}

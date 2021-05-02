@@ -7,7 +7,7 @@ export default function ArrowLink( {destination, alkey, className, text, arrowLe
     <Link
       to={destination}
       key={alkey}
-      className={"inline-flex items-center mt-2 group space-x-2 text-lg text-sugar-pink-900 group " + className }
+      className={"inline-flex items-center mt-2 group space-x-2 text-lg group " + className }
     >
       { arrowLeft ? <ArrowLeft className="max-w-16" /> : null }
       <span className={"inline-block font-bold transition-all flex-grow flex " +  ( arrowLeft ? "group-hover:pl-4" : "group-hover:pr-4" ) }>{ text }</span>

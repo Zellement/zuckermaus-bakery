@@ -14,6 +14,7 @@ import {
   IconBestSeller,
   IconTrendingNow,
 } from "../components/atoms/icons/Trends"
+import ArrowLink from "../components/atoms/ArrowLink"
 
 export default function ProductPage({ data }) {
   return (
@@ -28,6 +29,7 @@ export default function ProductPage({ data }) {
         <Hero
           className="border-b-2"
           header={data.product.name}
+          secondaryName={data.product.secondaryName}
           backText={"See all " + data.product.productCategory.name}
           backDestination={"/shop/" + data.product.productCategory.slug + "/"}
         />
@@ -63,7 +65,7 @@ export default function ProductPage({ data }) {
                 <div className="flex flex-row items-center justify-start mb-8 space-x-2">
                   {data.product.bestSeller ? <IconBestSeller className="text-red-500" /> : null}
                   {data.product.trendingNow ? (
-                    <IconTrendingNow className="" />
+                    <IconTrendingNow className="text-sugar-pink-800" />
                   ) : null}
 
                   {data.product.vegetarian ? (
@@ -90,6 +92,13 @@ export default function ProductPage({ data }) {
                     </div>
                   ))}
                 </div>
+                
+            <ArrowLink
+              arrowLeft={true}
+              destination="/shop/"
+              text="Back to shop"
+              className="mt-8 text-sugar-pink-800"
+            />
               </motion.div>
             </div>
           </motion.div>
@@ -103,6 +112,7 @@ export const query = graphql`
   query($slug: String!) {
     product: datoCmsProduct(slug: { eq: $slug }) {
       name
+      secondaryName
       id
       description
       orderDetails {

@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { fade } from "../helpers/transitionHelper"
 import Img from "gatsby-image"
 import { ArrowRight } from "../components/atoms/icons/Arrows"
+import ArrowLink from "../components/atoms/ArrowLink"
 
 export const query = graphql`
   query {
@@ -45,13 +46,11 @@ const IndexPage = ({ data }) => {
             <p className="text-xl md:text-3xl lg:text-5xl font-display">
               {data.datoCmsHomepage.heroText}
             </p>
-            <Link
-              className="flex flex-row items-center space-x-2 text-lg font-semibold lg:text-2xl group"
-              to="/shop"
-            >
-              <span className="pr-1 transition-all duration-300 md:group-hover:pr-8 whitespace-nowrap">{data.datoCmsHomepage.heroButtonText}</span>
-              <ArrowRight />
-            </Link>
+            <ArrowLink
+              destination="/shop/"
+              text="Shop"
+              className="mt-4 text-white lg:text-2xl"
+            />
           </div>
         </motion.div>
 
