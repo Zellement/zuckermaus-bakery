@@ -1,10 +1,9 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import SEO from "../components/SEO"
 import { motion } from "framer-motion"
 import { fade } from "../helpers/transitionHelper"
 import Img from "gatsby-image"
-import { ArrowRight } from "../components/atoms/icons/Arrows"
 import ArrowLink from "../components/atoms/ArrowLink"
 
 export const query = graphql`
