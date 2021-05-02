@@ -3,9 +3,10 @@ import { graphql } from "gatsby"
 import Seo from "../components/Seo"
 import { motion } from "framer-motion"
 import { fade } from "../helpers/transitionHelper"
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image"
 import ArrowLink from "../components/atoms/ArrowLink"
 import ShopCategories from "../components/ShopCategories"
+import ZuckermausStory from "../components/ZuckermausStory"
 
 export const query = graphql`
   query {
@@ -22,59 +23,78 @@ export const query = graphql`
 `
 
 const IndexPage = ({ data }) => {
-  return <>
-    <Seo title="Home" />
+  return (
+    <>
+      <Seo title="Home" />
 
-    <motion.section
-      initial="initial"
-      animate="enter"
-      exit="exit"
-      className=""
-    >
-      <motion.div
-        className="relative h-screen-5/10 md:h-screen-8/10"
-        variants={fade}
-        transition="easeInOut"
+      <motion.section
+        initial="initial"
+        animate="enter"
+        exit="exit"
+        className=""
       >
-        <GatsbyImage
-          image={data.datoCmsHomepage.heroImage.gatsbyImageData}
-          className="object-cover w-full h-full"
-          alt={ data.datoCmsHomepage.heroImage.alt ? data.datoCmsHomepage.heroImage.alt : ""} />
-        <div className="absolute z-30 flex flex-col items-center p-4 text-white transform -translate-x-1/2 -translate-y-1/2 bg-red-500 md:p-8 lg:p-16 xl:px-24 bg-opacity-70 top-1/2 left-1/2">
-          <p className="text-xl md:text-3xl lg:text-5xl font-display">
-            {data.datoCmsHomepage.heroText}
-          </p>
-          <ArrowLink
-            destination="/shop/"
-            text="Shop"
-            className="mt-4 text-white lg:text-2xl"
+        <motion.div
+          className="relative h-screen-5/10 md:h-screen-8/10"
+          variants={fade}
+          transition="easeInOut"
+        >
+          <GatsbyImage
+            image={data.datoCmsHomepage.heroImage.gatsbyImageData}
+            className="object-cover w-full h-full"
+            alt={
+              data.datoCmsHomepage.heroImage.alt
+                ? data.datoCmsHomepage.heroImage.alt
+                : ""
+            }
           />
-        </div>
-      </motion.div>
+          <div className="absolute z-30 flex flex-col items-center p-4 text-white transform -translate-x-1/2 -translate-y-1/2 bg-red-500 md:p-8 lg:p-16 xl:px-24 bg-opacity-70 top-1/2 left-1/2">
+            <p className="text-xl md:text-3xl lg:text-5xl font-display">
+              {data.datoCmsHomepage.heroText}
+            </p>
+            <ArrowLink
+              destination="/shop/"
+              text="Shop"
+              className="mt-4 text-white lg:text-2xl"
+            />
+          </div>
+        </motion.div>
 
-      <motion.div className="flex flex-col p-4 sm:flex-row sm:flex-wrap" variants={fade} transition="easeInOut">
-        <ShopCategories asCards={true} linkClasses="w-full sm:w-1/2" nameClassName="z-20 absolute bottom-0 left-0 w-full bg-red-500 p-2 w-full" />
-      </motion.div>
+        <motion.div
+          className="flex flex-col justify-center p-4 my-8 lg:my-16 sm:flex-row sm:flex-wrap"
+          variants={fade}
+          transition="easeInOut"
+        >
+          <ShopCategories
+            asCards={true}
+            linkClasses="w-full sm:w-1/2 border-8 lg:w-1/4 md:w-1/3 border-white"
+            nameClassName="bg-opacity-70 text-white z-20 absolute bottom-0 left-0 w-full bg-red-500 p-3 font-semibold w-full flex flex-row space-x-2 items-center"
+          />
+        </motion.div>
 
-      <motion.div className="content" variants={fade} transition="easeInOut">
-        <p>
-          Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-          cupidatat non proident, sunt in culpa qui officia deserunt mollit
-          anim id est laborum.
-        </p>
+        <motion.div className="" variants={fade} transition="easeInOut">
+          <ZuckermausStory />
+        </motion.div>
 
-        <h2>Lorem ipsum dolor sit amet</h2>
+        <motion.div className="content" variants={fade} transition="easeInOut">
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
 
-        <p>
-          Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-          cupidatat non proident, sunt in culpa qui officia deserunt mollit
-          anim id est laborum.
-        </p>
-      </motion.div>
-    </motion.section>
-  </>;
+          <h2>Lorem ipsum dolor sit amet</h2>
+
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+        </motion.div>
+      </motion.section>
+    </>
+  )
 }
 
 export default IndexPage

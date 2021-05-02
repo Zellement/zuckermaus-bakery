@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql, Link, useStaticQuery } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image"
+import { ArrowRight } from "./atoms/icons/Arrows"
 
 function countProductsInCategories(products) {
   // Return the products with counts
@@ -54,7 +55,7 @@ export default function CategoryFilter({
             name
             slug
             categoryMainImage {
-              gatsbyImageData(layout: CONSTRAINED, height: 400)
+              gatsbyImageData(layout: CONSTRAINED, imgixParams: { fit: "crop", crop: "focalpoint", w: "400", h: "320"})
               alt
             }
           }
@@ -90,14 +91,15 @@ export default function CategoryFilter({
           key={category.id}
           to={`/shop/${category.slug}/`}
         >
-          <span className={nameClassName}>{category.name}</span>
+          <span className={nameClassName}><span className="transition-all duration-300 group-hover:pr-4">{category.name}</span> { asCards ? <ArrowRight className="max-w-16" /> : null }</span>
           
-          <GatsbyImage
+          { asCards ? <GatsbyImage
             image={category.image.gatsbyImageData}
             backgroundColor="#F3B8D5"
             alt={category.image.alt ? category.image.alt : ""}
             className="block object-cover w-full h-full mb-px"
           />
+          : null }
           {/* <span className="text-2xs text-sugar-pink-700">{category.count}</span> */}
         </Link>
       ))}
