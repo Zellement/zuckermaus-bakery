@@ -182,6 +182,7 @@ export const query = graphql`
           }
           gallery {
             gatsbyImageData(layout: CONSTRAINED, width: 400, height: 400)
+            alt
           }
         }
       }

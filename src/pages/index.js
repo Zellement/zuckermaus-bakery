@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { fade } from "../helpers/transitionHelper"
 import { GatsbyImage } from "gatsby-plugin-image";
 import ArrowLink from "../components/atoms/ArrowLink"
+import ShopCategories from "../components/ShopCategories"
 
 export const query = graphql`
   query {
@@ -13,6 +14,7 @@ export const query = graphql`
       heroButtonText
       heroImage {
         gatsbyImageData(layout: FULL_WIDTH)
+        alt
       }
       heroText
     }
@@ -36,7 +38,8 @@ const IndexPage = ({ data }) => {
       >
         <GatsbyImage
           image={data.datoCmsHomepage.heroImage.gatsbyImageData}
-          className="object-cover w-full h-full" />
+          className="object-cover w-full h-full"
+          alt={ data.datoCmsHomepage.heroImage.alt ? data.datoCmsHomepage.heroImage.alt : ""} />
         <div className="absolute z-30 flex flex-col items-center p-4 text-white transform -translate-x-1/2 -translate-y-1/2 bg-red-500 md:p-8 lg:p-16 xl:px-24 bg-opacity-70 top-1/2 left-1/2">
           <p className="text-xl md:text-3xl lg:text-5xl font-display">
             {data.datoCmsHomepage.heroText}
@@ -49,8 +52,8 @@ const IndexPage = ({ data }) => {
         </div>
       </motion.div>
 
-      <motion.div className="content" variants={fade} transition="easeInOut">
-        <hr className="block my-8" />
+      <motion.div className="flex flex-col p-4 sm:flex-row sm:flex-wrap" variants={fade} transition="easeInOut">
+        <ShopCategories asCards={true} linkClasses="w-full sm:w-1/2" nameClassName="z-20 absolute bottom-0 left-0 w-full bg-red-500 p-2 w-full" />
       </motion.div>
 
       <motion.div className="content" variants={fade} transition="easeInOut">

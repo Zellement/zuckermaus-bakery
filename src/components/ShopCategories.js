@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, Link, useStaticQuery } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image";
 
 function countProductsInCategories(products) {
   // Return the products with counts
@@ -18,6 +19,7 @@ function countProductsInCategories(products) {
           name: productCategory.name,
           slug: productCategory.slug,
           count: 1,
+          image: productCategory.categoryMainImage
         }
       }
       return acc
@@ -33,7 +35,12 @@ function countProductsInCategories(products) {
   return sortedCatgeories
 }
 
-export default function CategoryFilter({ className, showAll, linkClasses }) {
+export default function CategoryFilter({
+  showAll,
+  linkClasses,
+  asCards,
+  nameClassName
+}) {
   const { products } = useStaticQuery(graphql`
     query {
       products: allDatoCmsProduct(
@@ -46,6 +53,10 @@ export default function CategoryFilter({ className, showAll, linkClasses }) {
             id
             name
             slug
+            categoryMainImage {
+              gatsbyImageData(layout: CONSTRAINED, height: 400)
+              alt
+            }
           }
         }
       }
@@ -56,22 +67,37 @@ export default function CategoryFilter({ className, showAll, linkClasses }) {
 
   return (
     <>
-      { showAll ? <Link
-        className={"flex flex-row items-center space-x-2 group md:hover:text-red-500 md:focus:text-red-500 " + linkClasses }
-        to="/shop/"
-      >
-        <span>All</span>{" "}
-        <span className="text-2xs text-sugar-pink-700">
-          {products.nodes.length}
-        </span>
-      </Link> : null }
+      {showAll ? (
+        <Link
+          className={
+            "flex flex-row items-center space-x-2 group md:hover:text-red-500 md:focus:text-red-500 " +
+            linkClasses
+          }
+          to="/shop/"
+        >
+          <span>All</span>{" "}
+          <span className="text-2xs text-sugar-pink-700">
+            {products.nodes.length}
+          </span>
+        </Link>
+      ) : null}
       {productsWithCounts.map((category) => (
         <Link
-          className={"flex flex-row items-center space-x-2 group md:hover:text-red-500 md:focus:text-red-500 " + linkClasses }
+          className={
+            "relative flex flex-row items-center group " +
+            linkClasses
+          }
           key={category.id}
           to={`/shop/${category.slug}/`}
         >
-          <span>{category.name}</span>
+          <span className={nameClassName}>{category.name}</span>
+          
+          <GatsbyImage
+            image={category.image.gatsbyImageData}
+            backgroundColor="#F3B8D5"
+            alt={category.image.alt ? category.image.alt : ""}
+            className="block object-cover w-full h-full mb-px"
+          />
           {/* <span className="text-2xs text-sugar-pink-700">{category.count}</span> */}
         </Link>
       ))}

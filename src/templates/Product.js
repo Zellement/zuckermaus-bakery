@@ -48,7 +48,7 @@ export default function ProductPage({ data }) {
                   animate="visible"
                   className="w-full h-full bg-white"
                 >
-                  <GalleryCarousel images={data.product.gallery} />
+                  <GalleryCarousel alt={data.product.gallery.alt} images={data.product.gallery} />
                 </motion.div>
               </div>
 
@@ -132,6 +132,7 @@ export const query = graphql`
       trendingNow
       gallery {
         gatsbyImageData(layout: CONSTRAINED, width: 1200, height: 1000)
+        alt
       }
     }
   }

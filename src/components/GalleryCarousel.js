@@ -65,7 +65,7 @@ export default function GalleryCarousel({ images }) {
                 <GatsbyImage
                   image={image.gatsbyImageData}
                   backgroundColor="#F3B8D5"
-                  key={image.title}
+                  key={index}
                   alt={image.alt}
                   className="block object-cover w-full h-full mb-px" />
                 <span className="absolute bottom-0 right-0 z-20 p-2 text-sm bg-white font-display text-rose-pink">
@@ -93,8 +93,8 @@ export default function GalleryCarousel({ images }) {
                 <GatsbyImage
                   image={image.gatsbyImageData}
                   backgroundColor="#F3B8D5"
-                  key={image.title}
-                  alt={image.alt}
+                  key={index}
+                  alt={image.alt ? image.alt : ""}
                   className="block w-full mb-px" />
               </div>
             ))}
@@ -114,6 +114,7 @@ export default function GalleryCarousel({ images }) {
               <GatsbyImage
                 image={fallbackImage.file.childImageSharp.gatsbyImageData}
                 backgroundColor="#26486E"
+                alt="Image coming soon"
                 className="block w-full h-auto mb-px" />
             </div>
           </div>
