@@ -5,6 +5,7 @@ import { AnimatePresence } from 'framer-motion'
 // import InstagramFeed from "../components/InstagramFeed"
 
 import Header from "./Header"
+import Footer from "./Footer"
 import "../styles/main.css"
 
 const Layout = ({ children }) => {
@@ -30,6 +31,7 @@ const Layout = ({ children }) => {
         </AnimatePresence>
       </div>
       {/* { process.env.GATSBY_MY_ENVIRONMENT === "Development" ? null : <InstagramFeed /> } */}
+      <Footer />
     </>
   )
 }
