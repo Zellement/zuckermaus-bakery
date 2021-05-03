@@ -1,19 +1,19 @@
 body {
-  @apply font-sans antialiased font-normal;
+  @apply font-sans antialiased font-normal text-sugar-pink-900;
 }
 
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
   @apply
-    p-0 mb-6 font-black leading-tight;
+    p-0 mb-6 font-black leading-tight font-display;
 }
 
 h1 {
-	@apply text-xl;
+	@apply text-2xl lg:text-3xl;
 }
 
 h2 {
-	@apply text-lg;
+	@apply text-xl lg:text-2xl;
 }
 
 /* Link */
@@ -43,4 +43,20 @@ h2 {
   p + h1, p + h2, p + h3, p + h4 {
     @apply block pt-6;
   }
+
+  a {
+    @apply relative text-red-500;
+    &:after {
+      content: '';
+      @apply absolute bottom-0 left-0 w-2/3 h-px transition-all duration-300 bg-red-500;
+    }
+    &:hover:after {
+      @apply w-full;
+    }
+  }
+
+  a.arrow-link:after {
+    @apply hidden;
+  }
+
 }

@@ -12,6 +12,12 @@ exports.createPages = async function({ actions, graphql }) {
           slug
         }
       }
+      blog: allDatoCmsBlog {
+        nodes {
+          title
+          slug
+        }
+      }
     }
   `)
   data.pages.nodes.forEach(node => {
@@ -25,6 +31,13 @@ exports.createPages = async function({ actions, graphql }) {
     actions.createPage({
       path: "shop/" + node.slug + "/",
       component: require.resolve(`./src/pages/shop.js`),
+      context: { slug: node.slug, title: node.name },
+    })
+  })
+  data.blog.nodes.forEach(node => {
+    actions.createPage({
+      path: "blog/" + node.slug + "/",
+      component: require.resolve(`./src/templates/Blog.js`),
       context: { slug: node.slug, title: node.name },
     })
   })

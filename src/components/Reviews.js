@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import { ImQuotesLeft } from "react-icons/im"
+import Review from "./atoms/Review"
 
 export default function Reviews() {
   const data = useStaticQuery(graphql`
@@ -19,12 +19,7 @@ export default function Reviews() {
       <div className="flex flex-col w-full p-8 space-y-12 text-gray-700 lg:space-y-0 lg:space-x-12 lg:p-16 lg:flex-row">
         {review.review.map((reviewitem, index) => (
           <div key={index} className="flex-1">
-            <p className="text-lg font-display lg:text-xl">{reviewitem.name}</p>
-
-            <div className="relative flex flex-row mt-2 space-x-2">
-              <ImQuotesLeft className="absolute top-0 left-0 text-4xl opacity-10" />
-              <p className="pl-16">{reviewitem.text}</p>
-            </div>
+            <Review name={reviewitem.name} text={reviewitem.text} />
           </div>
         ))}
         ;
