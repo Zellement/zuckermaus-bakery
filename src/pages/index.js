@@ -7,6 +7,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import ArrowLink from "../components/atoms/ArrowLink"
 import ShopCategories from "../components/ShopCategories"
 import ZuckermausStory from "../components/ZuckermausStory"
+import Reviews from "../components/Reviews"
 
 export const query = graphql`
   query {
@@ -73,6 +74,7 @@ const IndexPage = ({ data }) => {
 
         <motion.div className="" variants={fade} transition="easeInOut">
           <ZuckermausStory />
+          <Reviews />
         </motion.div>
       </motion.section>
     </>

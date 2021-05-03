@@ -22,7 +22,7 @@ export default function ZuckermausStory() {
   `)
     const story = data.datoCmsGlobal
   return (
-    <div className="flex flex-col w-full gap-16 p-8 bg-pink-100 xl:p-20 lg:gap-24 lg:flex-row md:p-16 text-sugar-pink-900">
+    <div className="flex flex-col w-full gap-16 p-8 bg-pink-100 lg:p-16 lg:gap-24 lg:flex-row text-sugar-pink-900">
       <div className="w-full lg:w-1/2 content">
         <h1 className="text-xl font-display lg:text-3xl">{story.title}</h1>
         <HTMLContent content={story.copy} />
