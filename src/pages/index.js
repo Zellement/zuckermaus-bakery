@@ -67,7 +67,7 @@ const IndexPage = ({ data }) => {
         >
           <ShopCategories
             asCards={true}
-            linkClasses="w-full sm:w-1/2 border-8 lg:w-1/4 md:w-1/3 border-white"
+            linkClasses="w-full sm:w-1/2 border-8 lg:w-1/4 md:w-1/3 border-white lg:text-lg"
             nameClassName="bg-opacity-70 text-white z-20 absolute bottom-0 left-0 w-full bg-red-500 p-3 font-semibold w-full flex flex-row space-x-2 items-center"
           />
         </motion.div>

@@ -3,7 +3,7 @@ import ArrowLink from "./atoms/ArrowLink"
 
 export default function Footer() {
   return (
-    <div className="w-full p-8 text-white bg-red-500 lg:p-16">
+    <div className="w-full p-8 mt-8 text-white bg-red-500 lg:p-16 lg:mt-16">
       <div className="container flex flex-col gap-8 text-base lg:text-lg md:flex-row">
         <div className="w-full md:w-2/3">
           <p className="mb-8 text-lg lg:text-2xl font-display">Get in touch</p>

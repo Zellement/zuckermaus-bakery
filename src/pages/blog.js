@@ -1,20 +1,11 @@
 import React from "react"
 import { motion } from "framer-motion"
 import { graphql, Link } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 import Seo from "../components/Seo"
-import GalleryCarousel from "../components/GalleryCarousel"
-import IconVegetarian from "../components/atoms/icons/Vegetarian"
-import IconVegan from "../components/atoms/icons/Vegan"
-import IconGlutenFree from "../components/atoms/icons/GlutenFree"
-import {
-  IconBestSeller,
-  IconTrendingNow,
-} from "../components/atoms/icons/Trends"
+
 import Hero from "../components/Hero"
 import { container } from "../helpers/transitionHelper"
-import AddToBasket from "../components/atoms/AddToBasket"
-import AustrianFlag from "../components/atoms/icons/AustrianFlag"
-import ArrowLink from "../components/atoms/ArrowLink"
 
 const item = {
   hidden: { opacity: 0 },
@@ -52,14 +43,36 @@ export default function BlogPage({ data }) {
           className="container"
         >
           <motion.div
-            className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3"
+            className="grid grid-cols-1 md:grid-cols-2 inverted-tiles"
             variants={item}
             transition="easeInOut"
           >
             {blogposts.edges.map((blogitem, index) => (
-              <div key={index} className="flex-1">
-                { blogitem.node.title }
-              </div>
+              <Link
+                to={blogitem.node.slug + "/"}
+                key={index}
+                className="relative flex flex-col flex-1 p-16 lg:p-24 bg-sugar-pink-100 inverted-tiles__article"
+              >
+                <GatsbyImage
+                  image={blogitem.node.heroImage.gatsbyImageData}
+                  backgroundColor="#F3B8D5"
+                  alt={
+                    blogitem.node.heroImage.alt
+                      ? blogitem.node.heroImage.alt
+                      : ""
+                  }
+                  className="block object-cover w-full h-full mb-px"
+                />
+
+                <div className="relative w-full h-auto mt-8">
+                  <h2 className="font-sans">{blogitem.node.title}</h2>
+
+                  <p>{blogitem.node.excerpt}</p>
+                  <span className="absolute top-0 left-0 mt-2 -ml-4 origin-top-left transform rotate-90 text-sugar-pink-600">
+                    { blogitem.node.meta.firstPublishedAt }
+                  </span>
+                </div>
+              </Link>
             ))}
           </motion.div>
         </motion.section>
@@ -75,6 +88,22 @@ export const query = graphql`
         node {
           title
           slug
+          excerpt
+          meta {
+            firstPublishedAt(formatString: "Do MMMM YYYY")
+          }
+          heroImage {
+            gatsbyImageData(
+              layout: CONSTRAINED
+              imgixParams: {
+                fit: "crop"
+                crop: "focalpoint"
+                w: "600"
+                h: "340"
+              }
+            )
+            alt
+          }
         }
       }
     }

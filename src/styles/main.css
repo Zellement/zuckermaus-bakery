@@ -71,3 +71,31 @@
 			visible block;
 	}
 }
+
+.inverted-tiles .inverted-tiles__article:nth-of-type(2n + 1) {
+  @apply bg-rose-pink-100;
+}
+
+@screen md {
+  /* Reset */
+  .inverted-tiles .inverted-tiles__article:nth-of-type(2n + 1) {
+    @apply bg-sugar-pink-100;
+  }
+
+  .inverted-tiles .inverted-tiles__article:nth-of-type(4n + 1),
+  .inverted-tiles .inverted-tiles__article:nth-of-type(4n + 4) {
+    @apply bg-rose-pink-100;
+  }
+
+}
+
+.inverted-tiles .inverted-tiles__article:hover,
+.inverted-tiles .inverted-tiles__article:nth-of-type(2n + 1):hover,
+.inverted-tiles .inverted-tiles__article:nth-of-type(4n + 1):hover,
+.inverted-tiles .inverted-tiles__article:nth-of-type(4n + 4):hover,
+.inverted-tiles .inverted-tiles__article:focus,
+.inverted-tiles .inverted-tiles__article:nth-of-type(2n + 1):focus,
+.inverted-tiles .inverted-tiles__article:nth-of-type(4n + 1):focus,
+.inverted-tiles .inverted-tiles__article:nth-of-type(4n + 4):focus {
+  @apply bg-sugar-pink-400;
+}
