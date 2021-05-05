@@ -5,27 +5,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import Seo from "../components/Seo"
 
 import Hero from "../components/Hero"
-import { container } from "../helpers/transitionHelper"
-
-const item = {
-  hidden: { opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      when: "beforeChildren",
-      staggerChildren: 0.1,
-      delayChildren: 0.3,
-    },
-  },
-}
-const item__product = {
-  hidden: { y: 10, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-}
+import { fade } from "../helpers/transitionHelper"
 
 export default function BlogPage({ data }) {
   const blogposts = data.allDatoCmsBlog
@@ -37,21 +17,20 @@ export default function BlogPage({ data }) {
         <Hero header="Blog" />
 
         <motion.section
-          variants={container}
-          initial="hidden"
-          animate="visible"
-          className="container"
+          className="container grid grid-cols-1 md:grid-cols-2 inverted-tiles"
+          variants={fade}
+          transition="easeInOut"
         >
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 inverted-tiles"
-            variants={item}
-            transition="easeInOut"
-          >
-            {blogposts.edges.map((blogitem, index) => (
+          {blogposts.edges.map((blogitem, index) => (
+            <motion.div
+              key={index}
+              variants={fade}
+              transition="easeInOut"
+              className="flex transition duration-300 inverted-tiles__article bg-sugar-pink-100"
+            >
               <Link
-                to={blogitem.node.slug + "/"}
-                key={index}
-                className="relative flex flex-col flex-1 p-16 lg:p-24 bg-sugar-pink-100 inverted-tiles__article"
+                to={"/blog/" + blogitem.node.slug + "/"}
+                className="relative flex flex-col flex-1 p-16 lg:p-24"
               >
                 <GatsbyImage
                   image={blogitem.node.heroImage.gatsbyImageData}
@@ -69,12 +48,12 @@ export default function BlogPage({ data }) {
 
                   <p>{blogitem.node.excerpt}</p>
                   <span className="absolute top-0 left-0 mt-2 -ml-4 origin-top-left transform rotate-90 text-sugar-pink-600">
-                    { blogitem.node.meta.firstPublishedAt }
+                    {blogitem.node.meta.firstPublishedAt}
                   </span>
                 </div>
               </Link>
-            ))}
-          </motion.div>
+            </motion.div>
+          ))}
         </motion.section>
       </motion.div>
     </>

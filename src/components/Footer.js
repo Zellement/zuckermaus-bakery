@@ -25,7 +25,7 @@ export default function Footer() {
       <div className="container">
         <p className="mt-10 text-sm">
           © Zuckermaus Bakery |{" "}
-          <a href="https://www.zellement.com">Web Design by Zellement</a>
+          <a href="https://www.zellement.com" className="hover:text-rose-pink-300 focus:text-rose-pink-300">Web Design by Zellement</a>
         </p>
       </div>
     </div>

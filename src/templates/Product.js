@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import Seo from "../components/Seo"
 import { motion } from "framer-motion"
 import GalleryCarousel from "../components/GalleryCarousel"
-import { container, slideInRight, fade } from "../helpers/transitionHelper"
+import { slideInRight, fade } from "../helpers/transitionHelper"
 import AddToBasket from "../components/atoms/AddToBasket"
 import { HTMLContent } from "../components/Content"
 import IconVegetarian from "../components/atoms/icons/Vegetarian"
@@ -34,9 +34,8 @@ export default function ProductPage({ data }) {
           backDestination={"/shop/" + data.product.productCategory.slug + "/"}
         />
         <motion.section
-          variants={container}
-          initial="hidden"
-          animate="visible"
+          variants={fade}
+          transition="easeInOut"
           className="container relative px-8"
         >
           <motion.div className="w-full py-16 content" variants={fade}>
