@@ -23,8 +23,8 @@ export default function Footer() {
       </div>
 
       <div className="container">
-        <p className="mt-10 text-sm">
-          © Zuckermaus Bakery |{" "}
+        <p className="flex flex-col mt-10 space-y-8 text-sm lg:space-y-0 lg:flex-row lg:space-x-8">
+          <span>© Zuckermaus Bakery</span>
           <a href="https://www.zellement.com" className="hover:text-rose-pink-300 focus:text-rose-pink-300">Web Design by Zellement</a>
         </p>
       </div>

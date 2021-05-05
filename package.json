@@ -10,6 +10,7 @@
     "framer-motion": "^4.1.11",
     "gatsby": "^3.4.0",
     "gatsby-image": "^3.4.0",
+    "gatsby-plugin-gdpr-cookies": "^2.0.0",
     "gatsby-plugin-image": "^1.4.0",
     "gatsby-plugin-manifest": "^3.4.0",
     "gatsby-plugin-offline": "^4.4.0",
