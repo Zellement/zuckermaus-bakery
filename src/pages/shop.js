@@ -147,7 +147,7 @@ export const query = graphql`
             id
           }
           gallery {
-            gatsbyImageData(layout: CONSTRAINED, width: 400, height: 400)
+            gatsbyImageData(layout: CONSTRAINED, imgixParams: {w: "400", h: "400", fit: "crop", ar: "1:1"})
             alt
           }
         }

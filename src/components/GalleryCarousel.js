@@ -30,7 +30,7 @@ export default function GalleryCarousel({ images }) {
   const fallbackImage = useStaticQuery(graphql`{
   file(relativePath: {eq: "no-image.png"}) {
     childImageSharp {
-      gatsbyImageData(layout: FULL_WIDTH)
+      gatsbyImageData(width: 400, height: 400, aspectRatio: 1, layout: CONSTRAINED)
     }
   }
 }

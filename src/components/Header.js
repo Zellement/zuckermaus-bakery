@@ -15,7 +15,7 @@ const Header = ({ topBarLine }) => (
       </div>
     </div>
 
-    <div className="container relative py-8 pt-20 bg-white lg:p-8 lg:">
+    <div className="container relative py-8 pt-20 bg-white lg:p-8">
       <div className="flex flex-col items-center md:space-y-4 lg:justify-between lg:space-y-0 lg:flex-row">
         <Link
           className="inline-block w-full mx-auto max-w-72 lg:ml-0"

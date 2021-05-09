@@ -23,7 +23,7 @@ const Nav = class extends React.Component {
     return (
       <nav className="lg:flex lg:content-end lg:justify-end lg:flex-col lg:p-0 nav">
         <div
-          className={`bg-red md:bg-none duration-300 transition-all transform fixed top-0 left-0 z-40 w-full h-screen p-6 ease-in md:relative md:top-auto md:left-auto md:block md:w-full md:h-auto md:p-0 md:bg-transparent text-white ${menuActive}`}
+          className={`bg-red md:bg-none duration-300 transition-all transform fixed top-0 left-0 z-40 md:z-auto w-full h-screen p-6 ease-in md:relative md:top-auto md:left-auto md:block md:w-full md:h-auto md:p-0 md:bg-transparent text-white ${menuActive}`}
         >
           <ul className="text-lg md:bg-none md:flex md:w-full md:flex-row md:justify-start md:items-stretch md:text-sm xl:text-lg lg:space-x-4">
             <li>
