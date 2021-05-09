@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 import { hero, hero__header, hero__subline } from "../helpers/transitionHelper"
 import ArrowLink from "./atoms/ArrowLink"
 import AustrianFlag from "./atoms/icons/AustrianFlag"
+import { HTMLContent } from "./Content"
 
 export default function Hero({
   header,
@@ -10,7 +11,8 @@ export default function Hero({
   className,
   backDestination,
   backText,
-  secondaryName
+  secondaryName,
+  introduction
 }) {
   return (
     <motion.div
@@ -37,6 +39,10 @@ export default function Hero({
             </>
           )}
         </motion.h1>
+
+        {introduction ? 
+          <motion.div variants={hero__subline}><HTMLContent className="max-w-screen-md mt-8 content" content={introduction} /></motion.div>
+        : null }
 
         {backDestination ? (
           <motion.div className="mt-4 text-sugar-pink-800" variants={hero__subline}>

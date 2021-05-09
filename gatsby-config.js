@@ -21,6 +21,12 @@ module.exports = {
     `gatsby-plugin-postcss`,
     `gatsby-plugin-sharp`,
     {
+      resolve: 'gatsby-plugin-react-leaflet',
+      options: {
+        linkStyles: true // (default: true) Enable/disable loading stylesheets via CDN
+      }
+    },
+    {
       resolve: "gatsby-plugin-react-svg",
       options: {
         rule: {
