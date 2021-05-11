@@ -7,7 +7,7 @@ import ZuckermausLogo from "../images/ZuckermausLogo.svg"
 import Basket from "./Basket"
 
 const Header = ({ topBarLine }) => (
-  <header className="relative w-full bg-white lg:z-40 lg:fixed">
+  <header className="relative z-40 w-full bg-white lg:fixed">
     <div className="fixed z-40 w-full p-2 bg-red-500 lg:flex lg:relative">
       <div className="container flex flex-row items-center justify-end w-full space-x-4">
         <p className="text-xs font-bold text-white md:text-sm xl:text-base">{ topBarLine }</p>

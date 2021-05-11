@@ -70,7 +70,7 @@ const IndexPage = ({ data }) => {
             className="object-cover w-full h-full"
             alt={heroImage.alt ? heroImage.alt : ""}
           />
-          <div className="absolute z-30 flex flex-col items-center p-4 text-white transform -translate-x-1/2 -translate-y-1/2 bg-red-500 md:p-8 lg:p-16 xl:px-24 bg-opacity-70 top-1/2 left-1/2">
+          <div className="absolute z-30 flex flex-col items-center w-10/12 p-4 text-white transform -translate-x-1/2 -translate-y-1/2 bg-red-500 md:p-8 lg:p-16 xl:px-24 bg-opacity-70 top-1/2 left-1/2 md:w-7/10 lg:w-auto">
             <p className="text-xl text-center md:text-3xl lg:text-5xl font-display">
               {heroText}
             </p>

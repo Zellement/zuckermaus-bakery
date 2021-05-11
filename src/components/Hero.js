@@ -20,7 +20,7 @@ export default function Hero({
       className={"relative border-t-2 border-gray-100 mt-4 " + className}
     >
       <div className="container relative p-8">
-        <motion.h1 variants={hero__header} className="flex flex-col m-0">
+        <motion.h1 variants={hero__header} className="flex flex-col m-0 font-sans">
           {subpage ? (
             <>
               <span className="text-lg font-black text-sugar-pink-600 md:text-xl">

@@ -66,7 +66,7 @@ export default function GalleryCarousel({ images }) {
                   image={image.gatsbyImageData}
                   backgroundColor="#F3B8D5"
                   key={index}
-                  alt={image.alt}
+                  alt={image.alt ? image.alt : "Zuckermaus Bakery"}
                   className="block object-cover w-full h-full mb-px" />
                 <span className="absolute bottom-0 right-0 z-20 p-2 text-sm bg-white font-display text-rose-pink">
                   {("0" + (index + 1)).slice(-2)}
@@ -94,7 +94,7 @@ export default function GalleryCarousel({ images }) {
                   image={image.gatsbyImageData}
                   backgroundColor="#F3B8D5"
                   key={index}
-                  alt={image.alt ? image.alt : ""}
+                  alt={image.alt ? image.alt : "Zuckermaus Bakery"}
                   className="block w-full mb-px" />
               </div>
             ))}
