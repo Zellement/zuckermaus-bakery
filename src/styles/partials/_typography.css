@@ -16,6 +16,10 @@ h2 {
 	@apply text-xl lg:text-2xl;
 }
 
+h3 {
+	@apply text-lg lg:text-xl;
+}
+
 /* Link */
 .link {
   @apply text-black underline transition;

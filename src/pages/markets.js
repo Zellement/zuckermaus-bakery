@@ -10,7 +10,7 @@ import MarketsUpcoming from "../components/MarketsUpcoming"
 import MarketsPast from "../components/MarketsPast"
 
 export default function MarketsPage({ data }) {
-  const { introduction } = data.datoCmsMarketsPage
+  const { introduction, upcomingMarketsTitle, pastMarketsTitle } = data.datoCmsMarketsPage
   return (
     <>
       <Seo title={`Markets`} />
@@ -18,11 +18,11 @@ export default function MarketsPage({ data }) {
         <Hero header="Markets" introduction={introduction} />
 
         <motion.section
-          className="container flex flex-col p-8 lg:p-16"
+          className="container flex flex-col p-8"
           variants={fade}
           transition="easeInOut"
         >
-          <h2>Upcoming Markets</h2>
+          <h2 className="font-sans">{upcomingMarketsTitle}</h2>
           {data.markets.edges.map((market, index) => (
             <MarketsUpcoming
               key={index}
@@ -30,9 +30,10 @@ export default function MarketsPage({ data }) {
               marketLocation={market.node.location}
               marketNotes={market.node.notes}
               marketVenue={market.node.venue}
+              marketTimes={market.node.times}
             />
           ))}
-          <h2>Did you catch us at these markets?</h2>
+          <h3 className="pt-8 font-sans lg:pt-16">{pastMarketsTitle}</h3>
           {data.markets.edges.map((market, index) => (
             <MarketsPast
               key={index}
@@ -40,6 +41,7 @@ export default function MarketsPage({ data }) {
               marketLocation={market.node.location}
               marketNotes={market.node.notes}
               marketVenue={market.node.venue}
+              marketTimes={market.node.times}
             />
           ))}
         </motion.section>
@@ -52,6 +54,8 @@ export const query = graphql`
   query MarketsQuery {
     datoCmsMarketsPage {
       introduction
+      upcomingMarketsTitle
+      pastMarketsTitle
     }
     markets: allDatoCmsMarket {
       edges {

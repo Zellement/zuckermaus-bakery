@@ -13,10 +13,11 @@ export default function ArrowLink({
   if (newTab) {
     return (
 
-
       <a
         href={destination}
         key={alkey}
+        target="_blank"
+        rel="noopener noreferrer"
         className={
           "inline-flex items-center mt-2 group space-x-2 text-lg group arrow-link " +
           className
