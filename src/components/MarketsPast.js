@@ -1,5 +1,4 @@
 import React from "react"
-import { HTMLContent } from "../components/Content"
 import { AiFillClockCircle, AiFillCalendar } from "react-icons/ai"
 
 const dateNow = Date.now() / 1000

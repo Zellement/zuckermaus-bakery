@@ -55,6 +55,7 @@ const IndexPage = ({ data }) => {
   return (
     <>
       <Seo title="Contact" />
+      <motion.div initial="initial" animate="enter" exit="exit">
       <Hero header={data.datoCmsContactPage.heroText} />
       <motion.section
         initial="initial"
@@ -145,6 +146,7 @@ const IndexPage = ({ data }) => {
           </div>
         </motion.div>
       </motion.section>
+      </motion.div>
     </>
   )
 }
