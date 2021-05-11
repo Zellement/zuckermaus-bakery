@@ -60,11 +60,11 @@ export default function ShopPage({ data, pageContext }) {
                     key={product.id}
                     className="block max-w-sm group"
                   >
-                    <h2 className="m-0 mb-2 text-lg font-semibold transition duration-300 group-hover:text-rose-pink-900 text-sugar-pink-900 lg:text-xl">
+                    <h2 className="m-0 mb-2 font-sans text-lg font-semibold transition duration-300 group-hover:text-rose-pink-900 text-sugar-pink-900 lg:text-xl">
                       {product.name}
                     </h2>
                     {product.secondaryName ? (
-                      <h3 className="flex flex-row items-center mb-4 space-x-2 font-semibold text-red-500 transition duration-300 group-hover:text-rose-pink-900 lg:text-lg">
+                      <h3 className="flex flex-row items-center mb-4 space-x-2 font-sans font-semibold text-red-500 transition duration-300 group-hover:text-rose-pink-900 lg:text-lg">
                         <AustrianFlag className="w-6" />{" "}
                         <span>{product.secondaryName}</span>
                       </h3>
