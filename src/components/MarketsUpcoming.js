@@ -15,18 +15,18 @@ const MarketsUpcoming = ({
 }) => {
   if (marketDate > dateNow) {
     return (
-      <div className="flex flex-col py-8 border-b border-gray-200">
+      <div className="flex flex-col pt-4 pb-8 border-b border-gray-200">
         <p className="flex flex-row mb-2 space-x-2 text-2xs">
           <span className="flex flex-row items-center p-1 space-x-1 border-b-2 border-red-300">
-            <AiFillCalendar />
+            <AiFillCalendar className="opacity-50" />
             <span>{timeConverter(marketDate)}</span>
           </span>
           <span className="flex flex-row items-center p-1 space-x-1 border-b-2 border-gray-300">
-            <AiFillClockCircle /> <span>{marketTimes}</span>
+            <AiFillClockCircle className="opacity-50" /> <span>{marketTimes}</span>
           </span>
         </p>
         <h3 className="flex flex-row items-center m-0 space-x-1 font-sans">
-          <HiLocationMarker /> <span>{marketVenue}</span>
+          <HiLocationMarker className="opacity-50" /> <span>{marketVenue}</span>
         </h3>
 
         <ArrowLink
