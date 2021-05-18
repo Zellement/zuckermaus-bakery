@@ -1,5 +1,6 @@
 import React from "react"
 import ArrowLink from "./atoms/ArrowLink"
+import { AiFillInstagram } from "react-icons/ai"
 
 export default function Footer() {
   return (
@@ -25,6 +26,9 @@ export default function Footer() {
       <div className="container">
         <p className="flex flex-col mt-10 space-y-8 text-sm lg:space-y-0 lg:flex-row lg:space-x-8">
           <span>© Zuckermaus Bakery</span>
+
+          <a href="https://www.instagram.com/zuckermaus_bakery/" className="text-xl hover:text-rose-pink-300 focus:text-rose-pink-300" target="_blank" rel="noopener noreferrer"><AiFillInstagram  /></a>
+
           <a href="https://www.zellement.com" className="hover:text-rose-pink-300 focus:text-rose-pink-300">Web Design by Zellement</a>
         </p>
       </div>

@@ -10,10 +10,7 @@ import IconVegetarian from "../components/atoms/icons/Vegetarian"
 import IconVegan from "../components/atoms/icons/Vegan"
 import IconGlutenFree from "../components/atoms/icons/GlutenFree"
 import Hero from "../components/Hero"
-import {
-  IconBestSeller,
-  IconTrendingNow,
-} from "../components/atoms/icons/Trends"
+import { IconBestSeller } from "../components/atoms/icons/Trends"
 import ArrowLink from "../components/atoms/ArrowLink"
 
 export default function ProductPage({ data }) {
@@ -47,7 +44,10 @@ export default function ProductPage({ data }) {
                   animate="visible"
                   className="w-full h-full bg-white"
                 >
-                  <GalleryCarousel alt={data.product.gallery.alt} images={data.product.gallery} />
+                  <GalleryCarousel
+                    alt={data.product.gallery.alt}
+                    images={data.product.gallery}
+                  />
                 </motion.div>
               </div>
 
@@ -62,9 +62,8 @@ export default function ProductPage({ data }) {
                 </div>
 
                 <div className="flex flex-row items-center justify-start mb-8 space-x-2">
-                  {data.product.bestSeller ? <IconBestSeller className="text-red-500" /> : null}
-                  {data.product.trendingNow ? (
-                    <IconTrendingNow className="text-sugar-pink-800" />
+                  {data.product.bestSeller ? (
+                    <IconBestSeller className="text-red-500" />
                   ) : null}
 
                   {data.product.vegetarian ? (
@@ -91,13 +90,13 @@ export default function ProductPage({ data }) {
                     </div>
                   ))}
                 </div>
-                
-            <ArrowLink
-              arrowLeft={true}
-              destination="/shop/"
-              text="Back to shop"
-              className="mt-8 text-sugar-pink-800"
-            />
+
+                <ArrowLink
+                  arrowLeft={true}
+                  destination="/shop/"
+                  text="Back to shop"
+                  className="mt-8 text-sugar-pink-800"
+                />
               </motion.div>
             </div>
           </motion.div>
@@ -128,7 +127,6 @@ export const query = graphql`
       vegetarian
       glutenFree
       bestSeller
-      trendingNow
       gallery {
         gatsbyImageData(layout: CONSTRAINED, width: 1200, height: 1000)
         alt

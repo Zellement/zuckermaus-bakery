@@ -36,9 +36,9 @@ const Nav = class extends React.Component {
                 Home
               </Link>
             </li>
-            <li className="relative">
+            <li className="relative shop-link">
               <Link
-                className="block py-2 font-bold text-white md:text-black md:px-3 md:hover:text-red-500 shop-link"
+                className="block py-2 font-bold text-white md:text-black md:px-3 md:hover:text-red-500 "
                 onClick={this.toggleMenu}
                 activeClassName="is-active"
                 partiallyActive={true}
