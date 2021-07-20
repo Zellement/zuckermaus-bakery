@@ -97,7 +97,7 @@ export default function Deal({ data }) {
                 <div id={product.slug}
                     className="relative">
                 <AddToBasketOffer
-                  category={data.deal.dealName}
+                  category={data.deal.slug}
                   name={product.name}
                   price="6"
                   id={product.slug}
