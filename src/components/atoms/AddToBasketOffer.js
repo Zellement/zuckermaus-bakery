@@ -29,6 +29,7 @@ export default function AddToBasketOffer({
       data-item-name={name + " | Single"}
       data-item-url={"https://www.zuckermausbakery.com/shop/product/" + slug + "/"}
     >
+      {console.log(category)}
       <span className="flex flex-row justify-between w-full">
         <span className="flex flex-row items-center">
           <FaShoppingBasket className="inline-block mr-2 -mt-1" />

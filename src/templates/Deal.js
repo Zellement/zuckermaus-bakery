@@ -24,7 +24,6 @@ export default function Deal({ data }) {
         animate="enter"
         exit="exit"
       >
-        {console.log(data)}
         <Hero
           className="border-b-2"
           subpage={data.deal.dealName}
@@ -98,7 +97,7 @@ export default function Deal({ data }) {
                 <div id={product.slug}
                     className="relative">
                 <AddToBasketOffer
-                  data-item-categories={data.deal.dealName}
+                  category={data.deal.dealName}
                   name={product.name}
                   price="6"
                   id={product.slug}
