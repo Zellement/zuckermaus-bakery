@@ -1,34 +1,44 @@
 import React from "react"
+import Seo from "../components/Seo"
+import Hero from "../components/Hero"
 import { motion } from "framer-motion"
 import { graphql, Link } from "gatsby"
 import { fade } from "../helpers/transitionHelper"
-import Seo from "../components/Seo"
 import GalleryCarousel from "../components/GalleryCarousel"
 import IconVegetarian from "../components/atoms/icons/Vegetarian"
 import IconVegan from "../components/atoms/icons/Vegan"
 import IconGlutenFree from "../components/atoms/icons/GlutenFree"
 import { IconBestSeller } from "../components/atoms/icons/Trends"
-import Hero from "../components/Hero"
 import ProductDeal from "../components/ProductDeal"
-import AddToBasket from "../components/atoms/AddToBasket"
+import AddToBasketOffer from "../components/atoms/AddToBasketOffer"
 import AustrianFlag from "../components/atoms/icons/AustrianFlag"
 import ArrowLink from "../components/atoms/ArrowLink"
 
-export default function DealsPage({ data, pageContext }) {
-  const products = data.allDatoCmsProduct
-
+export default function Deal({ data }) {
   return (
     <>
-      <Seo title={pageContext.title ? `${pageContext.title} | Shop` : `Shop`} />
-      <motion.div initial="initial" animate="enter" exit="exit">
-        <Hero className="" header="Shop" subpage={pageContext.title} />
-
+      <Seo title="Deal Name" />
+      <motion.div
+        initial="initial"
+        className="overflow-hidden"
+        animate="enter"
+        exit="exit"
+      >
+        {console.log(data)}
+        <Hero
+          className="border-b-2"
+          subpage={data.deal.dealName}
+          header={"Deals"}
+          introduction={data.deal.description}
+          backText={"See all Deals"}
+          backDestination={"/deals/"}
+        />
         <motion.section
           variants={fade}
           transition="easeInOut"
           className="container grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3"
         >
-          {products.edges.map(({ node: product }) => (
+          {data.products.edges.map(({ node: product }) => (
             <motion.div
               variants={fade}
               transition="easeInOut"
@@ -64,17 +74,11 @@ export default function DealsPage({ data, pageContext }) {
                 </Link>
                 <div className="flex flex-row my-4 text-sugar-pink-800">
                   <div className="flex flex-col w-3/4 gap-2">
-                    <p className="text-rose-pink-900 xl:text-base">
-                      {product.description}
-                    </p>
-
-                    <ProductDeal deals={ product.deal } />
-
                     <ArrowLink
                       destination={`/shop/product/` + product.slug + `/`}
                       alkey={product.id}
                       text="See product"
-                      className="block hover:text-black mr-auto"
+                      className="block hover:text-black"
                     />
                   </div>
 
@@ -88,27 +92,18 @@ export default function DealsPage({ data, pageContext }) {
                     ) : null}
                   </div>
                 </div>
-                
-                  
               </div>
 
               <div className="flex flex-col space-y-2">
-                {product.orderDetails.map((orderDetail, index) => (
-                  <div
-                    key={orderDetail.id}
-                    className="relative"
-                    id={orderDetail.id}
-                  >
-                    <AddToBasket
-                      price={orderDetail.price}
-                      name={product.name}
-                      description={product.description}
-                      id={orderDetail.id}
-                      volumeSize={orderDetail.volumeSize}
-                      slug={product.slug}
-                    />
-                  </div>
-                ))}
+                <div id={product.slug}
+                    className="relative">
+                <AddToBasketOffer
+                  data-item-categories={data.deal.dealName}
+                  name={product.name}
+                  price="6"
+                  id={product.slug}
+                />
+                </div>
               </div>
             </motion.div>
           ))}
@@ -119,11 +114,14 @@ export default function DealsPage({ data, pageContext }) {
 }
 
 export const query = graphql`
-  query($slug: String) {
-    allDatoCmsProduct(
-      sort: { fields: name, order: ASC }
-      filter: { productCategory: { slug: { eq: $slug } } }
-    ) {
+  query($slug: String!) {
+    deal: datoCmsDeal(slug: { eq: $slug }) {
+      dealName
+      description
+      slug
+      id
+    }
+    products: allDatoCmsProduct(filter: { deal: { slug: { eq: $slug } } }) {
       edges {
         node {
           id

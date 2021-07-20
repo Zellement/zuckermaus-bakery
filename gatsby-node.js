@@ -12,6 +12,12 @@ exports.createPages = async function({ actions, graphql }) {
           slug
         }
       }
+      deals: allDatoCmsDeal {
+        nodes {
+          dealName
+          slug
+        }
+      }
       blog: allDatoCmsBlog {
         nodes {
           title
@@ -32,6 +38,13 @@ exports.createPages = async function({ actions, graphql }) {
       path: "shop/" + node.slug + "/",
       component: require.resolve(`./src/pages/shop.js`),
       context: { slug: node.slug, title: node.name },
+    })
+  })
+  data.deals.nodes.forEach(node => {
+    actions.createPage({
+      path: "deals/" + node.slug + "/",
+      component: require.resolve(`./src/templates/Deal.js`),
+      context: { slug: node.slug, title: node.dealName },
     })
   })
   data.blog.nodes.forEach(node => {
