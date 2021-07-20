@@ -23,9 +23,27 @@ export default function BlogPost({ data }) {
           className="border-b-2"
           header={data.article.title}
           backText={"Back to blog"}
+          date={data.article.meta.firstPublishedAt}
           backDestination={"/blog/"}
         />
 
+        <div className="w-full h-96 lg:h-56 relative">
+
+          <GatsbyImage
+            image={data.article.heroImage.gatsbyImageData}
+            backgroundColor="#F3B8D5"
+            alt={
+              data.article.heroImage.alt
+                ? data.article.heroImage.alt
+                : ""
+            }
+            className="block object-cover w-full h-full"
+          />
+
+          <div className="w-full absolute inset-0 bg-red-500 bg-opacity-80"></div>
+
+          </div>
+                
         <motion.div
           variants={fade}
           transition="easeInOut"
@@ -132,6 +150,21 @@ export const query = graphql`
   query($slug: String!) {
     article: datoCmsBlog(slug: { eq: $slug }) {
       title
+      meta {
+        firstPublishedAt(formatString: "Do MMMM YYYY")
+      }
+      heroImage {
+        gatsbyImageData(
+          layout: CONSTRAINED
+          imgixParams: {
+            fit: "crop"
+            crop: "focalpoint"
+            w: "600"
+            h: "340"
+          }
+        )
+        alt
+      }
       content {
         value
         links

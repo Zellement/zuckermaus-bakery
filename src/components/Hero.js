@@ -12,7 +12,8 @@ export default function Hero({
   backDestination,
   backText,
   secondaryName,
-  introduction
+  introduction,
+  date
 }) {
   return (
     <motion.div
@@ -42,6 +43,10 @@ export default function Hero({
 
         {introduction ? 
           <motion.div variants={hero__subline}><HTMLContent className="max-w-screen-md mt-8 content" content={introduction} /></motion.div>
+        : null }
+
+        {date ? 
+          <motion.div variants={hero__subline}><HTMLContent className="mt-8 text-sm content" content={date} /></motion.div>
         : null }
 
         {backDestination ? (
