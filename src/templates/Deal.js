@@ -1,8 +1,10 @@
-import React from "react"
+import React, { useState } from "react"
 import Seo from "../components/Seo"
 import Hero from "../components/Hero"
 import { motion } from "framer-motion"
 import { graphql, Link } from "gatsby"
+import AddToBasketAnimation from "../components/atoms/AddToBasketAnimation"
+import { FaShoppingBasket } from "react-icons/fa"
 import { fade } from "../helpers/transitionHelper"
 import GalleryCarousel from "../components/GalleryCarousel"
 import IconVegetarian from "../components/atoms/icons/Vegetarian"
@@ -13,11 +15,27 @@ import ProductDeal from "../components/ProductDeal"
 import AddToBasketOffer from "../components/atoms/AddToBasketOffer"
 import AustrianFlag from "../components/atoms/icons/AustrianFlag"
 import ArrowLink from "../components/atoms/ArrowLink"
+import { FiPlusCircle } from "react-icons/fi"
 
 export default function Deal({ data }) {
+  
+  const [dealBag, setDealBag] = useState([])
+
+  const handleDealBag = (item) => {
+    if (dealBag.length < 3){
+      setDealBag([...dealBag, " " + item])
+    }
+  }
+
+  // const [finalDealBag, setFinalDealBag] = useState([])
+
+  // const handleFinalDealBag = (items) => {
+  //   setFinalDealBag([...finalDealBag, " " + items])
+  // }
+
   return (
     <>
-      <Seo title="Deal Name" />
+      <Seo title={data.deal.dealName} />
       <motion.div
         initial="initial"
         className="overflow-hidden"
@@ -32,68 +50,106 @@ export default function Deal({ data }) {
           backText={"See all Deals"}
           backDestination={"/deals/"}
         />
-        <motion.section
+        <motion.div
           variants={fade}
           transition="easeInOut"
-          className="container grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3"
+          className="flex flex-col gap-8 p-4 mt-8 md:flex-row"
         >
-          {data.products.edges.map(({ node: product }) => (
-            <motion.div
-              variants={fade}
-              transition="easeInOut"
-              key={product.id}
-              className="relative p-8 bg-white border border-gray-100"
+          <div className="w-full md:w-1/3 md:order-last bg-rose-pink-100 p-8">
+            <h3>Deal Bag</h3>
+{/* 
+            <button
+              className="p-2 mb-8 text-xs text-white bg-rose-pink-500"
+              onClick={() => setFinalDealBag([])}
             >
-              <div className="relative">
-                <div className="absolute bottom-0 left-0 z-30 bg-white text-red">
-                  {product.bestSeller ? <IconBestSeller className="" /> : null}
-                </div>
+              Clear final bag
+            </button> */}
+            {dealBag.length != 0 ? 
 
-                <GalleryCarousel
-                  linkTo={`/shop/product/` + product.slug + `/`}
-                  images={product.gallery}
-                />
-              </div>
+            <>
+            <button
+              className="p-2 mb-8 text-xs text-white bg-rose-pink-500"
+              onClick={() => setDealBag([])}
+            >
+              Clear deal bag
+            </button>
+            <ol class="list-decimal pl-8 flex flex-col gap-2 mb-8">
+              {dealBag.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ol>
+            </>
+            : <p>Add some items to your deal bag</p> }
+            <div id={data.deal.slug} className="relative">
+              {dealBag.length == 3 ? 
+              <AddToBasketOffer
+              
+                name={data.deal.dealName}
+                description={dealBag}
+                price={data.deal.price}
+                id={data.deal.slug}
+               />
+               : null }
+              {/* <button
+                className="relative flex flex-col w-full p-4 text-base font-bold text-left text-red-500 transition duration-300 bg-red-100 Product__buy Product snipcart-add-item hover:bg-red-500 hover:text-red-100 focus:bg-red-500 focus:text-red-100 focus:outline-none"
+                data-item-id={data.deal.dealName + " | " + finalDealBag}
+                data-item-price={data.deal.price}
+                data-item-description={finalDealBag}
+                data-item-name={data.deal.dealName + " | " + finalDealBag}
+                data-item-url={
+                  "https://www.zuckermausbakery.com/deals/" +
+                  data.deal.slug +
+                  "/"
+                }
+                onClick={() => {
+                  AddToBasketAnimation(data.deal.slug);
+                  handleFinalDealBag(dealBag);
+                  setFinalDealBag([])
+                }}
+              > 
+                <span className="flex flex-row justify-between w-full">
+                  <span className="flex flex-row items-center">
+                    <FaShoppingBasket className="inline-block mr-2 -mt-1" />
+                    <span>Add deal bag to basket</span>
+                  </span>
+                </span>
+              </button>*/}
+            </div>
+          </div>
 
-              <div className="mt-8">
+          <motion.section
+            variants={fade}
+            transition="easeInOut"
+            className={"container grid w-full grid-cols-1 gap-10 md:w-2/3 md:grid-cols-2 xl:grid-cols-3"}
+          >
+            {data.products.edges.map(({ node: product }) => (
+              <div
+                variants={fade}
+                transition="easeInOut"
+                key={product.id}
+                className={"relative p-4 bg-white border border-gray-100 transition duration-300 " + (dealBag.length == 3 ? 'opacity-20' : null)}
+              >
                 <Link
                   to={`/shop/product/` + product.slug + `/`}
                   key={product.id}
                   className="block max-w-sm group"
                 >
-                  <h2 className="m-0 mb-2 font-sans text-lg font-bold transition duration-300 group-hover:text-rose-pink-900 text-sugar-pink-900 lg:text-xl">
+                  <h2 className="m-0 mb-2 font-sans text-base font-bold transition duration-300 group-hover:text-rose-pink-900 text-sugar-pink-900">
                     {product.name}
                   </h2>
                   {product.secondaryName ? (
-                    <h3 className="flex flex-row items-center mb-4 space-x-2 font-sans font-bold text-red-500 transition duration-300 group-hover:text-rose-pink-900 lg:text-lg">
+                    <h3 className="flex flex-row items-center mb-4 space-x-2 font-sans text-sm font-bold text-red-500 transition duration-300 group-hover:text-rose-pink-900 ">
                       <AustrianFlag className="w-6" />{" "}
                       <span>{product.secondaryName}</span>
                     </h3>
                   ) : null}
                 </Link>
-                <div className="flex flex-row my-4 text-sugar-pink-800">
-                  <div className="flex flex-col w-3/4 gap-2">
-                    <ArrowLink
-                      destination={`/shop/product/` + product.slug + `/`}
-                      alkey={product.id}
-                      text="See product"
-                      className="block hover:text-black"
-                    />
-                  </div>
 
-                  <div className="flex flex-row justify-end w-1/4 my-4 space-x-2">
-                    {product.vegetarian ? (
-                      <IconVegetarian className="w-6 h-6" />
-                    ) : null}
-                    {product.vegan ? <IconVegan className="w-6 h-6" /> : null}
-                    {product.glutenFree ? (
-                      <IconGlutenFree className="w-6 h-6" />
-                    ) : null}
-                  </div>
-                </div>
-              </div>
+                <button onClick={() => handleDealBag(product.name + " (Single)")} className="p-2 text-xs bg-rose-pink-100 flex gap-2 flex-row items-center">
+                  <FiPlusCircle className="-mt-px" /> <span>Add to deal bag</span>
+                </button>
 
-              <div className="flex flex-col space-y-2">
+                {/* <div className="flex flex-col space-y-2">
                 <div id={product.slug}
                     className="relative">
                 <AddToBasketOffer
@@ -103,10 +159,11 @@ export default function Deal({ data }) {
                   id={product.slug}
                 />
                 </div>
+              </div> */}
               </div>
-            </motion.div>
-          ))}
-        </motion.section>
+            ))}
+          </motion.section>
+        </motion.div>
       </motion.div>
     </>
   )
@@ -118,6 +175,7 @@ export const query = graphql`
       dealName
       description
       slug
+      price
       id
     }
     products: allDatoCmsProduct(filter: { deal: { slug: { eq: $slug } } }) {
