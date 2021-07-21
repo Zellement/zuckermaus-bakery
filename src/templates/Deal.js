@@ -80,8 +80,7 @@ export default function Deal({ data }) {
             </ol>
             </>
             : <p>Add some items to your deal bag</p> }
-            <div id={data.deal.slug} className="relative">
-              {dealBag.length == 3 ? 
+            <div id={data.deal.slug} className={"relative " + (dealBag.length == 3 ? "opacity-100" : "opacity-20 pointer-events-none")}>
               <AddToBasketOffer
               
                 name={data.deal.dealName}
@@ -89,7 +88,6 @@ export default function Deal({ data }) {
                 price={data.deal.price}
                 id={data.deal.slug}
                />
-               : null }
               {/* <button
                 className="relative flex flex-col w-full p-4 text-base font-bold text-left text-red-500 transition duration-300 bg-red-100 Product__buy Product snipcart-add-item hover:bg-red-500 hover:text-red-100 focus:bg-red-500 focus:text-red-100 focus:outline-none"
                 data-item-id={data.deal.dealName + " | " + finalDealBag}
