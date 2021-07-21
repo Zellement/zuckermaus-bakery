@@ -22,9 +22,7 @@ export default function Deal({ data }) {
   const [dealBag, setDealBag] = useState([])
 
   const handleDealBag = (item) => {
-    if (dealBag.length < 3){
-      setDealBag([...dealBag, " " + item])
-    }
+    setDealBag([...dealBag, " " + item])
   }
 
   // const [finalDealBag, setFinalDealBag] = useState([])
@@ -80,7 +78,7 @@ export default function Deal({ data }) {
             </ol>
             </>
             : <p>Add some items to your deal bag</p> }
-            <div id={data.deal.slug} className={"relative " + (dealBag.length == 3 ? "opacity-100" : "opacity-20 pointer-events-none")}>
+            <div id={data.deal.slug} className={"relative " + (dealBag.length >= 3 ? "opacity-100" : "opacity-20 pointer-events-none")}>
               <AddToBasketOffer
               
                 name={data.deal.dealName}
@@ -125,7 +123,7 @@ export default function Deal({ data }) {
                 variants={fade}
                 transition="easeInOut"
                 key={product.id}
-                className={"relative p-4 bg-white border border-gray-100 transition duration-300 " + (dealBag.length == 3 ? 'opacity-20' : null)}
+                className={"relative p-4 bg-white border border-gray-100 transition duration-300"}
               >
                 <Link
                   to={`/shop/product/` + product.slug + `/`}
