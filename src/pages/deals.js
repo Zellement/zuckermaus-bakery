@@ -30,13 +30,15 @@ export default function DealsPage({ data, pageContext }) {
         >
           {deals.edges.map(({ node: deal }) => (
             <Link to={deal.slug + "/"} className="relative p-8 text-white bg-red-500 lg:p-20 hover:bg-rose-pink-700">
-              <GatsbyImage
-                image={deal.mainImage.gatsbyImageData}
-                alt={
-                  deal.mainImage.alt ? deal.mainImage.alt : "Zuckermaus Bakery"
-                }
-                className="absolute inset-0 object-cover w-full h-full opacity-40"
-              />
+              <div className="absolute inset-0 w-full h-full">
+                <GatsbyImage
+                  image={deal.mainImage.gatsbyImageData}
+                  alt={
+                    deal.mainImage.alt ? deal.mainImage.alt : "Zuckermaus Bakery"
+                  }
+                  className=" object-cover w-full h-full opacity-40"
+                />
+              </div>
               <div className="relative z-10">
                 <h2 className="text-4xl lg:text-7xl">{deal.dealName}</h2>
                 <p className="text-xl">{deal.description}</p>
