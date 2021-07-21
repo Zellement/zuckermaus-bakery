@@ -57,9 +57,16 @@ export default function ProductPage({ data }) {
                 animate="enter"
                 className="lg:w-1/2 lg:pr-16"
               >
-                <div className="my-8 content">
+                <div className="my-8 content p-4 border-red-100 border">
+                  <h3>Description</h3>
                   <HTMLContent content={data.product.description} />
                 </div>
+                {data.product.ingredients ? 
+                <div className="my-8 content text-sm p-4 border-rose-pink-100 border">
+                  <h3 class="text-base">Ingredients</h3>
+                  <HTMLContent content={data.product.ingredients} />
+                </div>
+                : null }
 
                 <div className="flex flex-row items-center justify-start mb-8 space-x-2">
                   {data.product.bestSeller ? (
@@ -127,6 +134,7 @@ export const query = graphql`
       vegetarian
       glutenFree
       bestSeller
+      ingredients
       gallery {
         gatsbyImageData(layout: CONSTRAINED, width: 1200, height: 1000)
         alt

@@ -62,7 +62,7 @@ export default function BlogPage({ data }) {
 
 export const query = graphql`
   query BlogQuery {
-    allDatoCmsBlog(sort: {fields: meta___firstPublishedAt, order: ASC}) {
+    allDatoCmsBlog(sort: {fields: meta___firstPublishedAt, order: DESC}) {
       edges {
         node {
           title

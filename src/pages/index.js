@@ -19,7 +19,7 @@ export const query = graphql`
         alt
       }
     }
-    allDatoCmsBlog(limit: 2) {
+    allDatoCmsBlog(limit: 2, sort: {fields: meta___firstPublishedAt, order: DESC}){
       edges {
         node {
           title

@@ -18,13 +18,14 @@ const Layout = ({ children }) => {
       }
       datoCmsGlobal {
         topBarLine
+        topBarLineLeft
       }
     }
   `)
 
   return (
     <>
-      <Header siteTitle={ data.site.siteMetadata.title } topBarLine={ data.datoCmsGlobal.topBarLine } />
+      <Header siteTitle={ data.site.siteMetadata.title } topBarLine={ data.datoCmsGlobal.topBarLine } topBarLineLeft={ data.datoCmsGlobal.topBarLineLeft } />
       <div className="app">
         <AnimatePresence exitBeforeEnter>
           {children}
