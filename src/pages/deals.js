@@ -29,7 +29,7 @@ export default function DealsPage({ data, pageContext }) {
           className="container grid grid-cols-1 gap-10"
         >
           {deals.edges.map(({ node: deal }) => (
-            <Link to={deal.slug} className="relative p-8 text-white bg-red-500 lg:p-20 hover:bg-rose-pink-700">
+            <Link to={deal.slug + "/"} className="relative p-8 text-white bg-red-500 lg:p-20 hover:bg-rose-pink-700">
               <GatsbyImage
                 image={deal.mainImage.gatsbyImageData}
                 alt={

@@ -18,20 +18,20 @@ import ArrowLink from "../components/atoms/ArrowLink"
 import { FiPlusCircle } from "react-icons/fi"
 
 export default function Deal({ data }) {
-  
-  const [dealBag, setDealBag] = useState([])
 
-  const handleDealBag = (item) => {
-    if (dealBag.length < 3){
-      setDealBag([...dealBag, " " + item])
-    }
-  }
+  // const [ availableDealProducts, setAvailableDealProducts] = useState([])
 
-  const [finalDealBag, setFinalDealBag] = useState([])
+  let availableDealProducts = "Choose Product..."
 
-  const handleFinalDealBag = (items) => {
-    setFinalDealBag([...finalDealBag, " " + items])
-  }
+  {console.log(data.products.edges.length)}
+
+  {data.products.edges.map(({ node: product, i }) => (
+    <>
+      { availableDealProducts += "|" + product.name }
+    </>
+  ))}
+
+  console.log(availableDealProducts)
 
   return (
     <>
@@ -53,115 +53,109 @@ export default function Deal({ data }) {
         <motion.div
           variants={fade}
           transition="easeInOut"
-          className="flex flex-col gap-8 p-4 mt-8 md:flex-row"
+          className="flex flex-col gap-8 p-4 mt-8"
         >
-          <div className="w-full md:w-1/3 md:order-last bg-rose-pink-100 p-8">
-            <h3>Deal Bag</h3>
-{/* 
-            <button
-              className="p-2 mb-8 text-xs text-white bg-rose-pink-500"
-              onClick={() => setFinalDealBag([])}
+            <div
+              id={data.deal.slug}
+              className={
+                "relative mx-auto mb-6"
+              }
             >
-              Clear final bag
-            </button> */}
-            {dealBag.length != 0 ? 
 
-            <>
-            <button
-              className="p-2 mb-8 text-xs text-white bg-rose-pink-500"
-              onClick={() => setDealBag([])}
-            >
-              Clear deal bag
-            </button>
-            <ol class="list-decimal pl-8 flex flex-col gap-2 mb-8">
-              {dealBag.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ol>
-            </>
-            : <p>Add some items to your deal bag</p> }
-            <div id={data.deal.slug} className="relative">
-              {/* {dealBag.length == 3 ? 
-              <AddToBasketOffer
-              
-                name={data.deal.dealName}
-                description={dealBag}
-                price={data.deal.price}
-                id={data.deal.slug}
-               />
-               : null } */}
               <button
-                className="relative flex flex-col w-full p-4 text-base font-bold text-left text-red-500 transition duration-300 bg-red-100 Product__buy Product snipcart-add-item hover:bg-red-500 hover:text-red-100 focus:bg-red-500 focus:text-red-100 focus:outline-none"
+                className="w-auto relative inline-flex flex-col p-4 text-base font-bold text-left text-red-500 transition duration-300 bg-red-100 Product__buy Product snipcart-checkout snipcart-add-item hover:bg-red-500 hover:text-red-100 focus:bg-red-500 focus:text-red-100 focus:outline-none"
                 data-item-id={data.deal.dealName}
                 data-item-price={data.deal.price}
-                data-item-description={finalDealBag}
                 data-item-name={data.deal.dealName}
+                data-item-custom1-name="Single serving of product 1..."
+                data-item-custom1-options={availableDealProducts}
+                data-item-custom2-name="Single serving of product 2..."
+                data-item-custom2-options={availableDealProducts}
+                data-item-custom3-name="Single serving of product 3..."
+                data-item-custom3-options={availableDealProducts}
                 data-item-url={
-                  "https://www.zuckermausbakery.com/deals/" +
+                  "https://zuckermaus-bakery.netlify.app/deals/" +
                   data.deal.slug +
                   "/"
                 }
                 onClick={() => {
-                  AddToBasketAnimation(data.deal.slug);
-                  handleFinalDealBag(dealBag);
-                  setDealBag([])
+                  AddToBasketAnimation(data.deal.slug)
                 }}
-              > 
+              >
                 <span className="flex flex-row justify-between w-full">
                   <span className="flex flex-row items-center">
                     <FaShoppingBasket className="inline-block mr-2 -mt-1" />
-                    <span>Add deal bag to basket</span>
+                    <div className="flex flex-col">
+                      <span>Add deal to basket</span>
+                      <span className="text-xs">You can customise this in the cart</span>
+                    </div>
                   </span>
                 </span>
               </button>
-            </div>
-          </div>
+              </div>
 
-          <motion.section
-            variants={fade}
-            transition="easeInOut"
-            className={"container grid w-full grid-cols-1 gap-10 md:w-2/3 md:grid-cols-2 xl:grid-cols-3"}
-          >
-            {data.products.edges.map(({ node: product }) => (
-              <div
-                variants={fade}
-                transition="easeInOut"
-                key={product.id}
-                className={"relative p-4 bg-white border border-gray-100 transition duration-300 " + (dealBag.length == 3 ? 'opacity-20' : null)}
-              >
+           <motion.section
+              variants={fade}
+              transition="easeInOut"
+              className="container grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3"
+            >
+          {data.products.edges.map(({ node: product }) => (
+            <motion.div
+              variants={fade}
+              transition="easeInOut"
+              key={product.id}
+              className="relative p-8 bg-white border border-gray-100"
+            >
+              <div className="relative">
+                <div className="absolute bottom-0 left-0 z-30 bg-white text-red">
+                  {product.bestSeller ? <IconBestSeller className="" /> : null}
+                </div>
+
+                <GalleryCarousel
+                  linkTo={`/shop/product/` + product.slug + `/`}
+                  images={product.gallery}
+                />
+              </div>
+
+              <div className="mt-8">
                 <Link
                   to={`/shop/product/` + product.slug + `/`}
                   key={product.id}
                   className="block max-w-sm group"
                 >
-                  <h2 className="m-0 mb-2 font-sans text-base font-bold transition duration-300 group-hover:text-rose-pink-900 text-sugar-pink-900">
+                  <h2 className="m-0 mb-2 font-sans text-lg font-bold transition duration-300 group-hover:text-rose-pink-900 text-sugar-pink-900 lg:text-xl">
                     {product.name}
                   </h2>
                   {product.secondaryName ? (
-                    <h3 className="flex flex-row items-center mb-4 space-x-2 font-sans text-sm font-bold text-red-500 transition duration-300 group-hover:text-rose-pink-900 ">
+                    <h3 className="flex flex-row items-center mb-4 space-x-2 font-sans font-bold text-red-500 transition duration-300 group-hover:text-rose-pink-900 lg:text-lg">
                       <AustrianFlag className="w-6" />{" "}
                       <span>{product.secondaryName}</span>
                     </h3>
                   ) : null}
                 </Link>
+                <div className="flex flex-row my-4 text-sugar-pink-800">
+                  <div className="flex flex-col w-3/4 gap-2">
+                    <p className="text-rose-pink-900 xl:text-base">
+                      {product.description}
+                    </p>
+                  </div>
 
-                <button onClick={() => handleDealBag(product.name + " (Single)")} className="p-2 text-xs bg-rose-pink-100 flex gap-2 flex-row items-center">
-                  <FiPlusCircle className="-mt-px" /> <span>Add to deal bag</span>
-                </button>
-
-                {/* <div className="flex flex-col space-y-2">
-                <div id={product.slug}
-                    className="relative">
-                <AddToBasketOffer
-                  category={data.deal.slug}
-                  name={product.name}
-                  price="6"
-                  id={product.slug}
-                />
+                  <div className="flex flex-row justify-end w-1/4 my-4 space-x-2">
+                    {product.vegetarian ? (
+                      <IconVegetarian className="w-6 h-6" />
+                    ) : null}
+                    {product.vegan ? <IconVegan className="w-6 h-6" /> : null}
+                    {product.glutenFree ? (
+                      <IconGlutenFree className="w-6 h-6" />
+                    ) : null}
+                  </div>
                 </div>
-              </div> */}
+                
+                  
               </div>
-            ))}
+
+            </motion.div>
+          ))}
           </motion.section>
         </motion.div>
       </motion.div>
