@@ -22,11 +22,11 @@ export default function AddToBasketOffer({
         AddToBasketAnimation(id)
       }}
       className="relative flex flex-col w-full p-4 text-base font-bold text-left text-red-500 transition duration-300 bg-red-100 Product__buy Product snipcart-add-item hover:bg-red-500 hover:text-red-100 focus:bg-red-500 focus:text-red-100 focus:outline-none"
-      data-item-id={name}
+      data-item-id={name + " | " + description}
       data-item-price={price}
-      data-item-name={name}
+      data-item-name={name + " | " + description}
       data-item-description={description}
-      data-item-url={"https://www.zuckermausbakery.com/deals/" + slug + "/"}
+      data-item-url={"https://www.zuckermaus-bakery.netlify.com/deals/" + slug + "/"}
     >
       <span className="flex flex-row justify-between w-full">
         <span className="flex flex-row items-center">

@@ -55,7 +55,7 @@ export default function Deal({ data }) {
           transition="easeInOut"
           className="flex flex-col gap-8 p-4 mt-8 md:flex-row"
         >
-          <div className="w-full md:w-1/3 md:order-last bg-rose-pink-100 p-8">
+          <div className="w-full p-8 md:w-1/3 md:order-last bg-rose-pink-100">
             <h3>Deal Bag</h3>
 {/* 
             <button
@@ -73,7 +73,7 @@ export default function Deal({ data }) {
             >
               Clear deal bag
             </button>
-            <ol class="list-decimal pl-8 flex flex-col gap-2 mb-8">
+            <ol className="flex flex-col gap-2 pl-8 mb-8 list-decimal">
               {dealBag.map((item) => (
                 <li>{item}</li>
               ))}
@@ -145,7 +145,7 @@ export default function Deal({ data }) {
                   ) : null}
                 </Link>
 
-                <button onClick={() => handleDealBag(product.name + " (Single)")} className="p-2 text-xs bg-rose-pink-100 flex gap-2 flex-row items-center">
+                <button onClick={() => handleDealBag(product.name + " (Single)")} className="flex flex-row items-center gap-2 p-2 text-xs bg-rose-pink-100">
                   <FiPlusCircle className="-mt-px" /> <span>Add to deal bag</span>
                 </button>
 
