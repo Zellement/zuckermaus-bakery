@@ -22,14 +22,16 @@ export default function Deal({ data }) {
   const [dealBag, setDealBag] = useState([])
 
   const handleDealBag = (item) => {
-    setDealBag([...dealBag, " " + item])
+    if (dealBag.length < 3){
+      setDealBag([...dealBag, " " + item])
+    }
   }
 
-  // const [finalDealBag, setFinalDealBag] = useState([])
+  const [finalDealBag, setFinalDealBag] = useState([])
 
-  // const handleFinalDealBag = (items) => {
-  //   setFinalDealBag([...finalDealBag, " " + items])
-  // }
+  const handleFinalDealBag = (items) => {
+    setFinalDealBag([...finalDealBag, " " + items])
+  }
 
   return (
     <>
@@ -53,7 +55,7 @@ export default function Deal({ data }) {
           transition="easeInOut"
           className="flex flex-col gap-8 p-4 mt-8 md:flex-row"
         >
-          <div className="w-full p-8 md:w-1/3 md:order-last bg-rose-pink-100">
+          <div className="w-full md:w-1/3 md:order-last bg-rose-pink-100 p-8">
             <h3>Deal Bag</h3>
 {/* 
             <button
@@ -71,14 +73,15 @@ export default function Deal({ data }) {
             >
               Clear deal bag
             </button>
-            <ol className="flex flex-col gap-2 pl-8 mb-8 list-decimal">
-              {dealBag.map((item) => (
-                <li>{item}</li>
+            <ol class="list-decimal pl-8 flex flex-col gap-2 mb-8">
+              {dealBag.map((item, i) => (
+                <li key={i}>{item}</li>
               ))}
             </ol>
             </>
             : <p>Add some items to your deal bag</p> }
-            <div id={data.deal.slug} className={"relative " + (dealBag.length >= 3 ? "opacity-100" : "opacity-20 pointer-events-none")}>
+            <div id={data.deal.slug} className="relative">
+              {/* {dealBag.length == 3 ? 
               <AddToBasketOffer
               
                 name={data.deal.dealName}
@@ -86,12 +89,13 @@ export default function Deal({ data }) {
                 price={data.deal.price}
                 id={data.deal.slug}
                />
-              {/* <button
+               : null } */}
+              <button
                 className="relative flex flex-col w-full p-4 text-base font-bold text-left text-red-500 transition duration-300 bg-red-100 Product__buy Product snipcart-add-item hover:bg-red-500 hover:text-red-100 focus:bg-red-500 focus:text-red-100 focus:outline-none"
-                data-item-id={data.deal.dealName + " | " + finalDealBag}
+                data-item-id={data.deal.dealName}
                 data-item-price={data.deal.price}
                 data-item-description={finalDealBag}
-                data-item-name={data.deal.dealName + " | " + finalDealBag}
+                data-item-name={data.deal.dealName}
                 data-item-url={
                   "https://www.zuckermausbakery.com/deals/" +
                   data.deal.slug +
@@ -100,7 +104,7 @@ export default function Deal({ data }) {
                 onClick={() => {
                   AddToBasketAnimation(data.deal.slug);
                   handleFinalDealBag(dealBag);
-                  setFinalDealBag([])
+                  setDealBag([])
                 }}
               > 
                 <span className="flex flex-row justify-between w-full">
@@ -109,7 +113,7 @@ export default function Deal({ data }) {
                     <span>Add deal bag to basket</span>
                   </span>
                 </span>
-              </button>*/}
+              </button>
             </div>
           </div>
 
@@ -123,7 +127,7 @@ export default function Deal({ data }) {
                 variants={fade}
                 transition="easeInOut"
                 key={product.id}
-                className={"relative p-4 bg-white border border-gray-100 transition duration-300"}
+                className={"relative p-4 bg-white border border-gray-100 transition duration-300 " + (dealBag.length == 3 ? 'opacity-20' : null)}
               >
                 <Link
                   to={`/shop/product/` + product.slug + `/`}
@@ -141,7 +145,7 @@ export default function Deal({ data }) {
                   ) : null}
                 </Link>
 
-                <button onClick={() => handleDealBag(product.name + " (Single)")} className="flex flex-row items-center gap-2 p-2 text-xs bg-rose-pink-100">
+                <button onClick={() => handleDealBag(product.name + " (Single)")} className="p-2 text-xs bg-rose-pink-100 flex gap-2 flex-row items-center">
                   <FiPlusCircle className="-mt-px" /> <span>Add to deal bag</span>
                 </button>
 
