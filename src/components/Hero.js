@@ -18,7 +18,7 @@ export default function Hero({
   return (
     <motion.div
       variants={hero}
-      className={"relative border-t-2 border-gray-100 mt-4 " + className}
+      className={"relative overflow-hidden border-t-2 border-gray-100 mt-4 " + className}
     >
       <div className="container relative p-8">
         <motion.h1 variants={hero__header} className="flex flex-col m-0 font-sans">

@@ -4,15 +4,8 @@ import { graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { fade } from "../helpers/transitionHelper"
 import Seo from "../components/Seo"
-import GalleryCarousel from "../components/GalleryCarousel"
-import IconVegetarian from "../components/atoms/icons/Vegetarian"
-import IconVegan from "../components/atoms/icons/Vegan"
-import IconGlutenFree from "../components/atoms/icons/GlutenFree"
-import { IconBestSeller } from "../components/atoms/icons/Trends"
 import Hero from "../components/Hero"
-import AddToBasket from "../components/atoms/AddToBasket"
-import AustrianFlag from "../components/atoms/icons/AustrianFlag"
-import ArrowLink from "../components/atoms/ArrowLink"
+
 
 export default function DealsPage({ data, pageContext }) {
   const deals = data.allDatoCmsDeal
@@ -36,7 +29,7 @@ export default function DealsPage({ data, pageContext }) {
                   alt={
                     deal.mainImage.alt ? deal.mainImage.alt : "Zuckermaus Bakery"
                   }
-                  className=" object-cover w-full h-full opacity-40"
+                  className="object-cover w-full h-full  opacity-40"
                 />
               </div>
               <div className="relative z-10">

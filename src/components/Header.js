@@ -6,14 +6,23 @@ import Nav from "./Nav"
 import ZuckermausLogo from "../images/ZuckermausLogo.svg"
 import Basket from "./Basket"
 
-const Header = ({ topBarLine, topBarLineLeft }) => (
+const Header = ({ topBarLine, topBarLineLeft, shopClosed, closedTopBarMessage, dateReOpening }) => (
   <header className="relative z-40 w-full bg-white lg:fixed">
     <div className="fixed z-40 w-full p-2 bg-red-500 lg:flex lg:relative">
-      <div className="container flex flex-col lg:flex-row items-center justify-end w-full gap-2 lg:gap-6 xl:gap-10">
-        <p className="text-xs font-bold text-white md:text-sm xl:text-base">{ topBarLineLeft }</p>
-        <p className="text-xs font-bold text-white md:text-sm xl:text-base">{ topBarLine }</p>
-        <Basket />
-      </div>
+      {shopClosed ?
+        <div className="container flex flex-col lg:flex-row items-center justify-end w-full gap-2 lg:gap-6 xl:gap-10">
+          <p className="text-xs font-bold text-white md:text-sm xl:text-base">{ closedTopBarMessage }</p>
+          {dateReOpening ? 
+          <p className="text-xs font-bold text-white md:text-sm xl:text-base">Re-Opening: { dateReOpening }</p>
+          : null }
+        </div>
+        : 
+        <div className="container flex flex-col lg:flex-row items-center justify-end w-full gap-2 lg:gap-6 xl:gap-10">
+          <p className="text-xs font-bold text-white md:text-sm xl:text-base">{ topBarLineLeft }</p>
+          <p className="text-xs font-bold text-white md:text-sm xl:text-base">{ topBarLine }</p>
+          <Basket />
+        </div>
+      }
     </div>
 
     <div className="container relative py-8 pt-32 bg-white lg:p-8">

@@ -11,15 +11,9 @@ import IconVegetarian from "../components/atoms/icons/Vegetarian"
 import IconVegan from "../components/atoms/icons/Vegan"
 import IconGlutenFree from "../components/atoms/icons/GlutenFree"
 import { IconBestSeller } from "../components/atoms/icons/Trends"
-import ProductDeal from "../components/ProductDeal"
-import AddToBasketOffer from "../components/atoms/AddToBasketOffer"
 import AustrianFlag from "../components/atoms/icons/AustrianFlag"
-import ArrowLink from "../components/atoms/ArrowLink"
-import { FiPlusCircle } from "react-icons/fi"
 
 export default function Deal({ data }) {
-
-  // const [ availableDealProducts, setAvailableDealProducts] = useState([])
 
   let availableDealProducts = "Choose Product..."
 
@@ -58,6 +52,13 @@ export default function Deal({ data }) {
               }
             >
 
+             { data.datoCmsGlobal.closeTheShop ? 
+              <div className="flex flex-col p-4 space-y-2 text-sm bg-gray-100">
+                <p className="font-semibold">{data.datoCmsGlobal.closedProductButtonMessage}</p>
+                <p className="text-xs">Re-Opening: {data.datoCmsGlobal.dateReOpening}</p>
+                <p className="text-xs">Check back soon!</p>
+              </div>
+              : 
               <button
                 className="relative inline-flex flex-col w-auto p-4 text-base font-bold text-left text-red-500 transition duration-300 bg-red-100 Product__buy Product snipcart-checkout snipcart-add-item hover:bg-red-500 hover:text-red-100 focus:bg-red-500 focus:text-red-100 focus:outline-none"
                 data-item-id={data.deal.dealName}
@@ -88,6 +89,8 @@ export default function Deal({ data }) {
                   </span>
                 </span>
               </button>
+              }
+              
               </div>
 
            <motion.section
@@ -161,6 +164,11 @@ export default function Deal({ data }) {
 
 export const query = graphql`
   query($slug: String!) {
+    datoCmsGlobal {
+      closeTheShop
+      dateReOpening(formatString: "DD/MM/Y")
+      closedProductButtonMessage
+    }
     deal: datoCmsDeal(slug: { eq: $slug }) {
       dealName
       description

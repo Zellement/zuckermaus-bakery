@@ -19,13 +19,16 @@ const Layout = ({ children }) => {
       datoCmsGlobal {
         topBarLine
         topBarLineLeft
+        closeTheShop
+        dateReOpening(formatString: "DD/MM/Y")
+        closedTopBarMessage
       }
     }
   `)
 
   return (
     <>
-      <Header siteTitle={ data.site.siteMetadata.title } topBarLine={ data.datoCmsGlobal.topBarLine } topBarLineLeft={ data.datoCmsGlobal.topBarLineLeft } />
+      <Header siteTitle={ data.site.siteMetadata.title } shopClosed={data.datoCmsGlobal.closeTheShop} closedTopBarMessage={data.datoCmsGlobal.closedTopBarMessage} dateReOpening={data.datoCmsGlobal.dateReOpening} topBarLine={ data.datoCmsGlobal.topBarLine } topBarLineLeft={ data.datoCmsGlobal.topBarLineLeft } />
       <div className="app">
         <AnimatePresence exitBeforeEnter>
           {children}

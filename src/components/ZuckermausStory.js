@@ -27,7 +27,7 @@ export default function ZuckermausStory() {
         <div className="flex w-full lg:w-1/2 content">
           <div className="flex flex-col my-auto">
             <h1 className="text-xl font-display lg:text-3xl">{story.title}</h1>
-            <HTMLContent content={story.copy} />
+            <HTMLContent content={story.copy} className="content" />
           </div>
         </div>
         <div className="flex flex-col w-full text-lg lg:w-1/2">

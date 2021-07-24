@@ -57,13 +57,13 @@ export default function ProductPage({ data }) {
                 animate="enter"
                 className="lg:w-1/2 lg:pr-16"
               >
-                <div className="my-8 content p-4 border-red-100 border">
+                <div className="p-4 my-8 border border-red-100 content">
                   <h3>Description</h3>
                   <HTMLContent content={data.product.description} />
                 </div>
                 {data.product.ingredients ? 
-                <div className="my-8 content text-sm p-4 border-rose-pink-100 border">
-                  <h3 class="text-base">Ingredients</h3>
+                <div className="p-4 my-8 text-sm border content border-rose-pink-100">
+                  <h3 className="text-base">Ingredients</h3>
                   <HTMLContent content={data.product.ingredients} />
                 </div>
                 : null }
@@ -84,7 +84,14 @@ export default function ProductPage({ data }) {
                   ) : null}
                 </div>
 
-                <div className="flex flex-col space-y-2 max-w-96">
+              { data.datoCmsGlobal.closeTheShop ? 
+              <div className="flex flex-col p-4 space-y-2 text-sm bg-gray-100">
+                <p className="font-semibold">{data.datoCmsGlobal.closedProductButtonMessage}</p>
+                <p className="text-xs">Re-Opening: {data.datoCmsGlobal.dateReOpening}</p>
+                <p className="text-xs">Check back soon!</p>
+              </div>
+              : 
+              <div className="flex flex-col space-y-2 max-w-96">
                   {data.product.orderDetails.map((orderDetail, index) => (
                     <div key={index} className="relative" id={orderDetail.id}>
                       <AddToBasket
@@ -97,6 +104,9 @@ export default function ProductPage({ data }) {
                     </div>
                   ))}
                 </div>
+              }                
+
+                
 
                 <ArrowLink
                   arrowLeft={true}
@@ -115,6 +125,11 @@ export default function ProductPage({ data }) {
 
 export const query = graphql`
   query($slug: String!) {
+    datoCmsGlobal {
+      closeTheShop
+      dateReOpening(formatString: "DD/MM/Y")
+      closedProductButtonMessage
+    }
     product: datoCmsProduct(slug: { eq: $slug }) {
       name
       secondaryName

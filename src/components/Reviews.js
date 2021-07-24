@@ -14,6 +14,7 @@ export default function Reviews() {
     }
   `)
   const review = data.datoCmsGlobal
+  if (review.review.length > 0) {
   return (
     <div className="container p-8 md:p-16">
       <h2 className="mb-16 text-lg text-sugar-pink-700 lg:text-2xl">Reviews from our happy customers</h2>
@@ -23,8 +24,11 @@ export default function Reviews() {
             <Review name={reviewitem.name} text={reviewitem.text} />
           </div>
         ))}
-        ;
       </div>
     </div>
   )
+  }
+  else {
+    return null
+  }
 }

@@ -2,7 +2,6 @@ import React from "react"
 import AddToBasketAnimation from "../../components/atoms/AddToBasketAnimation"
 import { FaShoppingBasket } from "react-icons/fa"
 import NumberFormat from "react-number-format"
-import { useStaticQuery, graphql } from "gatsby"
 
 export default function AddToBasket({
   name,

@@ -50,7 +50,7 @@ const Nav = class extends React.Component {
             <ul className="my-2 subnav md:hidden hover:block md:absolute md:m-0 md:top-full md:left-1/2 md:-translate-x-1/2 md:transform md:w-64 md:bg-white category-filter md:shadow-xl"
                 onClick={this.toggleMenu}>
                 <Link
-                  className="space-x-2 text-sugar-pink-200 text-xs md:text-black p-2 md:px-4 md:py-3 md:border-l-2 md:border-red-500 md:hover:border-black md:hover:border-l-4 transition duration-300 md:hover:bg-sugar-pink-100 md:text-sm relative flex flex-row items-center group font-bold"
+                  className="relative flex flex-row items-center p-2 space-x-2 text-xs font-bold transition duration-300 text-sugar-pink-200 md:text-black md:px-4 md:py-3 md:border-l-2 md:border-red-500 md:hover:border-black md:hover:border-l-4 md:hover:bg-sugar-pink-100 md:text-sm group"
                   onClick={this.toggleMenu}
                   activeClassName="is-active"
                   to="/deals/"
@@ -59,6 +59,16 @@ const Nav = class extends React.Component {
                 </Link>
                 <ShopCategories linkClasses="space-x-2 text-sugar-pink-200 text-xs md:text-black p-2 md:px-4 md:py-3 md:border-l-2 md:border-red-500 md:hover:border-black md:hover:border-l-4 transition duration-300 md:hover:bg-sugar-pink-100 md:text-sm" className="flex flex-row flex-wrap p-8 md:space-x-2 lg:w-full xl:justify-between" />
               </ul>
+            </li>
+            <li>
+              <Link
+                className="block py-2 font-bold text-white md:text-black md:px-3 md:hover:text-red-500"
+                onClick={this.toggleMenu}
+                activeClassName="is-active"
+                to="/delivery/"
+              >
+                Delivery
+              </Link>
             </li>
             <li>
               <Link

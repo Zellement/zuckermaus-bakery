@@ -37,15 +37,23 @@ h3 {
 .content {
 
   @apply text-base lg:text-lg;
+
+  h1, h2, h3, h4, h5 {
+    @apply font-sans;
+  }
   
   /* Paragraph */
-  p {
+  > p {
     @apply mb-6;
   }
 
   /* Headings following paragraphs */
   p + h1, p + h2, p + h3, p + h4 {
     @apply block pt-6;
+  }
+
+  ul {
+    @apply pl-8 mb-6 list-disc;
   }
 
   a {

@@ -92,6 +92,14 @@ export default function DealsPage({ data, pageContext }) {
                   
               </div>
 
+
+              { data.datoCmsGlobal.closeTheShop ? 
+              <div className="bg-gray-100 flex flex-col space-y-2 p-4 text-sm">
+                <p className="font-semibold">{data.datoCmsGlobal.closedProductButtonMessage}</p>
+                <p className="text-xs">Re-Opening: {data.datoCmsGlobal.dateReOpening}</p>
+                <p className="text-xs">Check back soon!</p>
+              </div>
+              : 
               <div className="flex flex-col space-y-2">
                 {product.orderDetails.map((orderDetail, index) => (
                   <div
@@ -106,10 +114,14 @@ export default function DealsPage({ data, pageContext }) {
                       id={orderDetail.id}
                       volumeSize={orderDetail.volumeSize}
                       slug={product.slug}
+                      shopClosed={data.datoCmsGlobal.closeTheShop}
+                      closedMessage={data.datoCmsGlobal.closedProductButtonMessage}
+                      closedReOpening={data.datoCmsGlobal.dateReOpening}
                     />
                   </div>
                 ))}
               </div>
+              }
             </motion.div>
           ))}
         </motion.section>
@@ -120,6 +132,11 @@ export default function DealsPage({ data, pageContext }) {
 
 export const query = graphql`
   query($slug: String) {
+    datoCmsGlobal {
+      closeTheShop
+      dateReOpening(formatString: "DD/MM/Y")
+      closedProductButtonMessage
+    }
     allDatoCmsProduct(
       sort: { fields: name, order: ASC }
       filter: { productCategory: { slug: { eq: $slug } } }
