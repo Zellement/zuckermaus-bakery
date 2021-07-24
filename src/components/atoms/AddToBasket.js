@@ -12,15 +12,6 @@ export default function AddToBasket({
   id,
   slug
 }) {
-  const data = useStaticQuery(graphql`
-    query SiteQuery {
-      site {
-        siteMetadata {
-          siteURL
-        }
-      }
-    }
-  `)
   return (
     <button
       // https://stackoverflow.com/questions/33846682/react-onclick-function-fires-on-render
@@ -33,7 +24,7 @@ export default function AddToBasket({
       // data-item-image={product.gallery[0].fluid.url && product.gallery[0].fluid.url}
       data-item-description={description}
       data-item-name={name + " | " + volumeSize}
-      data-item-url={data.site.siteMetadata.siteURL + "/shop/product/" + slug + "/"}
+      data-item-url={"./shop/product/" + slug + "/"}
     >
       <span className="w-full mb-2">{volumeSize}</span>
 
