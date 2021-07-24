@@ -70,6 +70,7 @@ module.exports = {
         provideDefaultCurrency: false,
         currency: "gbp",
         openCartOnAdd: false,
+        templatesUrl: '/snipcart/index.html',
       },
     },
     {

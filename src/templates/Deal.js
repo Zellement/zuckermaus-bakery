@@ -23,15 +23,11 @@ export default function Deal({ data }) {
 
   let availableDealProducts = "Choose Product..."
 
-  {console.log(data.products.edges.length)}
-
   {data.products.edges.map(({ node: product, i }) => (
     <>
       { availableDealProducts += "|" + product.name }
     </>
   ))}
-
-  console.log(availableDealProducts)
 
   return (
     <>
@@ -63,7 +59,7 @@ export default function Deal({ data }) {
             >
 
               <button
-                className="w-auto relative inline-flex flex-col p-4 text-base font-bold text-left text-red-500 transition duration-300 bg-red-100 Product__buy Product snipcart-checkout snipcart-add-item hover:bg-red-500 hover:text-red-100 focus:bg-red-500 focus:text-red-100 focus:outline-none"
+                className="relative inline-flex flex-col w-auto p-4 text-base font-bold text-left text-red-500 transition duration-300 bg-red-100 Product__buy Product snipcart-checkout snipcart-add-item hover:bg-red-500 hover:text-red-100 focus:bg-red-500 focus:text-red-100 focus:outline-none"
                 data-item-id={data.deal.dealName}
                 data-item-price={data.deal.price}
                 data-item-name={data.deal.dealName}
