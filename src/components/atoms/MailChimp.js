@@ -10,17 +10,14 @@ export default class SubscribeForm extends React.Component {
     e.preventDefault()
     const result = await addToMailchimp(this.state.email)
     this.setState({ result: result })
+    console.log(result)
   }
   handleChange = (event) => {
     this.setState({ email: event.target.value })
   }
 
   render() {
-    return this.state.result === "success " ? (
-      <div>Thanks for subscribing!</div>
-    ) : this.state.result === "error" ? (
-      <div>Sorry, there's been a problem. Please contact us directly if you wish to subscribe.</div>
-    ) : (
+    return (
       <form onSubmit={this._handleSubmit}>
         <div className="form-row">
           <label className="flex flex-col">
@@ -34,11 +31,10 @@ export default class SubscribeForm extends React.Component {
               onChange={this.handleChange}
             />
           </label>
-          <div
-            className="message"
-            dangerouslySetInnerHTML={{ __html: this.state.message }}
-          />
         </div>
+        { this.state.result ? 
+          <div dangerouslySetInnerHTML={{ __html: this.state.result.msg }} className="inline-block p-2 mt-2 text-xs"></div>
+          : null }
         <button
           onSubmit={this.handleSubmit}
           className="p-2 mt-4 transition duration-300 bg-sugar-pink-500 text-red hover:bg-sugar-pink-300 focus:bg-sugar-pink-300"
