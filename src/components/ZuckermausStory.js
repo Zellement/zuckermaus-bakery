@@ -27,7 +27,7 @@ export default function ZuckermausStory() {
       <div className="container flex flex-col gap-16 lg:gap-24 lg:flex-row">
         <div className="flex w-full lg:w-1/2 content">
           <div className="flex flex-col my-auto">
-            <h1 className="text-xl font-display lg:text-3xl">{story.title} sdf</h1>
+            <h1 className="text-xl font-display lg:text-3xl">{story.title}</h1>
             <HTMLContent content={story.copy} className="content" />
             <ArrowLink
               className="self-start"
