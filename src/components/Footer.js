@@ -1,6 +1,7 @@
 import React from "react"
 import ArrowLink from "./atoms/ArrowLink"
 import { AiFillInstagram } from "react-icons/ai"
+import MailChimp from "./atoms/MailChimp"
 
 export default function Footer() {
   return (
@@ -17,9 +18,11 @@ export default function Footer() {
         </div>
 
         <div className="w-full md:w-1/3">
-          <p className="mb-8 text-lg lg:text-2xl font-display">Newsletter</p>
+          <p className="mb-2 text-lg lg:text-2xl font-display">Newsletter</p>
 
-          <p>MailChimp account required from Zuckermaus</p>
+          <p className="mb-6 text-sm">Subscribe to our mailing list for offers and deals.</p>
+
+          <MailChimp />
         </div>
       </div>
 
@@ -27,7 +30,7 @@ export default function Footer() {
         <p className="flex flex-col mt-10 space-y-8 text-sm lg:space-y-0 lg:flex-row lg:space-x-8">
           <span>© Zuckermaus Bakery</span>
 
-          <a href="https://www.instagram.com/zuckermaus_bakery/" className="text-xl hover:text-rose-pink-300 focus:text-rose-pink-300" target="_blank" rel="noopener noreferrer"><AiFillInstagram  /></a>
+          <a href="https://www.instagram.com/zuckermaus_bakery/" className="text-xl hover:text-rose-pink-300 focus:text-rose-pink-300" target="_blank" rel="noopener noreferrer"><span className="sr-only">Find us on Instagram</span><AiFillInstagram  /></a>
 
           <a href="https://www.zellement.com" className="hover:text-rose-pink-300 focus:text-rose-pink-300">Web Design by Zellement</a>
         </p>

@@ -29,6 +29,8 @@ const MarketsUpcoming = ({
           <HiLocationMarker className="opacity-50" /> <span>{marketVenue}</span>
         </h3>
 
+        { marketLocation ? 
+
         <ArrowLink
           text="See on a map"
           newTab={true}
@@ -40,6 +42,8 @@ const MarketsUpcoming = ({
             marketLocation.longitude
           }
         />
+
+        : null }
 
         {marketNotes ? (
           <HTMLContent className="mt-8" content={marketNotes} />

@@ -12,6 +12,7 @@
     "gatsby-image": "^3.10.0",
     "gatsby-plugin-gdpr-cookies": "^2.0.6",
     "gatsby-plugin-image": "^1.10.1",
+    "gatsby-plugin-mailchimp": "^5.2.2",
     "gatsby-plugin-manifest": "^3.10.0",
     "gatsby-plugin-offline": "^4.10.0",
     "gatsby-plugin-postcss": "^4.10.0",
