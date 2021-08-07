@@ -4,6 +4,7 @@ import { HTMLContent } from "./Content"
 import Handmade from "./atoms/icons/Handmade"
 import AustrianFlag from "./atoms/icons/AustrianFlag"
 import Delivery from "./atoms/icons/Delivery"
+import ArrowLink from "./atoms/ArrowLink"
 
 export default function ZuckermausStory() {
   const data = useStaticQuery(graphql`
@@ -26,8 +27,13 @@ export default function ZuckermausStory() {
       <div className="container flex flex-col gap-16 lg:gap-24 lg:flex-row">
         <div className="flex w-full lg:w-1/2 content">
           <div className="flex flex-col my-auto">
-            <h1 className="text-xl font-display lg:text-3xl">{story.title}</h1>
+            <h1 className="text-xl font-display lg:text-3xl">{story.title} sdf</h1>
             <HTMLContent content={story.copy} className="content" />
+            <ArrowLink
+              className="self-start"
+              destination="/blog/it-all-started-in-an-austrian-vineyard/"
+              text="Read our full story"
+            />
           </div>
         </div>
         <div className="flex flex-col w-full text-lg lg:w-1/2">
