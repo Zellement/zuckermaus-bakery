@@ -16,10 +16,12 @@ export default class SubscribeForm extends React.Component {
   }
 
   render() {
-    return (
-      <form
-        onSubmit={this._handleSubmit}
-      >
+    return this.state.result === "success " ? (
+      <div>Thanks for subscribing!</div>
+    ) : this.state.result === "error" ? (
+      <div>Sorry, there's been a problem. Please contact us directly if you wish to subscribe.</div>
+    ) : (
+      <form onSubmit={this._handleSubmit}>
         <div className="form-row">
           <label className="flex flex-col">
             <span className="sr-only">Email address</span>
