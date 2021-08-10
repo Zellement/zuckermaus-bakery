@@ -32,7 +32,7 @@ export default class SubscribeForm extends React.Component {
           </label>
         </div>
         { this.state.result ? 
-          <div dangerouslySetInnerHTML={{ __html: this.state.result.msg }} className="inline-block p-2 mt-2 text-xs"></div>
+          <div dangerouslySetInnerHTML={{ __html: this.state.result.msg }} className="block p-2 mt-2 text-xs"></div>
           : null }
         <button
           onSubmit={this.handleSubmit}
