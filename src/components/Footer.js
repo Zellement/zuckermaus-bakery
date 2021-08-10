@@ -32,7 +32,7 @@ export default function Footer() {
 
           <a href="https://www.instagram.com/zuckermaus_bakery/" className="text-xl hover:text-rose-pink-300 focus:text-rose-pink-300" target="_blank" rel="noopener noreferrer"><span className="sr-only">Find us on Instagram</span><AiFillInstagram  /></a>
 
-          <a href="https://www.zellement.com" className="hover:text-rose-pink-300 focus:text-rose-pink-300">Web Design by Zellement</a>
+          <a href="https://www.zellement.com" rel="noopener noreferrer" target="_blank" className="hover:text-rose-pink-300 focus:text-rose-pink-300">Web Design by Zellement</a>
         </p>
       </div>
     </div>
