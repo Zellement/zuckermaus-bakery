@@ -57,7 +57,7 @@ export default function ContactForm() {
           <input
             type="text"
             className="w-full"
-            name="postcode"
+            name="order-number"
             placeholder="e.g. 51735"
           />
         </label>
