@@ -44,7 +44,7 @@
     }
 }
 
-.box__header {
+/* .box__header {
   line-height: 2.5rem;
   @apply absolute top-0 left-0 text-4xl font-light lg:text-6xl xl:text-8xl 2xl:text-10xl;
   @screen lg {
@@ -56,7 +56,7 @@
   @screen 2xl {
     line-height: 7rem;
   }
-}
+} */
 
 /* Subnav */
 
