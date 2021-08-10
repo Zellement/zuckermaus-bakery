@@ -50,16 +50,16 @@ export default function MarketsPage({ data }) {
         >
           <h2 className="font-sans text-red-500">{repeatMarketsTitle}</h2>
 
-          <div className="grid grid-cols-1 mb-16 md:grid-cols-2 gap-8 lg:gap-16">
+          <div className="grid grid-cols-1 gap-8 mb-16 md:grid-cols-2 lg:gap-16">
             {repeatMarkets.map((market, index) => (
-              <div key={index} className="w-full border rounded-xl border-rose-pink-300 p-8 shadow-lg">
+              <div key={index} className="w-full p-8 border shadow-lg rounded-xl border-rose-pink-300">
                 <h3 className="flex flex-row items-center m-0 space-x-2 font-sans">
                   <HiLocationMarker className="opacity-50" /> <span>{market.venue}</span>
 
                 </h3>
 
-                <p className="text-base lg:text-lg mt-4 font-sans flex flex-row items-center space-x-2"><AiFillCalendar className="opacity-50" /> <span>{market.frequency}</span></p>
-                <p className="text-base lg:text-lg font-sans m-0 flex flex-row items-center space-x-2"><AiFillClockCircle className="opacity-50" /> <span>{market.times}</span></p>
+                <p className="flex flex-row items-center mt-4 space-x-2 font-sans text-base lg:text-lg"><AiFillCalendar className="opacity-50" /> <span>{market.frequency}</span></p>
+                <p className="flex flex-row items-center m-0 space-x-2 font-sans text-base lg:text-lg"><AiFillClockCircle className="opacity-50" /> <span>{market.times}</span></p>
 
                 {market.notes ? (
                   <HTMLContent className="mt-8" content={market.notes} />
@@ -85,7 +85,7 @@ export default function MarketsPage({ data }) {
         </motion.section>
 
         <motion.section
-          className="container flex flex-col space-y-16 lg:space-y-0 p-8 lg:flex-row"
+          className="container flex flex-col p-8 space-y-16 lg:space-y-0 lg:flex-row"
           variants={fade}
           transition="easeInOut"
         >
@@ -96,7 +96,7 @@ export default function MarketsPage({ data }) {
           <div className="w-full lg:w-1/2">
             { upcomingMarketCount > 0 ?
             <>
-              <h3 className="font-sans text-rose-pink-500 m-0">{upcomingMarketsTitle}</h3>
+              <h3 className="m-0 font-sans text-rose-pink-500">{upcomingMarketsTitle}</h3>
             {data.markets.edges.map((market, index) => (
               <MarketsUpcoming
                 key={index}
@@ -111,7 +111,7 @@ export default function MarketsPage({ data }) {
             : null }
             { pastMarketCount > 0 ?
             <>
-            <h3 className="pt-8 font-sans lg:pt-16 text-rose-pink-500 m-0">{pastMarketsTitle}</h3>
+            <h3 className="pt-8 m-0 font-sans lg:pt-16 text-rose-pink-500">{pastMarketsTitle}</h3>
             {data.markets.edges.map((market, index) => (
               <MarketsPast
                 key={index}
@@ -152,7 +152,7 @@ export const query = graphql`
         alt
       }
     }
-    markets: allDatoCmsMarket {
+    markets: allDatoCmsMarket(sort: {fields: date, order: ASC}) {
       edges {
         node {
           id

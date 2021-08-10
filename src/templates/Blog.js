@@ -27,7 +27,7 @@ export default function BlogPost({ data }) {
           backDestination={"/blog/"}
         />
 
-        <div className="w-full h-96 lg:h-56 relative">
+        <div className="relative w-full h-96 lg:h-56">
 
           <GatsbyImage
             image={data.article.heroImage.gatsbyImageData}
@@ -40,14 +40,14 @@ export default function BlogPost({ data }) {
             className="block object-cover w-full h-full"
           />
 
-          <div className="w-full absolute inset-0 bg-red-500 bg-opacity-80"></div>
+          <div className="absolute inset-0 w-full bg-red-500 bg-opacity-80"></div>
 
           </div>
                 
         <motion.div
           variants={fade}
           transition="easeInOut"
-          className="container max-w-screen-lg p-8 lg:w-full lg:p-16 content"
+          className="container max-w-screen-lg p-8 text-justify lg:w-full lg:p-16 content"
         >
           <StructuredText
             data={data.article.content}

@@ -34,6 +34,7 @@ module.exports = {
         },
       },
     },
+    'gatsby-plugin-robots-txt',
     {
       resolve: `gatsby-plugin-gdpr-cookies`,
       options: {

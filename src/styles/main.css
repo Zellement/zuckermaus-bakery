@@ -102,3 +102,7 @@
 .inverted-tiles .inverted-tiles__article:nth-of-type(4n + 4):focus {
   @apply bg-sugar-pink-400;
 }
+
+.text-shadow {
+  text-shadow: -1px 4px 7px rgba(0,0,0,0.6);
+}

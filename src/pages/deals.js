@@ -12,7 +12,7 @@ export default function DealsPage({ data, pageContext }) {
 
   return (
     <>
-      <Seo title={pageContext.title ? `${pageContext.title} | Shop` : `Shop`} />
+      <Seo title={`Deals`} />
       <motion.div initial="initial" animate="enter" exit="exit">
         <Hero className="" header="Deals" subpage={pageContext.title} />
 
@@ -29,7 +29,7 @@ export default function DealsPage({ data, pageContext }) {
                   alt={
                     deal.mainImage.alt ? deal.mainImage.alt : "Zuckermaus Bakery"
                   }
-                  className="object-cover w-full h-full  opacity-40"
+                  className="object-cover w-full h-full opacity-40"
                 />
               </div>
               <div className="relative z-10">

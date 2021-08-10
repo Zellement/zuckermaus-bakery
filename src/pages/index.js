@@ -51,7 +51,7 @@ const IndexPage = ({ data }) => {
   const blogposts = data.allDatoCmsBlog
   return (
     <>
-      <Seo title="Home" />
+      <Seo title="A Little Taste of Austria" />
 
       <motion.section
         initial="initial"
@@ -70,14 +70,14 @@ const IndexPage = ({ data }) => {
             className="object-cover w-full h-full"
             alt={heroImage.alt ? heroImage.alt : ""}
           />
-          <div className="absolute z-30 flex flex-col items-center w-10/12 p-4 text-white transform -translate-x-1/2 -translate-y-1/2 bg-red-500 md:p-8 lg:p-16 xl:px-24 bg-opacity-70 top-1/2 left-1/2 md:w-7/10 lg:w-auto">
-            <p className="text-xl text-center md:text-3xl lg:text-5xl font-display">
+          <div className="absolute top-0 z-30 flex flex-col items-center w-full p-4 mt-4 text-red-500 transform -translate-x-1/2 md:p-6 bg-opacity-70 left-1/2 ">
+            <p className="text-2xl text-center md:text-4xl lg:text-5xl font-display ">
               {heroText}
             </p>
             <ArrowLink
               destination="/shop/"
               text={heroButtonText}
-              className="mt-4 text-white lg:text-2xl"
+              className="p-2 -mt-4 text-red-500 bg-opacity-70 lg:text-xl"
             />
           </div>
         </motion.div>

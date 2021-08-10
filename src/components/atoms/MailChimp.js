@@ -10,7 +10,6 @@ export default class SubscribeForm extends React.Component {
     e.preventDefault()
     const result = await addToMailchimp(this.state.email)
     this.setState({ result: result })
-    console.log(result)
   }
   handleChange = (event) => {
     this.setState({ email: event.target.value })
