@@ -26,7 +26,7 @@ export default function AddToBasketOffer({
       data-item-price={price}
       data-item-name={name}
       data-item-description={description}
-      data-item-url={"./" + slug + "/"}
+      data-item-url={"/" + slug + "/"}
     >
       <span className="flex flex-row justify-between w-full">
         <span className="flex flex-row items-center">
