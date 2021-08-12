@@ -51,7 +51,7 @@ const IndexPage = ({ data }) => {
   const blogposts = data.allDatoCmsBlog
   return (
     <>
-      <Seo title="A Little Taste of Austria" />
+      <Seo title="A Little Slice of Austria" />
 
       <motion.section
         initial="initial"
