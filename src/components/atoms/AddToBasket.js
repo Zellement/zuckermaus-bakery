@@ -23,7 +23,7 @@ export default function AddToBasket({
       // data-item-image={product.gallery[0].fluid.url && product.gallery[0].fluid.url}
       data-item-description={description}
       data-item-name={name + " | " + volumeSize}
-      data-item-url={"./shop/product/" + slug + "/"}
+      data-item-url={"https://www.zuckermausbakery.com/shop/product/" + slug + "/"}
     >
       <span className="w-full mb-2">{volumeSize}</span>
 

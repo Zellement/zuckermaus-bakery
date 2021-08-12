@@ -71,7 +71,7 @@ export default function Deal({ data }) {
                 data-item-custom3-name="Single serving of product 3..."
                 data-item-custom3-options={availableDealProducts}
                 data-item-url={
-                  "https://zuckermaus-bakery.netlify.app/deals/" +
+                  "https://www.zuckermausbakery.com/deals/" +
                   data.deal.slug +
                   "/"
                 }
