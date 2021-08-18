@@ -39,17 +39,6 @@ module.exports = {
       options: {
         // The property ID; the tracking code won't be generated without it
         trackingId: "G-EQ6X9LYQDE",
-        // Defines where to place the tracking script - `true` in the head and `false` in the body
-        head: false,
-        // Delays sending pageview hits on route update (in milliseconds)
-        pageTransitionDelay: 0.5,
-        defer: false,
-        // Any additional optional fields
-        sampleRate: 5,
-        siteSpeedSampleRate: 10,
-        cookieDomain: "zuckermausbakery.com",
-        // defaults to false
-        enableWebVitalsTracking: true,
       },
     },
     "gatsby-plugin-robots-txt",
