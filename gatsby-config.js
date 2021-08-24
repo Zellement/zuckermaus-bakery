@@ -35,12 +35,21 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-        // The property ID; the tracking code won't be generated without it
-        trackingId: "G-EQ6X9LYQDE",
+        // You can add multiple tracking ids and a pageview event will be fired for all of them.
+        trackingIds: [
+          "G-EQ6X9LYQDE", // Google Analytics / GA
+        ],
       },
     },
+    // {
+    //   resolve: `gatsby-plugin-google-analytics`,
+    //   options: {
+    //     // The property ID; the tracking code won't be generated without it
+    //     trackingId: "G-EQ6X9LYQDE",
+    //   },
+    // },
     "gatsby-plugin-robots-txt",
     {
       resolve: `gatsby-plugin-gdpr-cookies`,
