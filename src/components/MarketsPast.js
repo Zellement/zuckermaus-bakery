@@ -48,13 +48,13 @@ function timeConverter(unixTimestamp) {
     "Dec",
   ]
   var days = [
+    "Sunday",
     "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
     "Saturday",
-    "Sunday",
   ]
   var year = a.getFullYear()
   var month = months[a.getMonth()]
