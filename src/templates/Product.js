@@ -99,6 +99,7 @@ export default function ProductPage({ data }) {
                         name={data.product.name}
                         description={data.product.description}
                         id={orderDetail.id}
+                        slug={data.product.slug}
                         volumeSize={orderDetail.volumeSize}
                       />
                     </div>
@@ -150,6 +151,7 @@ export const query = graphql`
       glutenFree
       bestSeller
       ingredients
+      slug
       gallery {
         gatsbyImageData(layout: CONSTRAINED, width: 1200, height: 1000)
         alt
