@@ -40,13 +40,13 @@ exports.createPages = async function({ actions, graphql }) {
       context: { slug: node.slug, title: node.name },
     })
   })
-  data.deals.nodes.forEach(node => {
-    actions.createPage({
-      path: "deals/" + node.slug + "/",
-      component: require.resolve(`./src/templates/Deal.js`),
-      context: { slug: node.slug, title: node.dealName },
-    })
-  })
+  // data.deals.nodes.forEach(node => {
+  //   actions.createPage({
+  //     path: "deals/" + node.slug + "/",
+  //     component: require.resolve(`./src/templates/Deal.js`),
+  //     context: { slug: node.slug, title: node.dealName },
+  //   })
+  // })
   data.blog.nodes.forEach(node => {
     actions.createPage({
       path: "blog/" + node.slug + "/",
