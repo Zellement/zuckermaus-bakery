@@ -10,16 +10,16 @@ const Header = ({ topBarLine, topBarLineLeft, shopClosed, closedTopBarMessage, d
   <header className="relative z-40 w-full bg-white lg:fixed">
     <div className="fixed z-40 w-full p-2 bg-red-500 lg:flex lg:relative">
       {shopClosed ?
-        <div className="container flex flex-col lg:flex-row items-center justify-end w-full gap-2 lg:gap-6 xl:gap-10">
+        <div className="container flex flex-col items-center justify-end w-full gap-2 lg:flex-row lg:gap-6 xl:gap-10">
           <p className="text-xs font-bold text-white md:text-sm xl:text-base">{ closedTopBarMessage }</p>
           {dateReOpening ? 
           <p className="text-xs font-bold text-white md:text-sm xl:text-base">Re-Opening: { dateReOpening }</p>
           : null }
         </div>
         : 
-        <div className="container flex flex-col lg:flex-row items-center justify-end w-full gap-2 lg:gap-6 xl:gap-10">
-          <p className="text-xs font-bold text-white md:text-sm xl:text-base">{ topBarLineLeft }</p>
-          <p className="text-xs font-bold text-white md:text-sm xl:text-base">{ topBarLine }</p>
+        <div className="container flex flex-col items-center justify-between w-full gap-2 lg:flex-row lg:gap-6 xl:gap-10">
+          <p className="text-xs font-bold text-center text-white md:text-sm 3xl:text-base">{ topBarLineLeft }</p>
+          <p className="text-xs font-bold text-center text-white md:text-sm 3xl:text-base">{ topBarLine }</p>
           <Basket />
         </div>
       }
