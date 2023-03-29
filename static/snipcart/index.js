@@ -11,7 +11,7 @@ export default function SnipCartTemplate() {
         <div id="snipcart-templates">
           <cart section="header"> 
             <div class="root">
-              <cart-header title="Minimum order value is £10">
+              <cart-header title="Minimum order value is £10" style="font-size: 1.3em">
              </cart-header>
             </div>
           </cart>
@@ -37,7 +37,7 @@ export default function SnipCartTemplate() {
                   <snipcart-label
                     class="snipcart-form__label"
                     for="Requested Delivery Date"
-                    style="margin-top: 40px;"
+                    style="margin-top: 20px;"
                   >
                     Requested Delivery Date
                   </snipcart-label>
