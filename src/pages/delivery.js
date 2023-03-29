@@ -8,6 +8,7 @@ import { StructuredText } from "react-datocms"
 import ArrowLink from "../components/atoms/ArrowLink"
 import { GatsbyImage } from "gatsby-plugin-image";
 
+
 export const query = graphql`
   query {
     datoCmsDeliveryPage {
