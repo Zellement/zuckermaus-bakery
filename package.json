@@ -27,7 +27,7 @@
     "gatsby-plugin-snipcart": "^1.1.2",
     "gatsby-plugin-snipcart-advanced": "^1.0.3",
     "gatsby-plugin-snipcartv3": "^2.3.3",
-    "gatsby-source-datocms": "^4.0.5",
+    "gatsby-source-datocms": "^3.0.19",
     "gatsby-source-filesystem": "^3.15.0",
     "gatsby-source-instagram-all": "^4.2.0",
     "gatsby-transformer-sharp": "^3.15.0",
