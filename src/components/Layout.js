@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { AnimatePresence } from 'framer-motion'
-// import InstagramFeed from "../components/InstagramFeed"
+import InstagramFeed from "../components/InstagramFeed"
 
 import Header from "./Header"
 import Footer from "./Footer"
@@ -34,7 +34,7 @@ const Layout = ({ children }) => {
           {children}
         </AnimatePresence>
       </div>
-      {/* <InstagramFeed /> */}
+      <InstagramFeed />
       <Footer />
     </>
   )
