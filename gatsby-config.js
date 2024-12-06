@@ -73,12 +73,12 @@ module.exports = {
         environments: ["production", "development"],
       },
     },
-    {
-      resolve: `gatsby-source-instagram-all`,
-      options: {
-        access_token: process.env.INSTAGRAM_ACCESS,
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-instagram-all`,
+    //   options: {
+    //     access_token: process.env.INSTAGRAM_ACCESS,
+    //   },
+    // },
     {
       resolve: "gatsby-plugin-snipcart-advanced",
       options: {
