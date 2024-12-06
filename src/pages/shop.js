@@ -114,7 +114,7 @@ export default function DealsPage({ data, pageContext }) {
                       id={orderDetail.id}
                       volumeSize={orderDetail.volumeSize}
                       slug={product.slug}
-                      exclude_from_delivery={product.exclude_from_delivery}
+                      excludeFromDelivery={product.excludeFromDelivery}
                       shopClosed={data.datoCmsGlobal.closeTheShop}
                       closedMessage={data.datoCmsGlobal.closedProductButtonMessage}
                       closedReOpening={data.datoCmsGlobal.dateReOpening}

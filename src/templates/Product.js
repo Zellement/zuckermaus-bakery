@@ -60,7 +60,7 @@ export default function ProductPage({ data }) {
                 <div className="p-4 my-8 border border-red-100 content">
                   <h3>Description</h3>
                   <HTMLContent content={data.product.description} />
-                  {data.product.exclude_from_delivery ? 
+                  {data.product.excludeFromDelivery ? 
                   <p class="mt-4 font-bold">Please note: This product is available for collection only.</p>
                   : null }
                 </div>
@@ -104,7 +104,7 @@ export default function ProductPage({ data }) {
                         id={orderDetail.id}
                         slug={data.product.slug}
                         volumeSize={orderDetail.volumeSize}
-                        exclude_from_delivery={data.product.exclude_from_delivery}
+                        excludeFromDelivery={data.product.excludeFromDelivery}
                       />
                     </div>
                   ))}

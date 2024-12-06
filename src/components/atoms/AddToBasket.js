@@ -10,7 +10,7 @@ export default function AddToBasket({
   price,
   id,
   slug,
-  exclude_from_delivery
+  excludeFromDelivery
 }) {
   return (
     <button
@@ -25,7 +25,7 @@ export default function AddToBasket({
       data-item-description={description}
       data-item-name={name + " | " + volumeSize}
       data-item-url={"https://www.zuckermausbakery.com/shop/product/" + slug + "/"}
-      data-item-weight={exclude_from_delivery ? 0 : price}
+      data-item-weight={excludeFromDelivery ? 0 : price}
     >
       <span className="w-full mb-2">{volumeSize}</span>
 

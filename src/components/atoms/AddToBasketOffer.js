@@ -13,7 +13,7 @@ export default function AddToBasketOffer({
   slug,
   category,
   dealBag,
-  exclude_from_delivery
+  excludeFromDelivery
 }) {
   
   return (
@@ -28,7 +28,7 @@ export default function AddToBasketOffer({
       data-item-name={name}
       data-item-description={description}
       data-item-url={"/" + slug + "/"}
-      data-item-weight={exclude_from_delivery ? 0 : price}
+      data-item-weight={excludeFromDelivery ? 0 : price}
     >
       <span className="flex flex-row justify-between w-full">
         <span className="flex flex-row items-center">
