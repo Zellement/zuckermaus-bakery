@@ -153,6 +153,7 @@ export const query = graphql`
           vegan
           vegetarian
           bestSeller
+          excludeFromDelivery
           glutenFree
           deal {
             id

@@ -154,6 +154,7 @@ export const query = graphql`
       vegetarian
       glutenFree
       bestSeller
+      excludeFromDelivery
       ingredients
       slug
       gallery {
