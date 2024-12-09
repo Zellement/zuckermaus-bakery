@@ -88,6 +88,15 @@ module.exports = {
         currency: "gbp",
         openCartOnAdd: false,
         templatesUrl: "/snipcart/index.js",
+        locales: {
+          en: {
+            payment: {
+              form: {
+                card_label: "Debit or Credit Card"
+              }
+            },
+          },
+        },
       },
     },
     {

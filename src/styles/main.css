@@ -30,6 +30,22 @@
   z-index:50!important;
 }
 
+.snipcart-flash-message__content {
+  h2 {
+    line-height: 1.4;
+    white-space: pre-line;
+  }
+}
+
+#snipcart-payment-form {
+  @apply bg-red-400;
+  legend {
+    &:before {
+      content: "Debit or ";
+    }
+  }
+}
+
 .category-filter {
   [aria-current="page"] {
     @apply bg-sugar-pink-400;

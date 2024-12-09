@@ -40,7 +40,7 @@ export default function SnipCartTemplate() {
                     <p style="position: relative; display: block; gap: 10px; margin-bottom: 2px; line-height: 20px; padding-left: 32px;">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" style="position: absolute; top: 5px; left: 0;" width="20" height="20" style="margin-top: 3px;"><path fill="#000" fill-rule="evenodd" d="M17.971 8H1.997V4.971A.97.97 0 0 1 2.967 4h1.027v2H5.99V4h7.988v2h1.996V4h.999a1 1 0 0 1 .998 1v3Zm0 9c0 .55-.449 1-.998 1H2.995a1 1 0 0 1-.998-1v-7H17.97v7Zm-17.907.761c0 1.104.957 2.239 2.06 2.239h15.974C19.201 20 20 18.979 20 17.761c0-.389-.032-12.401-.032-13.053 0-2.082-.28-2.708-3.994-2.708V0h-1.996v2H5.99V0H3.994v2H1.997C.899 2 0 2.9 0 4l.064 13.761Z"/></svg>
                       
-                      <span style="line-height: 24px; display: block;">Please enter the date you would like the delivery, allowing at least <span style="font-weight: bold; display: inline-block;">48 hours</span> for preparation. Please note we may need to contact you if there are any issues.</span>
+                      <span style="line-height: 24px; display: block;">Please enter the date you would like the delivery, allowing at least <span style="font-weight: bold; display: inline-block;">72 hours</span> for preparation. Please note we may need to contact you if there are any issues.</span>
                       </p>
                   <snipcart-label
                     class="snipcart-form__label"
@@ -49,7 +49,7 @@ export default function SnipCartTemplate() {
                   >
                     Requested Delivery Date
                   </snipcart-label>
-                  <snipcart-textarea name="Requested Delivery Date" placeholder="Please allow at least 48 hours for preparation and delivery"> </snipcart-textarea>
+                  <snipcart-textarea name="Requested Delivery Date" placeholder=""> </snipcart-textarea>
                   </div>
                     <div style="margin-top: 20px; padding: 10px; border: 2px; border-color: red;">
                     <p style="position: relative; display: block; gap: 10px; margin-bottom: 2px; line-height: 20px; padding-left: 32px;">

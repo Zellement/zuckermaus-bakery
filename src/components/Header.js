@@ -18,14 +18,16 @@ const Header = ({ topBarLine, topBarLineLeft, shopClosed, closedTopBarMessage, d
         </div>
         : 
         <div className="container flex flex-col items-center justify-between w-full gap-2 lg:flex-row lg:gap-6 xl:gap-10">
-          <p className="text-xs font-bold text-center text-white md:text-sm 3xl:text-base">{ topBarLineLeft }</p>
-          <p className="text-xs font-bold text-center text-white md:text-sm 3xl:text-base">{ topBarLine }</p>
-          <Basket />
+          <p className="text-2xs sm:text-xs font-bold text-center text-white xl:text-sm 3xl:text-base">{ topBarLineLeft }</p>
+          <div class="flex flex-row items-center">
+            <p className="mr-4 text-2xs sm:text-xs font-bold text-center text-white xl:text-sm 3xl:text-base">{ topBarLine }</p>
+            <Basket />
+          </div>
         </div>
       }
     </div>
 
-    <div className="container relative py-8 pt-32 bg-white lg:p-8">
+    <div className="container relative py-8 pt-36 2xs:pt-32 bg-white lg:p-8">
       <div className="flex flex-col items-center md:space-y-4 lg:justify-between lg:space-y-0 lg:flex-row">
         <Link
           className="inline-block w-full mx-auto max-w-72 lg:ml-0"

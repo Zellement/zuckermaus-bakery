@@ -61,7 +61,7 @@ export default function ProductPage({ data }) {
                   <h3>Description</h3>
                   <HTMLContent content={data.product.description} />
                   {data.product.excludeFromDelivery ? 
-                  <p class="mt-4 font-bold">Please note: This product is available for collection or <a href="https://www.zuckermausbakery.com/delivery/" class="text-red-500 hover:underline">local delivery</a> only.</p>
+                  <p class="mt-4 font-bold">Please note: This product is available for collection or <a href="https://www.zuckermausbakery.com/delivery/" class="text-red-500 hover:underline inline-block">local delivery</a> only.</p>
                   : null }
                 </div>
                 {data.product.ingredients ? 
