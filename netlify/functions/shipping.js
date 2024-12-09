@@ -27,28 +27,28 @@ exports.handler = async function (event, context) {
         const shippingRates = [];
 
         // Regex for UK postal codes
-        const ukPostcodeRegex = /^[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? ?[0-9][A-Za-z]{2}$/;
+        // const ukPostcodeRegex = /^[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? ?[0-9][A-Za-z]{2}$/;
 
         // If the address is outside the UK
-        if (!ukPostcodeRegex.test(postcode)) {
-            shippingRates.push({
-                key: "country_unavailable_for_delivery",
-                message: `Sorry, we currently only deliver to addresses within the UK.`
-            });
-            return {
-                statusCode: 200,
-                body: JSON.stringify({
-                    errors: shippingRates,
-                    message: 'Sorry, we currently only deliver to addresses within the UK.',
-                }),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            };
-        }
+        // if (!ukPostcodeRegex.test(postcode)) {
+        //     shippingRates.push({
+        //         key: "country_unavailable_for_delivery",
+        //         message: `Sorry, we currently only deliver to addresses within the UK.`
+        //     });
+        //     return {
+        //         statusCode: 200,
+        //         body: JSON.stringify({
+        //             errors: shippingRates,
+        //             message: 'Sorry, we currently only deliver to addresses within the UK.',
+        //         }),
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //     };
+        // }
 
 
-        // Rule 2: Free Local Delivery
+        // Rule 1: Free Local Delivery
         if (orderTotal > 10 && /^[aA][lL](1|3|4|5)\b/.test(postcode)) {
             shippingRates.push({
                 userDefinedId: 'free-local-delivery',
@@ -57,7 +57,7 @@ exports.handler = async function (event, context) {
             });
         }
 
-        // Rule 3: Royal Mail Delivery
+        // Rule 2: Royal Mail Delivery
         if (orderTotal > 10 && !/^[aA][lL](1|3|4|5)\b/.test(postcode)) {
              // If restricted products are in the basket, show a message and return no shipping rates
             if (restrictedProducts.length > 0) {
