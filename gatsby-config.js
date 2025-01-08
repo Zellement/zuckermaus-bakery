@@ -82,6 +82,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-snipcart-advanced",
       options: {
+        version: "3.0.30",
         publicApiKey: process.env.SNIPCART_API,
         defaultLang: "en",
         provideDefaultCurrency: false,
