@@ -63,7 +63,7 @@ exports.handler = async function (event, context) {
             if (restrictedProducts.length > 0) {
                 shippingRates.push({
                     key: "items_unavailable_for_delivery",
-                    message: `Sorry! Unfortunately, we can’t deliver the following products to your area to ensure their freshness: \n\n ${restrictedProductNames}`
+                    message: `Sorry! Unfortunately, we can't deliverer the following products to your area to ensure safe arrival of the delicate cake decoration: \n\n ${restrictedProductNames}`
                 });
                 return {
                     statusCode: 200,
