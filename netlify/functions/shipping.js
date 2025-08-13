@@ -82,13 +82,13 @@ exports.handler = async function (event, context) {
                 shippingRates.push({
                     userDefinedId: 'royal-mail-standard',
                     description: 'Royal Mail Delivery',
-                    cost: 5.95,
+                    cost: 9.95,
                 });
             } else {
                 shippingRates.push({
                     userDefinedId: 'royal-mail-heavy',
                     description: 'Royal Mail Delivery',
-                    cost: 9.99,
+                    cost: 9.95,
                 });
             }
         }
